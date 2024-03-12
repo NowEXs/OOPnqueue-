@@ -5,6 +5,6 @@ public abstract class OnClick implements ActionListener {
 
     }
     public ActionListener pressCancel(){
-        
+
     }
 }

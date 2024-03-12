@@ -1,4 +1,4 @@
-public class Computer implements RoleChecker, Rerservable{
+public class Computer extends Student implements RoleChecker, Rerservable{
     private Student std_data;
     private int comp_id, status;
     private boolean isReservable;
