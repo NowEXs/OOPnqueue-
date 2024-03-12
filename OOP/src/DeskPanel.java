@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 public class DeskPanel implements RoleChecker{
     private Computer desk; // computer desk ต้อง cast เป็น Jbutton ในภายหลัง ถ้ากดแล้ว is professor false จะเปิดpopup ของ TA or Student
     private JLabel deskLabel; // ชื่อโต๊ะ
