@@ -1,4 +1,4 @@
-public class TA extends User{
+public class TA extends User implements Checkable{
     private String ta_password;
     public boolean isCheckable(){
 
