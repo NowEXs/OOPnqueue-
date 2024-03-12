@@ -7,5 +7,7 @@
     </content>
     <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="Library" level="application" />
+    <orderEntry type="library" name="AbsoluteLayout-RELEASE210" level="project" />
   </component>
 </module>
