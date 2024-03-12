@@ -8,9 +8,9 @@ public class DeskPanel implements RoleChecker{
     public DeskPanel(){
 
     }
-    public boolean isProfessor() {
-        return
-    }
+//    public boolean isProfessor() {
+//        return
+//    } just can't run
     @Override
     public void userType() {
 

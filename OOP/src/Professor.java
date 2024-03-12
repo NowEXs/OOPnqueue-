@@ -1,12 +1,17 @@
-public class Professor extends User implements Checkable{
+public class Professor extends User implements Checkable {
     private String pro_password;
     public void viewComment(){
 
     }
-    public boolean isCheckable(){
+//    public boolean isCheckable(){
+//
+//    } for run
+    public Professor(){
 
     }
-    public Professor(){
+
+    @Override
+    public void Checkable() {
 
     }
 }
