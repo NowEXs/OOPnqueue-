@@ -1,7 +1,5 @@
-/**
- *
- * @author gypprt
- */
+import java.awt.*;
+
 public class Checkingpage extends javax.swing.JFrame {
 
     /**
