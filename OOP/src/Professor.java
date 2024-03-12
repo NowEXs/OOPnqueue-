@@ -1,4 +1,4 @@
-public class Professor extends User{
+public class Professor extends User implements Checkable{
     private String pro_password;
     public void viewComment(){
 
