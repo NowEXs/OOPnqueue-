@@ -46,7 +46,7 @@ public class Checkingpage extends javax.swing.JFrame {
         jLabel13.setText("Fill Score");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 640, -1, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/confirmButton.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/confirmButton.png"))); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -97,7 +97,7 @@ public class Checkingpage extends javax.swing.JFrame {
         jLabel4.setText("17:00:30");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 160, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/checking3.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/checking2.png"))); // NOI18N
         jLabel1.setMaximumSize(new java.awt.Dimension(130, 100));
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, -1, -1));
 
@@ -106,7 +106,7 @@ public class Checkingpage extends javax.swing.JFrame {
         jLabel2.setToolTipText("");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, 111, 40));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/clockWood.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/clockWood.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
