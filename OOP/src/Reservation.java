@@ -107,7 +107,7 @@ public class Reservation extends javax.swing.JFrame {
         Confirm.setForeground(new java.awt.Color(7, 103, 6));
         Confirm.setText("Confirm");
         Confirm.setToolTipText("");
-        getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 90, 40));
+        getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 90, 50));
 
         bt_confirm.setIcon(new javax.swing.ImageIcon("/Users/nk/Desktop/img/confirmButton-2.png")); // NOI18N
         bt_confirm.setBorderPainted(false);
@@ -117,7 +117,7 @@ public class Reservation extends javax.swing.JFrame {
         Cancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         Cancel.setForeground(new java.awt.Color(126, 13, 0));
         Cancel.setText("Cancel");
-        getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 90, 40));
+        getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 90, 50));
 
         bt_cancel.setIcon(new javax.swing.ImageIcon("/Users/nk/Desktop/img/cancelButton-2.png")); // NOI18N
         bt_cancel.setBorderPainted(false);
