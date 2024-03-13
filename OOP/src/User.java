@@ -1,20 +1,20 @@
 public abstract class User {
     private String name;
-    private Role<Role<Integer>> role;
-    /*/ 0 = Pr, 1 = TA, 2 = STD/*/
+    private int role;
 
-    public void setName(String name){
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
-    public String getName(){
-        return this.name;
+
+    public void setRole(int role) {
+        this.role = role;
     }
 
-    public Role<Role<Integer>> getRole() {
-        return this.role.getRl();
-    }
-
-    public void setRole(Role<Integer> role) {
-        this.role.setRole(role);
+    public int getRole() {
+        return role;
     }
 }
