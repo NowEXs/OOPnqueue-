@@ -129,8 +129,8 @@ public class Checkingpage extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        NewJFrame pi = new NewJFrame();
-        pi.setVisible(true);
+//        NewJFrame pi = new NewJFrame();
+//        pi.setVisible(true);
 
     }
 
