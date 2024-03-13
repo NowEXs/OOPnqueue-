@@ -74,7 +74,7 @@ public class booking extends javax.swing.JFrame {
         jLabel7.setText("Lab");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, -1, 40));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("/Users/nk/Desktop/GuiPro/src/checking-2.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/checking-2.png"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
 
         jTextField1.setBackground(new java.awt.Color(76, 40, 20));
@@ -116,7 +116,7 @@ public class booking extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, 80, 20));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("/Users/nk/Desktop/img/cancelButton-2.png")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/cancelButton-2.png"))); // NOI18N
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, -1));
 
         jButton1.setBackground(new java.awt.Color(66, 189, 65));
@@ -133,10 +133,10 @@ public class booking extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 394, 90, 30));
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("/Users/nk/Desktop/img/confirmButton-2.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/confirmButton-2.png"))); // NOI18N
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/nk/Desktop/GuiPro/src/reserve.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/reserve.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
