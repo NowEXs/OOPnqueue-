@@ -1,0 +1,67 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.poi:poi:3.11" type="java-imported" external-system-id="Maven">
+    <properties groupId="org.apache.poi" artifactId="poi" version="3.11" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi/3.11/poi-3.11.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/ant-1.10.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/ant-launcher-1.10.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-anim-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-awt-util-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-bridge-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-codec-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-constants-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-css-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-dom-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-ext-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-gvt-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-i18n-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-parser-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-script-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-svg-dom-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-svggen-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-svgrasterizer-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-transcoder-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-util-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/batik-xml-1.14.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/bcpkix-jdk15on-1.70.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/bcprov-jdk15on-1.70.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/bcutil-jdk15on-1.70.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/commons-codec-1.15.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/commons-collections4-4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/commons-compress-1.26.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/commons-io-2.15.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/commons-math3-3.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/curvesapi-1.07.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/fontbox-2.0.26.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/graphics2d-0.40.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/guava-32.1.2-jre.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/httpclient5-5.1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/httpcore5-5.1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/httpcore5-h2-5.1.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/jakarta.activation-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/jakarta.xml.bind-api-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/javaparser-core-3.25.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/javaparser-symbol-solver-core-3.25.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/javassist-3.29.2-GA.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/log4j-api-2.21.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/pdfbox-2.0.26.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/Saxon-HE-12.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/slf4j-api-1.7.36.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/SparseBitSet-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/xml-apis-1.4.01.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/xml-apis-ext-1.3.04.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/xmlbeans-5.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/xmlgraphics-commons-2.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/xmlresolver-5.2.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/xmlsec-3.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi/3.11/poi-3.11-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/xmlbeans-5.2.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi/3.11/poi-3.11-sources.jar!/" />
+      <root url="jar://$PROJECT_DIR$/OOP/libraries/xmlbeans-5.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
