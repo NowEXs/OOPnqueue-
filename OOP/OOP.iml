@@ -6,10 +6,35 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
-    <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="POI" level="project" />
-    <orderEntry type="library" exported="" name="ant-1.10.14" level="project" />
-    <orderEntry type="library" exported="" name="poi-5.2.3" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/AbsoluteLayout-RELEASE210.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="ant-1.10.14" level="project" />
     <orderEntry type="library" name="AbsoluteLayout-RELEASE210" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libraries/poi-5.2.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/libraries/poi-examples-5.2.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/libraries/poi-excelant-5.2.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/libraries/poi-ooxml-5.2.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/libraries/poi-ooxml-full-5.2.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/libraries/poi-ooxml-lite-5.2.3.jar!/" />
+          <root url="jar://$MODULE_DIR$/libraries/poi-scratchpad-5.2.3.jar!/" />
+        </CLASSES>
+        <JAVADOC>
+          <root url="jar://$MODULE_DIR$/libraries/poi-javadoc-5.2.3.jar!/" />
+        </JAVADOC>
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
