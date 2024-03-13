@@ -21,7 +21,7 @@ public class ExcelViewer extends JFrame {
         setTitle("Excel Viewer and Editor");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 600);
-        selectedFile = new File("C:\\Users\\prato\\Desktop\\Book1.xlsx");
+        selectedFile = new File("C:\\Users\\prato\\Documents\\GitHub\\OOPnqueue-\\OOP\\src\\assets\\Book1.xlsx");
 
         // Initialize the table before calling displayExcel
         table = new JTable();
