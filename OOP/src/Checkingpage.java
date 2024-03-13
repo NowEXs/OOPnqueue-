@@ -128,7 +128,7 @@ public class Checkingpage extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        // TODO add your handling code here: add code pop up
 //        NewJFrame pi = new NewJFrame();
 //        pi.setVisible(true);
 
