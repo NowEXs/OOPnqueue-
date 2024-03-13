@@ -25,40 +25,37 @@ public class Waiting extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jInternalFrame1 = new javax.swing.JInternalFrame();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jInternalFrame2 = new javax.swing.JInternalFrame();
+        lb1_wait = new javax.swing.JLabel();
+        bg = new javax.swing.JLabel();
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/BG.png"))); // NOI18N
+        jInternalFrame2.setVisible(true);
+        jInternalFrame2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jInternalFrame1.setVisible(true);
-        jInternalFrame1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        lb1_wait.setFont(new java.awt.Font("JasmineUPC", 1, 36)); // NOI18N
+        lb1_wait.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb1_wait.setText("Please Waitting....");
+        jInternalFrame2.getContentPane().add(lb1_wait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 73, 473, 33));
 
-        jLabel4.setFont(new java.awt.Font("JasmineUPC", 1, 36)); // NOI18N
-        jLabel4.setText("Please Wait....");
-        jInternalFrame1.getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 75, 180, -1));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/BG.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        jInternalFrame1.getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 465, 165));
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/folder1/Picture/Panel/YourQ(470, 160).png"))); // NOI18N
+        jInternalFrame2.getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 163));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jInternalFrame2)
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jInternalFrame2)
         );
     }// </editor-fold>
 
+
     // Variables declaration - do not modify
-    private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel bg;
+    private javax.swing.JInternalFrame jInternalFrame2;
+    private javax.swing.JLabel lb1_wait;
     // End of variables declaration
 }
