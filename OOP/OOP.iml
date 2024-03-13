@@ -7,9 +7,9 @@
     </content>
     <orderEntry type="jdk" jdkName="17" jdkType="JavaSDK" />
     <orderEntry type="library" exported="" name="Library" level="application" />
-    <orderEntry type="library" exported="" name="AbsoluteLayout-RELEASE210" level="project" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="RUNTIME" name="ant-1.10.14" level="project" />
     <orderEntry type="library" exported="" name="POI" level="project" />
+    <orderEntry type="library" name="AbsoluteLayout-RELEASE2101" level="project" />
   </component>
 </module>
