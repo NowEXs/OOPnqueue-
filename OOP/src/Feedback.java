@@ -4,7 +4,18 @@
  */
 
 
+import javax.swing.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.EOFException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.ConnectException;
+import java.net.Socket;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,7 +26,7 @@ import java.awt.Color;
  *
  * @author armmy
  */
-public class Feedback extends javax.swing.JFrame {
+public class Feedback extends javax.swing.JFrame implements OnClick {
 
     /**
      * Creates new form Feedback
@@ -65,7 +76,7 @@ public class Feedback extends javax.swing.JFrame {
         label_complete.setText("COMPLETED!");
         getContentPane().add(label_complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
 
-        image.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\FeedbackGUI\\src\\img\\checking2.png")); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/checking-2.png"))); // NOI18N
         getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
 
         name_p.setBackground(new java.awt.Color(102, 102, 102));
@@ -178,9 +189,15 @@ public class Feedback extends javax.swing.JFrame {
         label_confirm.setText("  Confirm");
         getContentPane().add(label_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 540, 70, -1));
 
-        confirm_bt.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\confirmButton.png")); // NOI18N
+        confirm_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/confirmButton-2.png"))); // NOI18N
         confirm_bt.setBorderPainted(false);
         confirm_bt.setContentAreaFilled(false);
+        confirm_bt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pressConfirm(e);
+            }
+        });
         getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
 
         label_cancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -188,7 +205,7 @@ public class Feedback extends javax.swing.JFrame {
         label_cancel.setText("Cancel");
         getContentPane().add(label_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, -1, -1));
 
-        cancel_bt.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\cancelButton.png")); // NOI18N
+        cancel_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/cancelButton-2.png"))); // NOI18N
         cancel_bt.setBorderPainted(false);
         cancel_bt.setContentAreaFilled(false);
         getContentPane().add(cancel_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, -1, -1));
@@ -220,7 +237,7 @@ public class Feedback extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 450, 220));
 
         bg.setForeground(new java.awt.Color(255, 244, 204));
-        bg.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\Wood.png")); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/PanelR.png.PNG"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -313,5 +330,52 @@ public class Feedback extends javax.swing.JFrame {
     private javax.swing.JPanel name_p;
     private javax.swing.JLabel time;
     private javax.swing.JPanel time_p;
+    private String txt;
+    private BufferedReader in;
+
+    @Override
+    public void pressConfirm(ActionEvent event) {
+        if (event.getSource() == this.confirm_bt) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+                    Feedback.this.txt = dtf.format(LocalDateTime.now()) + ": " + feedback_txtarea.getText();
+                    Feedback.this.startServer();
+                }
+            });
+        }
+    }
+    public void startServer() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (Socket clientSocket = new Socket("localhost", 1111)) {
+                    System.out.println("Client Start...");
+                    System.out.println("Enter: ");
+                    PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
+                    output.println(txt);
+                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    System.out.println(in.readLine());
+                } catch (ConnectException e) {
+                    System.out.println("Not Have Server!!");
+                } catch (EOFException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    @Override
+    public void pressCancel(ActionEvent event) {
+        this.dispose();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //not have anything!
+    }
     // End of variables declaration
 }

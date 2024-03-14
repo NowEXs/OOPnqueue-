@@ -26,11 +26,14 @@ public class testChecking1 extends JFrame {
         public void actionPerformed(ActionEvent e) {
             try (Socket socket = new Socket("localhost", 12345);
                  BufferedReader read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                 PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);){
+                 PrintWriter writer = new PrintWriter(socket.getOutputStream(), true)) {
                 writer.println(1); // Send message to server
-                String mes = read.readLine();
-                if (Integer.parseInt(mes) == 0){
-                    new ExcelViewer();
+                String response = read.readLine();
+                if (response != null && response.equals("0")) {
+                    SwingUtilities.invokeLater(() -> {
+                        ExcelViewer excelViewer = new ExcelViewer();
+                        excelViewer.setVisible(true);
+                    }); // Create ExcelViewer in EDT
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
