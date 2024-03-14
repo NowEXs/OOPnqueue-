@@ -1,10 +1,6 @@
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
-public abstract class OnClick implements ActionListener {
-//    public ActionListener pressConfirm(){
-//
-//    }
-//    public ActionListener pressCancel(){
-//
-//    } for run
+public interface OnClick extends ActionListener {
+    void pressConfirm(ActionEvent event);
+    void pressCancel(ActionEvent event);
 }

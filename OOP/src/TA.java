@@ -1,17 +1,23 @@
 public class TA extends User implements Checkable{
-    private String ta_password;
-//    public boolean isCheckable(){
-//
-//    }
+    private final String password = "oopAssistant";
 //    public boolean isCheckable(){
 //
 //    } for run
     public TA(){
-
+        this.setRole(1);
     }
 
     @Override
     public void Checkable() {
 
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public int getRole() {
+        return 1;
     }
 }

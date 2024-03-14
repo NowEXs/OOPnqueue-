@@ -4,9 +4,11 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.awt.*;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -21,7 +23,7 @@ public class ExcelViewer extends JFrame {
         setTitle("Excel Viewer and Editor");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 600);
-        selectedFile = new File("C:\\Users\\prato\\Desktop\\Book1.xlsx");
+        selectedFile = new File("C:\\Users\\prato\\Documents\\GitHub\\OOPnqueue-\\OOP\\src\\assets\\Book1.xlsx");
 
         // Initialize the table before calling displayExcel
         table = new JTable();
@@ -31,7 +33,7 @@ public class ExcelViewer extends JFrame {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(scrollPane, BorderLayout.CENTER);
 
-        displayExcel(selectedFile);
+        displayExcel(selectedFile, 0); // Display the first sheet by default
 
         JButton saveButton = new JButton("Save Changes");
         saveButton.addActionListener(e -> {
@@ -42,22 +44,34 @@ public class ExcelViewer extends JFrame {
             }
         });
 
+        JButton chooseSheetButton = new JButton("Choose Lab");
+        chooseSheetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String input = JOptionPane.showInputDialog(null, "Enter Lab number:");
+                if (input != null && !input.isEmpty()) {
+                    int sheetIndex = Integer.parseInt(input);
+                    displayExcel(selectedFile, sheetIndex - 1);
+                }
+            }
+        });
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(saveButton);
+        buttonPanel.add(chooseSheetButton);
         getContentPane().add(buttonPanel, BorderLayout.NORTH);
 
         // Set Excel-like styling for the table
-//        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF); // Disable auto resizing
         table.setGridColor(Color.gray); // Set grid color
         table.getTableHeader().setFont(table.getFont().deriveFont(Font.BOLD)); // Bold font for table header
         table.setDefaultRenderer(Object.class, new ExcelStyleCellRenderer()); // Custom cell renderer
     }
 
-    private void displayExcel(File file) {
+    private void displayExcel(File file, int sheetIndex) {
         try (FileInputStream inputStream = new FileInputStream(file);
              Workbook workbook = new XSSFWorkbook(inputStream)) {
 
-            Sheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(sheetIndex);
             DataFormatter dataFormatter = new DataFormatter();
             model = new DefaultTableModel();
 
@@ -134,13 +148,13 @@ public class ExcelViewer extends JFrame {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             // Set font color
-            setForeground(Color.black); // Change to the desired font color
+            setForeground(Color.black);
 
             // Set background color
             if (isSelected) {
-                setBackground(Color.lightGray); // Change to the desired background color when selected
+                setBackground(Color.lightGray);
             } else {
-                setBackground(Color.white); // Change to the desired background color when not selected
+                setBackground(Color.white);
             }
 
             setBorder(BorderFactory.createEtchedBorder());
