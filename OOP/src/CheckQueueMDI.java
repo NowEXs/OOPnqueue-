@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.awt.event.ActionEvent;
+
 /**
  *
  * @author nk
  */
-public class CheckQueueMDI extends javax.swing.JFrame {
+public class CheckQueueMDI extends javax.swing.JFrame implements OnClick {
 
     /**
      * Creates new form Reservation
@@ -84,6 +86,12 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
         getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+        bt_confirm.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pressConfirm(e);
+            }
+        });
 
         Cancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         Cancel.setForeground(new java.awt.Color(126, 13, 0));
@@ -95,7 +103,7 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         bt_cancel.setContentAreaFilled(false);
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_cancelActionPerformed(evt);
+                pressCancel(evt);
             }
         });
         getContentPane().add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
@@ -122,13 +130,6 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
 
-    private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -177,5 +178,20 @@ public class CheckQueueMDI extends javax.swing.JFrame {
     private javax.swing.JLabel lab;
     private javax.swing.JLabel seat;
     private javax.swing.JLabel std_id;
+
+    @Override
+    public void pressConfirm(ActionEvent event) {
+
+    }
+
+    @Override
+    public void pressCancel(ActionEvent event) {
+        this.dispose();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //not have here
+    }
     // End of variables declaration
 }
