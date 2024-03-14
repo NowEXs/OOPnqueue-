@@ -74,10 +74,10 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         getContentPane().add(seatId_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 255, 105, 45));
 
         imgcom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imgcom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/N-Queue graphics/Mascot/CreateCom.png"))); // NOI18N
+        imgcom.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/CreateCom.png"))); // NOI18N
         getContentPane().add(imgcom, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 135, 345, 120));
 
-        img_txtfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("/N-Queue graphics/Panel/Txtbox(225, 35).png"))); // NOI18N
+        img_txtfield.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/Txtbox(225, 35).png"))); // NOI18N
         getContentPane().add(img_txtfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 255, 240, 45));
 
         Cancel_label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -92,7 +92,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         CreateSeat.setText("Create New Seat");
         getContentPane().add(CreateSeat, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 105, 345, 45));
 
-        cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/N-Queue graphics/Button/cancelBtn.png"))); // NOI18N
+        cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/cancelBtn.png"))); // NOI18N
         cancelButton.setBorderPainted(false);
         cancelButton.setContentAreaFilled(false);
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +107,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         confirm_label.setText("Confirm");
         getContentPane().add(confirm_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 345, 90, 45));
 
-        confirmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/N-Queue graphics/Button/confirmBtn.png"))); // NOI18N
+        confirmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/confirmBtn.png"))); // NOI18N
         confirmButton.setBorderPainted(false);
         confirmButton.setContentAreaFilled(false);
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +122,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         Queue_label.setText("Queue :");
         getContentPane().add(Queue_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 75, 30));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/N-Queue graphics/Panel/bread Pop up(354,463).png"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/bread Pop up(354,463).png"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
