@@ -1,3 +1,8 @@
+
+import java.awt.Color;
+
+
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -80,6 +85,14 @@ public class Reservation extends javax.swing.JFrame {
         jTextField_name.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField_name.setText("name");
         jTextField_name.setBorder(null);
+        jTextField_name.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_nameFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_nameFocusLost(evt);
+            }
+        });
         jTextField_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField_nameActionPerformed(evt);
@@ -93,6 +106,14 @@ public class Reservation extends javax.swing.JFrame {
         jTextField_id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField_id.setText("Id");
         jTextField_id.setBorder(null);
+        jTextField_id.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_idFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_idFocusLost(evt);
+            }
+        });
         getContentPane().add(jTextField_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 264, 130, 20));
 
         jTextField_lab.setBackground(new java.awt.Color(76, 40, 20));
@@ -101,6 +122,14 @@ public class Reservation extends javax.swing.JFrame {
         jTextField_lab.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField_lab.setText("lab");
         jTextField_lab.setBorder(null);
+        jTextField_lab.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField_labFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField_labFocusLost(evt);
+            }
+        });
         getContentPane().add(jTextField_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 323, 50, 20));
 
         Confirm.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -141,6 +170,48 @@ public class Reservation extends javax.swing.JFrame {
 
     private void jTextField_nameActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    }
+
+    private void jTextField_nameFocusGained(java.awt.event.FocusEvent evt) {
+        if (jTextField_name.getText().equals("name")){
+            jTextField_name.setText("");
+        }
+        jTextField_name.setForeground(Color.white);
+    }
+
+    private void jTextField_nameFocusLost(java.awt.event.FocusEvent evt) {
+        if (jTextField_name.getText().equals("")){
+            jTextField_name.setText("name");
+        }
+        jTextField_name.setForeground(Color.white);
+    }
+
+    private void jTextField_idFocusGained(java.awt.event.FocusEvent evt) {
+        if (jTextField_id.getText().equals("Id")){
+            jTextField_id.setText("");
+        }
+        jTextField_id.setForeground(Color.white);
+    }
+
+    private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {
+        if (jTextField_id.getText().equals("")){
+            jTextField_id.setText("Id");
+        }
+        jTextField_id.setForeground(Color.white);
+    }
+
+    private void jTextField_labFocusGained(java.awt.event.FocusEvent evt) {
+        if (jTextField_lab.getText().equals("lab")){
+            jTextField_lab.setText("");
+        }
+        jTextField_lab.setForeground(Color.white);
+    }
+
+    private void jTextField_labFocusLost(java.awt.event.FocusEvent evt) {
+        if (jTextField_lab.getText().equals("")){
+            jTextField_lab.setText("lab");
+        }
+        jTextField_lab.setForeground(Color.white);
     }
 
     /**
