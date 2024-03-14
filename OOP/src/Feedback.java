@@ -168,7 +168,7 @@ public class Feedback extends javax.swing.JFrame {
         jLabel11.setText("  Confirm");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 540, 70, -1));
 
-        jButton2.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\confirmButton.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("Image/confirmButton-2.png")); // NOI18N
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
@@ -178,7 +178,7 @@ public class Feedback extends javax.swing.JFrame {
         jLabel10.setText("Cancel");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 540, -1, -1));
 
-        jButton1.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\cancelButton.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("Image/cancelButton-2.png")); // NOI18N
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, -1, -1));
@@ -201,7 +201,7 @@ public class Feedback extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 450, 220));
 
         jLabel13.setForeground(new java.awt.Color(255, 244, 204));
-        jLabel13.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\Wood.png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon("Image/PanelR.png.PNG")); // NOI18N
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         pack();

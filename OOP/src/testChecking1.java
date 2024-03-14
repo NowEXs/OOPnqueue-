@@ -30,7 +30,7 @@ public class testChecking1 extends JFrame {
                 writer.println(1); // Send message to server
                 String mes = read.readLine();
                 if (Integer.parseInt(mes) == 0){
-                    new testPanel();
+                    new ExcelViewer();
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();

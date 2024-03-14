@@ -25,7 +25,6 @@ public class testChecking2 extends JFrame implements ActionListener {
 
     private void startServer() {
         try ( ServerSocket serverSocket = new ServerSocket(12345);) {
-            // Port number
             while (true) {
                 Socket socket = serverSocket.accept(); // Accept client connection
                 BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -34,7 +33,6 @@ public class testChecking2 extends JFrame implements ActionListener {
                 if ((Integer.parseInt(message) == 1)) {
                     PrintWriter write = new PrintWriter(socket.getOutputStream(), true);
                     write.println(0);
-
                 }
                 socket.close();
             }
