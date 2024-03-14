@@ -85,13 +85,14 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick {
         bt_confirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/confirmButton-2.png"))); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
-        getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
         bt_confirm.addActionListener(new java.awt.event.ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pressConfirm(e);
             }
         });
+        getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+
 
         Cancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         Cancel.setForeground(new java.awt.Color(126, 13, 0));
@@ -181,7 +182,7 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick {
 
     @Override
     public void pressConfirm(ActionEvent event) {
-
+        new WaitingPop();
     }
 
     @Override
