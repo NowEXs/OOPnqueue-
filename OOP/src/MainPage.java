@@ -371,7 +371,7 @@ public class MainPage extends javax.swing.JFrame {
 
         queue.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 304, 60));
 
-        area_q.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/breadx2.png"))); // NOI18N
+        area_q.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/bread.png"))); // NOI18N
         queue.add(area_q, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         area.setOpaque(false);
@@ -435,7 +435,7 @@ public class MainPage extends javax.swing.JFrame {
         txt_today.setText("Today's Deadline");
         deadline.add(txt_today, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, 30));
 
-        bg_dl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/imagever2.png"))); // NOI18N
+        bg_dl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/BG.png"))); // NOI18N
         deadline.add(bg_dl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
