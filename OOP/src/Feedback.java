@@ -237,7 +237,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 450, 220));
 
         bg.setForeground(new java.awt.Color(255, 244, 204));
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/PanelR.png.PNG"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/Wood.png"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
