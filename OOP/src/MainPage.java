@@ -85,7 +85,7 @@ public class MainPage extends javax.swing.JFrame {
         q1.setOpaque(false);
 
         image_status1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status1.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/wait.png")); // NOI18N
         image_status1.setVerifyInputWhenFocusTarget(false);
 
         seat1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -134,7 +134,7 @@ public class MainPage extends javax.swing.JFrame {
         q2.setOpaque(false);
 
         image_status2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status2.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/wait.png")); // NOI18N
         image_status2.setVerifyInputWhenFocusTarget(false);
 
         seat2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -183,7 +183,7 @@ public class MainPage extends javax.swing.JFrame {
         q3.setOpaque(false);
 
         image_status3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status3.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/wait.png")); // NOI18N
         image_status3.setVerifyInputWhenFocusTarget(false);
 
         seat3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -232,7 +232,7 @@ public class MainPage extends javax.swing.JFrame {
         q4.setOpaque(false);
 
         image_status4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status4.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/wait.png")); // NOI18N
         image_status4.setVerifyInputWhenFocusTarget(false);
 
         seat4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -281,7 +281,7 @@ public class MainPage extends javax.swing.JFrame {
         q5.setOpaque(false);
 
         image_status5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status5.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/wait.png")); // NOI18N
         image_status5.setVerifyInputWhenFocusTarget(false);
 
         seat5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -332,17 +332,17 @@ public class MainPage extends javax.swing.JFrame {
 
         txt_checking.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_checking.setForeground(new java.awt.Color(87, 65, 43));
-        txt_checking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ellipse 3.png"))); // NOI18N
+        txt_checking.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/status_check.png")); // NOI18N
         txt_checking.setText("Checking");
 
         txt_empty.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_empty.setForeground(new java.awt.Color(87, 65, 43));
-        txt_empty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ellipse 5.png"))); // NOI18N
+        txt_empty.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/status_empty.png")); // NOI18N
         txt_empty.setText("Empty");
 
         txt_wait.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_wait.setForeground(new java.awt.Color(87, 65, 43));
-        txt_wait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ellipse 4.png"))); // NOI18N
+        txt_wait.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/status_wait.png")); // NOI18N
         txt_wait.setText("Wait");
 
         javax.swing.GroupLayout statusLayout = new javax.swing.GroupLayout(status);
@@ -371,7 +371,7 @@ public class MainPage extends javax.swing.JFrame {
 
         queue.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 304, 60));
 
-        area_q.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/breadx2.png"))); // NOI18N
+        area_q.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/breadx2.png")); // NOI18N
         queue.add(area_q, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         area.setOpaque(false);
@@ -380,7 +380,7 @@ public class MainPage extends javax.swing.JFrame {
         computer.setOpaque(false);
 
         status_computer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        status_computer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        status_computer.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/wait.png")); // NOI18N
         status_computer.setVerifyInputWhenFocusTarget(false);
 
         seat.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
@@ -412,7 +412,7 @@ public class MainPage extends javax.swing.JFrame {
         area.add(computer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 70, -1));
 
         computer_area.setForeground(new java.awt.Color(102, 76, 50));
-        computer_area.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/left.png"))); // NOI18N
+        computer_area.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/left.png")); // NOI18N
         area.add(computer_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, -1));
 
         deadline.setOpaque(false);
@@ -435,7 +435,7 @@ public class MainPage extends javax.swing.JFrame {
         txt_today.setText("Today's Deadline");
         deadline.add(txt_today, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, 30));
 
-        bg_dl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/imagever2.png"))); // NOI18N
+        bg_dl.setIcon(new javax.swing.ImageIcon("/OOP/src/Image/imagever2.png")); // NOI18N
         deadline.add(bg_dl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
