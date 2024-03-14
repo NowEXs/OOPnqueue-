@@ -31,4 +31,9 @@ public class Student extends User {
     public void setStd_id(String std_id) {
         this.std_id = std_id;
     }
+
+    @Override
+    public int getRole() {
+        return 0;
+    }
 }

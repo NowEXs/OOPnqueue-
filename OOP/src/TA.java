@@ -15,4 +15,9 @@ public class TA extends User implements Checkable{
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public int getRole() {
+        return 1;
+    }
 }

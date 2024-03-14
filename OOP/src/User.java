@@ -14,7 +14,5 @@ public abstract class User {
         this.role = role;
     }
 
-    public int getRole() {
-        return role;
-    }
+    public abstract int getRole();
 }
