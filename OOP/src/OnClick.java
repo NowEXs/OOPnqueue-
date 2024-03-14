@@ -1,6 +1,8 @@
 import java.awt.event.*;
+import java.util.EventListener;
 
 public interface OnClick extends ActionListener {
-    void pressConfirm(ActionEvent event);
-    void pressCancel(ActionEvent event);
+    public void pressConfirm(ActionEvent event);
+    public void pressCancel(ActionEvent event);
+
 }
