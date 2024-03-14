@@ -1,8 +1,3 @@
-
-import java.awt.Color;
-
-
-
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -12,12 +7,12 @@ import java.awt.Color;
  *
  * @author nk
  */
-public class Reservation extends javax.swing.JFrame {
+public class CheckQueueMDI extends javax.swing.JFrame {
 
     /**
      * Creates new form Reservation
      */
-    public Reservation() {
+    public CheckQueueMDI() {
         initComponents();
     }
 
@@ -30,30 +25,30 @@ public class Reservation extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        Reservation = new javax.swing.JLabel();
+        Queue = new javax.swing.JLabel();
         img_checking = new javax.swing.JLabel();
         seat = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         Name = new javax.swing.JLabel();
         std_id = new javax.swing.JLabel();
         lab = new javax.swing.JLabel();
-        jTextField_name = new javax.swing.JTextField();
-        jTextField_id = new javax.swing.JTextField();
-        jTextField_lab = new javax.swing.JTextField();
         Confirm = new javax.swing.JLabel();
         bt_confirm = new javax.swing.JButton();
         Cancel = new javax.swing.JLabel();
         bt_cancel = new javax.swing.JButton();
+        jLabel_name = new javax.swing.JLabel();
+        jLabel_id = new javax.swing.JLabel();
+        jLabel_lab = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Reservation.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        Reservation.setForeground(new java.awt.Color(239, 210, 173));
-        Reservation.setText("Reservation");
-        getContentPane().add(Reservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
+        Queue.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
+        Queue.setForeground(new java.awt.Color(239, 210, 173));
+        Queue.setText("Queue 1");
+        getContentPane().add(Queue, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
         img_checking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/checking-2.png"))); // NOI18N
         getContentPane().add(img_checking, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
@@ -78,59 +73,6 @@ public class Reservation extends javax.swing.JFrame {
         lab.setForeground(new java.awt.Color(239, 210, 173));
         lab.setText("Lab");
         getContentPane().add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 320, 40, 20));
-
-        jTextField_name.setBackground(new java.awt.Color(76, 40, 20));
-        jTextField_name.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jTextField_name.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField_name.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_name.setText("name");
-        jTextField_name.setBorder(null);
-        jTextField_name.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField_nameFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField_nameFocusLost(evt);
-            }
-        });
-        jTextField_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_nameActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 206, 140, 20));
-
-        jTextField_id.setBackground(new java.awt.Color(76, 40, 20));
-        jTextField_id.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jTextField_id.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField_id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_id.setText("Id");
-        jTextField_id.setBorder(null);
-        jTextField_id.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField_idFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField_idFocusLost(evt);
-            }
-        });
-        getContentPane().add(jTextField_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 264, 130, 20));
-
-        jTextField_lab.setBackground(new java.awt.Color(76, 40, 20));
-        jTextField_lab.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jTextField_lab.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField_lab.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_lab.setText("lab");
-        jTextField_lab.setBorder(null);
-        jTextField_lab.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField_labFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField_labFocusLost(evt);
-            }
-        });
-        getContentPane().add(jTextField_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 323, 50, 20));
 
         Confirm.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         Confirm.setForeground(new java.awt.Color(7, 103, 6));
@@ -158,6 +100,22 @@ public class Reservation extends javax.swing.JFrame {
         });
         getContentPane().add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
 
+        jLabel_name.setForeground(new java.awt.Color(239, 210, 173));
+        jLabel_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_name.setText("name");
+        jLabel_name.setToolTipText("");
+        getContentPane().add(jLabel_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 140, -1));
+
+        jLabel_id.setForeground(new java.awt.Color(239, 210, 173));
+        jLabel_id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_id.setText("id");
+        getContentPane().add(jLabel_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 120, 30));
+
+        jLabel_lab.setForeground(new java.awt.Color(239, 210, 173));
+        jLabel_lab.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel_lab.setText("lab");
+        getContentPane().add(jLabel_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 50, 20));
+
         bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/reserve.png"))); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -166,52 +124,6 @@ public class Reservation extends javax.swing.JFrame {
 
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }
-
-    private void jTextField_nameActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void jTextField_nameFocusGained(java.awt.event.FocusEvent evt) {
-        if (jTextField_name.getText().equals("name")){
-            jTextField_name.setText("");
-        }
-        jTextField_name.setForeground(Color.white);
-    }
-
-    private void jTextField_nameFocusLost(java.awt.event.FocusEvent evt) {
-        if (jTextField_name.getText().equals("")){
-            jTextField_name.setText("name");
-        }
-        jTextField_name.setForeground(Color.white);
-    }
-
-    private void jTextField_idFocusGained(java.awt.event.FocusEvent evt) {
-        if (jTextField_id.getText().equals("Id")){
-            jTextField_id.setText("");
-        }
-        jTextField_id.setForeground(Color.white);
-    }
-
-    private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {
-        if (jTextField_id.getText().equals("")){
-            jTextField_id.setText("Id");
-        }
-        jTextField_id.setForeground(Color.white);
-    }
-
-    private void jTextField_labFocusGained(java.awt.event.FocusEvent evt) {
-        if (jTextField_lab.getText().equals("lab")){
-            jTextField_lab.setText("");
-        }
-        jTextField_lab.setForeground(Color.white);
-    }
-
-    private void jTextField_labFocusLost(java.awt.event.FocusEvent evt) {
-        if (jTextField_lab.getText().equals("")){
-            jTextField_lab.setText("lab");
-        }
-        jTextField_lab.setForeground(Color.white);
     }
 
     /**
@@ -244,7 +156,7 @@ public class Reservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reservation().setVisible(true);
+                new CheckQueueMDI().setVisible(true);
             }
         });
     }
@@ -253,15 +165,15 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JLabel Cancel;
     private javax.swing.JLabel Confirm;
     private javax.swing.JLabel Name;
-    private javax.swing.JLabel Reservation;
+    private javax.swing.JLabel Queue;
     private javax.swing.JLabel bg;
     private javax.swing.JButton bt_cancel;
     private javax.swing.JButton bt_confirm;
     private javax.swing.JLabel img_checking;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField_id;
-    private javax.swing.JTextField jTextField_lab;
-    private javax.swing.JTextField jTextField_name;
+    private javax.swing.JLabel jLabel_id;
+    private javax.swing.JLabel jLabel_lab;
+    private javax.swing.JLabel jLabel_name;
     private javax.swing.JLabel lab;
     private javax.swing.JLabel seat;
     private javax.swing.JLabel std_id;
