@@ -327,17 +327,17 @@ public class MainPage extends javax.swing.JFrame {
 
         txt_checking.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_checking.setForeground(new java.awt.Color(87, 65, 43));
-        txt_checking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ellipse 3.png"))); // NOI18N
+        txt_checking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stcheck.png"))); // NOI18N
         txt_checking.setText("Checking");
 
         txt_empty.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_empty.setForeground(new java.awt.Color(87, 65, 43));
-        txt_empty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ellipse 5.png"))); // NOI18N
+        txt_empty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stempty.png"))); // NOI18N
         txt_empty.setText("Empty");
 
         txt_wait.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_wait.setForeground(new java.awt.Color(87, 65, 43));
-        txt_wait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Ellipse 4.png"))); // NOI18N
+        txt_wait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stwait.png"))); // NOI18N
         txt_wait.setText("Wait");
 
         javax.swing.GroupLayout statusLayout = new javax.swing.GroupLayout(status);
