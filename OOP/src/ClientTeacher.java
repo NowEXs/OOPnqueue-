@@ -38,7 +38,7 @@ public class ClientTeacher implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new ClientTeacher().startServer(1111);
+        new ClientTeacher();
     }
 
     public void HistoryInput() {
@@ -55,26 +55,26 @@ public class ClientTeacher implements ActionListener {
         }
     }
 
-    public void startServer(int port) {
-        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true), "UTF-8")))) {
-            soc = new ServerSocket(port);
-            while (true) {
-                System.out.println("Waiting for input...");
-                Socket sev = soc.accept();
-                System.out.println("Input Received!");
-                in = new BufferedReader(new InputStreamReader(sev.getInputStream(), "UTF-8"));
-                String txt = in.readLine();
-                pw.println(txt);
-                pw.flush();
-                PrintWriter output = new PrintWriter(sev.getOutputStream(), true);
-                t2.setText(txt);
-                output.println("Complete!!");
-                sev.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+//    public void startServer(int port) {
+//        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true), "UTF-8")))) {
+//            soc = new ServerSocket(port);
+//            while (true) {
+//                System.out.println("Waiting for input...");
+//                Socket sev = soc.accept();
+//                System.out.println("Input Received!");
+//                in = new BufferedReader(new InputStreamReader(sev.getInputStream(), "UTF-8"));
+//                String txt = in.readLine();
+//                pw.println(txt);
+//                pw.flush();
+//                PrintWriter output = new PrintWriter(sev.getOutputStream(), true);
+//                t2.setText(txt);
+//                output.println("Complete!!");
+//                sev.close();
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

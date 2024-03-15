@@ -336,6 +336,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick {
     @Override
     public void pressConfirm(ActionEvent event) {
         if (event.getSource() == this.confirm_bt) {
+            new DemoServer();
             SwingUtilities.invokeLater(new Runnable() {
                 @Override
                 public void run() {
@@ -352,7 +353,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick {
             public void run() {
                 try (Socket clientSocket = new Socket("localhost", 1111)) {
                     System.out.println("Client Start...");
-                    System.out.println("Enter: ");
+                    System.out.println("Enter: "+txt);
                     PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
                     output.println(txt);
                     in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));

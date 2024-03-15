@@ -92,7 +92,7 @@ public class ClientStudent implements ActionListener {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    new ClientTeacher().startServer(1111);
+                    new ClientTeacher();
                 }
             });
         }
