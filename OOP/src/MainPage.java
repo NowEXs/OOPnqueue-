@@ -25,7 +25,7 @@ public class MainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        main = new javax.swing.JPanel();
+        cont = new javax.swing.JPanel();
         queue = new javax.swing.JPanel();
         q1 = new javax.swing.JPanel();
         image_status1 = new javax.swing.JLabel();
@@ -71,7 +71,7 @@ public class MainPage extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1200, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        main.setMinimumSize(new java.awt.Dimension(1200, 700));
+        cont.setMinimumSize(new java.awt.Dimension(1200, 700));
 
         queue.setOpaque(false);
         queue.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -392,8 +392,8 @@ public class MainPage extends javax.swing.JFrame {
         bg_dl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/imagever2.png"))); // NOI18N
         deadline.add(bg_dl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
-        main.setLayout(mainLayout);
+        javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(cont);
+        cont.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
                 mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(mainLayout.createSequentialGroup()
@@ -412,7 +412,7 @@ public class MainPage extends javax.swing.JFrame {
                                 .addContainerGap(100, Short.MAX_VALUE))
         );
 
-        getContentPane().add(main, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
+        getContentPane().add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
 
         pack();
     }// </editor-fold>
@@ -466,7 +466,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel lab3;
     private javax.swing.JLabel lab4;
     private javax.swing.JLabel lab5;
-    private javax.swing.JPanel main;
+    private javax.swing.JPanel cont;
     private javax.swing.JLabel name_id1;
     private javax.swing.JLabel name_id2;
     private javax.swing.JLabel name_id3;
