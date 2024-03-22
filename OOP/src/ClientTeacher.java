@@ -38,7 +38,7 @@ public class ClientTeacher implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new ClientTeacher().startServer(1111);
+        new ClientTeacher().startServer();
     }
 
     public void HistoryInput() {
@@ -55,9 +55,9 @@ public class ClientTeacher implements ActionListener {
         }
     }
 
-    public void startServer(int port) {
+    public void startServer() {
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true), "UTF-8")))) {
-            soc = new ServerSocket(port);
+            soc = new ServerSocket(1111);
             while (true) {
                 System.out.println("Waiting for input...");
                 Socket sev = soc.accept();
