@@ -25,7 +25,8 @@ public class MainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        main = new javax.swing.JPanel();
+        wood_panel = new DeskPanel();
+        cont = new javax.swing.JPanel();
         queue = new javax.swing.JPanel();
         q1 = new javax.swing.JPanel();
         image_status1 = new javax.swing.JLabel();
@@ -69,7 +70,7 @@ public class MainPage extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1200, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        main.setMinimumSize(new java.awt.Dimension(1200, 700));
+        cont.setMinimumSize(new java.awt.Dimension(1200, 700));
 
         queue.setOpaque(false);
         queue.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -390,28 +391,31 @@ public class MainPage extends javax.swing.JFrame {
         bg_dl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/imagever2.png"))); // NOI18N
         deadline.add(bg_dl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
-        main.setLayout(mainLayout);
-        mainLayout.setHorizontalGroup(
-                mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(mainLayout.createSequentialGroup()
-                                .addGap(863, 863, 863)
-                                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout contLayout = new javax.swing.GroupLayout(cont);
+        cont.setLayout(contLayout);
+        contLayout.setHorizontalGroup(
+                contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(contLayout.createSequentialGroup()
+                                .addComponent(wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
+                                .addGroup(contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, 0))
         );
-        mainLayout.setVerticalGroup(
-                mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(mainLayout.createSequentialGroup()
-                                .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(110, Short.MAX_VALUE))
+        contLayout.setVerticalGroup(
+                contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(contLayout.createSequentialGroup()
+                                .addGroup(contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(contLayout.createSequentialGroup()
+                                        .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(100, Short.MAX_VALUE))
         );
-
-        getContentPane().add(main, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
-
+        getContentPane().add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
+        setLocationRelativeTo(null);
         pack();
     }// </editor-fold>
 
@@ -453,6 +457,7 @@ public class MainPage extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel area_q;
     private javax.swing.JLabel bg_dl;
+    private javax.swing.JPanel cont;
     private javax.swing.JPanel deadline;
     private javax.swing.JLabel image_status1;
     private javax.swing.JLabel image_status2;
@@ -464,7 +469,6 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel lab3;
     private javax.swing.JLabel lab4;
     private javax.swing.JLabel lab5;
-    private javax.swing.JPanel main;
     private javax.swing.JLabel name_id1;
     private javax.swing.JLabel name_id2;
     private javax.swing.JLabel name_id3;
@@ -488,5 +492,6 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel txt_people;
     private javax.swing.JLabel txt_today;
     private javax.swing.JLabel txt_wait;
+    private DeskPanel wood_panel;
     // End of variables declaration
 }
