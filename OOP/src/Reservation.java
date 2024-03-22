@@ -55,7 +55,7 @@ public class Reservation extends javax.swing.JFrame {
         Reservation.setText("Reservation");
         getContentPane().add(Reservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
-        img_checking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/checking-2.png"))); // NOI18N
+        img_checking.setIcon(new javax.swing.ImageIcon("OOP/src/Image/checking-2.png")); // NOI18N
         getContentPane().add(img_checking, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
 
         seat.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
@@ -138,7 +138,7 @@ public class Reservation extends javax.swing.JFrame {
         Confirm.setToolTipText("");
         getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 90, 50));
 
-        bt_confirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/confirmButton-2.png"))); // NOI18N
+        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
         getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
@@ -148,7 +148,7 @@ public class Reservation extends javax.swing.JFrame {
         Cancel.setText("Cancel");
         getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 90, 50));
 
-        bt_cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/cancelButton-2.png"))); // NOI18N
+        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButton-2.png")); // NOI18N
         bt_cancel.setBorderPainted(false);
         bt_cancel.setContentAreaFilled(false);
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +158,7 @@ public class Reservation extends javax.swing.JFrame {
         });
         getContentPane().add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/reserve.png"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
