@@ -18,10 +18,13 @@ public class MainPage extends javax.swing.JFrame {
     public MainPage() {
         initComponents();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            String resetSql = "UPDATE SeatManager SET Availability = NULL"; // รี sql
+            String resetSeat = "UPDATE SeatManager SET Availability = NULL"; // รี sql
+            String resetQueue = "DELETE FROM Reservation";
 
-            try (PreparedStatement delallstatement = DbCon.prepareStatement(resetSql)) {
+            try (PreparedStatement delallstatement = DbCon.prepareStatement(resetSeat);
+                 PreparedStatement delQstatement = DbCon.prepareStatement(resetQueue)) {
                 delallstatement.executeUpdate();
+                delQstatement.executeUpdate();
                 System.out.println("del_data_completed");
             } catch (SQLException ex) {
                 ex.printStackTrace();
