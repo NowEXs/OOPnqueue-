@@ -1,4 +1,4 @@
-import java.awt.Color;
+import java.awt.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -17,7 +17,8 @@ public class CreateSeatMDI extends javax.swing.JFrame {
     public CreateSeatMDI() {
         initComponents();
         seatId.setFocusable(true);
-        seatId.setEditable(true);
+        seatId.setEditable(false);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -60,7 +61,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         getContentPane().add(confirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 195, 120, 60));
         confirmButton.getAccessibleContext().setAccessibleName("");
 
-        seatId_label.setFont(new java.awt.Font("OOP/src/Font/minecraft_font.ttf", 1, 14)); // NOI18N
+        seatId_label.setFont(new java.awt.Font("Big Apple 3PM", Font.PLAIN, 14)); // NOI18N
         seatId_label.setForeground(new java.awt.Color(255, 244, 204));
         seatId_label.setText("Seat ID ");
         getContentPane().add(seatId_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 165, -1, -1));
@@ -76,7 +77,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         });
         getContentPane().add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 165, 90));
 
-        createSeat.setFont(new java.awt.Font("OOP/src/Font/Big Apple 3PM.ttf", 1, 24)); // NOI18N
+        createSeat.setFont(new java.awt.Font("Big Apple 3PM", Font.BOLD, 24)); // NOI18N
         createSeat.setForeground(new java.awt.Color(255, 244, 204));
         createSeat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         createSeat.setText("Create New Seat");
