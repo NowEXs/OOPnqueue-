@@ -4,8 +4,11 @@
  */
 
 
-import java.awt.Color;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.io.File;
+import javax.swing.ImageIcon;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -23,6 +26,30 @@ public class Feedback extends javax.swing.JFrame {
     public Feedback() {
         initComponents();
         feedback_txtarea.setFocusable(true);
+        try{
+            File fontStyle_apple = new File("OOP/src/Font/Big Apple 3PM.ttf");
+            File fontStyle_minecraft = new File("OOP/src/Font/minecraft_font.ttf");
+            Font font_complete = Font.createFont(Font.TRUETYPE_FONT,fontStyle_apple).deriveFont(44f);
+            Font font_giveme = Font.createFont(Font.TRUETYPE_FONT,fontStyle_apple).deriveFont(18f);
+            Font font_name = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            Font font_lab = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            Font font_time = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            Font font_name_user = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            Font font_lab_user = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            Font font_time_user = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            Font font_feedback = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            label_complete.setFont(font_complete);
+            label_giveme.setFont(font_giveme);
+            label_name.setFont(font_name);
+            label_lab.setFont(font_lab);
+            label_time.setFont(font_time);
+            feedback_txtarea.setFont(font_feedback);
+            name.setFont(font_name_user);
+            lab.setFont(font_lab_user);
+            time.setFont(font_time_user);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -65,19 +92,18 @@ public class Feedback extends javax.swing.JFrame {
         label_complete.setText("COMPLETED!");
         getContentPane().add(label_complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
 
-        image.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\FeedbackGUI\\src\\img\\checking2.png")); // NOI18N
-        getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 130, -1, -1));
+        image.setIcon(new javax.swing.ImageIcon("OOP/src/Image/CreateSeatBot.png")); // NOI18N
+        getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, -1));
 
-        name_p.setBackground(new java.awt.Color(102, 102, 102));
-        name_p.setForeground(new java.awt.Color(153, 153, 153));
-        name_p.setOpaque(false);
+        name_p.setBackground(new java.awt.Color(255, 244, 239));
+        name_p.setForeground(new java.awt.Color(255, 244, 239));
 
         label_name.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        label_name.setForeground(new java.awt.Color(255, 244, 204));
+        label_name.setForeground(new java.awt.Color(80, 9, 9));
         label_name.setText("Name :");
 
         name.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        name.setForeground(new java.awt.Color(255, 244, 204));
+        name.setForeground(new java.awt.Color(80, 9, 9));
         name.setText("Thananupat Rodpan");
 
         javax.swing.GroupLayout name_pLayout = new javax.swing.GroupLayout(name_p);
@@ -101,18 +127,17 @@ public class Feedback extends javax.swing.JFrame {
                                 .addContainerGap())
         );
 
-        getContentPane().add(name_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, -1, -1));
+        getContentPane().add(name_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, -1, -1));
 
-        lab_p.setBackground(new java.awt.Color(102, 102, 102));
-        lab_p.setForeground(new java.awt.Color(255, 255, 255));
-        lab_p.setOpaque(false);
+        lab_p.setBackground(new java.awt.Color(255, 244, 239));
+        lab_p.setForeground(new java.awt.Color(255, 244, 239));
 
         label_lab.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        label_lab.setForeground(new java.awt.Color(255, 244, 204));
+        label_lab.setForeground(new java.awt.Color(80, 9, 9));
         label_lab.setText("Lab :");
 
         lab.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        lab.setForeground(new java.awt.Color(255, 244, 204));
+        lab.setForeground(new java.awt.Color(80, 9, 9));
         lab.setText("9");
 
         javax.swing.GroupLayout lab_pLayout = new javax.swing.GroupLayout(lab_p);
@@ -123,8 +148,8 @@ public class Feedback extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(label_lab)
                                 .addGap(18, 18, 18)
-                                .addComponent(lab, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
+                                .addComponent(lab, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(112, Short.MAX_VALUE))
         );
         lab_pLayout.setVerticalGroup(
                 lab_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -136,18 +161,17 @@ public class Feedback extends javax.swing.JFrame {
                                 .addContainerGap())
         );
 
-        getContentPane().add(lab_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
+        getContentPane().add(lab_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 240, -1));
 
-        time_p.setBackground(new java.awt.Color(102, 102, 102));
-        time_p.setForeground(new java.awt.Color(255, 255, 255));
-        time_p.setOpaque(false);
+        time_p.setBackground(new java.awt.Color(255, 244, 239));
+        time_p.setForeground(new java.awt.Color(255, 244, 239));
 
         label_time.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        label_time.setForeground(new java.awt.Color(255, 244, 204));
+        label_time.setForeground(new java.awt.Color(80, 9, 9));
         label_time.setText("Time :");
 
         time.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        time.setForeground(new java.awt.Color(255, 244, 204));
+        time.setForeground(new java.awt.Color(80, 9, 9));
         time.setText("12:25:58");
 
         javax.swing.GroupLayout time_pLayout = new javax.swing.GroupLayout(time_p);
@@ -158,8 +182,8 @@ public class Feedback extends javax.swing.JFrame {
                                 .addContainerGap()
                                 .addComponent(label_time)
                                 .addGap(18, 18, 18)
-                                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(52, Short.MAX_VALUE))
+                                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(81, Short.MAX_VALUE))
         );
         time_pLayout.setVerticalGroup(
                 time_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,26 +195,35 @@ public class Feedback extends javax.swing.JFrame {
                                 .addContainerGap())
         );
 
-        getContentPane().add(time_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, -1, -1));
+        getContentPane().add(time_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, -1, -1));
 
         label_confirm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         label_confirm.setForeground(new java.awt.Color(255, 255, 255));
         label_confirm.setText("  Confirm");
         getContentPane().add(label_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 540, 70, -1));
 
-        confirm_bt.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\confirmButton.png")); // NOI18N
+        confirm_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
         confirm_bt.setBorderPainted(false);
         confirm_bt.setContentAreaFilled(false);
         getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
 
         label_cancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         label_cancel.setForeground(new java.awt.Color(255, 255, 255));
-        label_cancel.setText("Cancel");
-        getContentPane().add(label_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 540, -1, -1));
+        label_cancel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        label_cancel.setText("Skip");
+        getContentPane().add(label_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 100, 30));
 
-        cancel_bt.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\cancelButton.png")); // NOI18N
+        cancel_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButton-2.png")); // NOI18N
         cancel_bt.setBorderPainted(false);
         cancel_bt.setContentAreaFilled(false);
+        cancel_bt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancel_btMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancel_btMouseExited(evt);
+            }
+        });
         getContentPane().add(cancel_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, -1, -1));
 
         label_giveme.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -200,7 +233,6 @@ public class Feedback extends javax.swing.JFrame {
 
         feedback_txtarea.setBackground(new java.awt.Color(102, 51, 0));
         feedback_txtarea.setColumns(20);
-        feedback_txtarea.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         feedback_txtarea.setForeground(new java.awt.Color(255, 244, 204));
         feedback_txtarea.setRows(5);
         feedback_txtarea.setText("Add a comment");
@@ -220,7 +252,7 @@ public class Feedback extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 450, 220));
 
         bg.setForeground(new java.awt.Color(255, 244, 204));
-        bg.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\Wood.png")); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/Wood.png")); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -255,6 +287,14 @@ public class Feedback extends javax.swing.JFrame {
         }
         //[255,244,204]
         feedback_txtarea.setForeground(new Color(255,244,204));
+    }
+
+    private void cancel_btMouseExited(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void cancel_btMouseEntered(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
     }
 
     /**
