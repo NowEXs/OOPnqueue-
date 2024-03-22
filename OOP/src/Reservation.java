@@ -1,5 +1,8 @@
 
+import javax.swing.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 
@@ -12,7 +15,7 @@ import java.awt.Color;
  *
  * @author nk
  */
-public class Reservation extends javax.swing.JFrame {
+public class Reservation extends javax.swing.JFrame implements OnClick{
 
     /**
      * Creates new form Reservation
@@ -46,7 +49,6 @@ public class Reservation extends javax.swing.JFrame {
         bt_cancel = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -135,7 +137,6 @@ public class Reservation extends javax.swing.JFrame {
         Confirm.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         Confirm.setForeground(new java.awt.Color(7, 103, 6));
         Confirm.setText("Confirm");
-        Confirm.setToolTipText("");
         getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 90, 50));
 
         bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
@@ -151,22 +152,31 @@ public class Reservation extends javax.swing.JFrame {
         bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButton-2.png")); // NOI18N
         bt_cancel.setBorderPainted(false);
         bt_cancel.setContentAreaFilled(false);
-        bt_cancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bt_cancelActionPerformed(evt);
-            }
-        });
+
         getContentPane().add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
 
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        pack();
-    }// </editor-fold>
+        bt_confirm.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pressConfirm(e);
 
-    private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+            }
+        });
+
+
+        bt_cancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pressCancel(e);
+            }
+        });
+
+        pack();
+
+    }// </editor-fold>
 
     private void jTextField_nameActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -265,5 +275,20 @@ public class Reservation extends javax.swing.JFrame {
     private javax.swing.JLabel lab;
     private javax.swing.JLabel seat;
     private javax.swing.JLabel std_id;
+
+    @Override
+    public void pressConfirm(ActionEvent event) {
+        JOptionPane.showMessageDialog(this, "Reservation completed", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    @Override
+    public void pressCancel(ActionEvent event) {
+        this.dispose();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //adasda
+    }
     // End of variables declaration
 }

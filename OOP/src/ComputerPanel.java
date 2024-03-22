@@ -4,12 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //for making computer loop
-public class ComputerPanel extends JPanel {
+public class ComputerPanel extends JPanel implements ActionListener{
     private JPanel computerPanel, innerLabel;
     private JButton computerButton;
     private JLabel computerNumber;
     private Computer comp;
-
 
     public ComputerPanel(Computer comp) {
         this.comp = comp;
@@ -25,8 +24,16 @@ public class ComputerPanel extends JPanel {
         computerButton.setContentAreaFilled(false);
         computerButton.setBorderPainted(false);
 
+        computerButton.addActionListener(this);
         add(computerButton, BorderLayout.NORTH);
         add(innerLabel);
     }
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(computerButton)) {
+            Reservation reservationWindow = new Reservation();
+            reservationWindow.setVisible(true);
+        }
+    }
 }

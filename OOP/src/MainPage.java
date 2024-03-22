@@ -436,7 +436,6 @@ public class MainPage extends javax.swing.JFrame {
             ComputerPanel computerPanel = new ComputerPanel(new Computer());
             computerPanel.setOpaque(false);
             area_com.add(computerPanel);
-
         }
     }
 
