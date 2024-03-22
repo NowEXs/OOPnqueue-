@@ -1,5 +1,4 @@
 
-
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
@@ -35,7 +34,6 @@ public class Password extends javax.swing.JFrame {
             nqueue_l.setFont(font_nqueue);
             password_l.setFont(font_password);
             enter_l.setFont(font_enter);
-            confirm_l.setFont(font_confirm);
         }catch(Exception e){
             e.printStackTrace();
 
@@ -60,7 +58,6 @@ public class Password extends javax.swing.JFrame {
         password_p = new javax.swing.JPanel();
         password_l = new javax.swing.JLabel();
         password_pwf = new javax.swing.JPasswordField();
-        confirm_l = new javax.swing.JLabel();
         confirm_bt = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
 
@@ -115,22 +112,30 @@ public class Password extends javax.swing.JFrame {
 
         getContentPane().add(password_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 820, 70));
 
-        confirm_l.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        confirm_l.setForeground(new java.awt.Color(255, 255, 255));
-        confirm_l.setText(" Confirm");
-        getContentPane().add(confirm_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 100, -1));
-
-        confirm_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
+        confirm_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         confirm_bt.setBorderPainted(false);
         confirm_bt.setContentAreaFilled(false);
+        confirm_bt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirm_btMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirm_btMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirm_btMouseExited(evt);
+            }
+        });
         confirm_bt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirm_btActionPerformed(evt);
             }
         });
-        getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, -1, -1));
+        getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 410, -1, -1));
 
+        bg.setBackground(new java.awt.Color(84, 59, 45));
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/bgArm.png")); // NOI18N
+        bg.setOpaque(true);
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
         pack();
@@ -160,6 +165,18 @@ public class Password extends javax.swing.JFrame {
         }
         //[153,153,153]
         password_pwf.setForeground(new Color(153,153,153));
+    }
+
+    private void confirm_btMouseExited(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void confirm_btMouseEntered(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void confirm_btMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
     }
 
     /**
@@ -200,7 +217,6 @@ public class Password extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JLabel bg;
     private javax.swing.JButton confirm_bt;
-    private javax.swing.JLabel confirm_l;
     private javax.swing.JLabel enter_l;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel nqueue_l;

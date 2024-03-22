@@ -1,8 +1,8 @@
 
 import javax.swing.*;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import java.awt.*;
+import java.io.*;
 
 
 /*
@@ -22,6 +22,30 @@ public class Reservation extends javax.swing.JFrame {
     public Reservation() {
         initComponents();
         centerFrame();
+
+        try {
+            // Load and register the font
+            Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(appleFont);
+
+
+            // Set the font for components
+            setCustomFont(appleFont);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void setCustomFont(Font font) {
+        Reservation.setFont(font.deriveFont(Font.BOLD, 24));
+        seat.setFont(font.deriveFont(Font.BOLD, 18));
+        Name.setFont(font.deriveFont(Font.BOLD, 18));
+        std_id.setFont(font.deriveFont(Font.BOLD, 18));
+        lab.setFont(font.deriveFont(Font.BOLD, 18));
+        jTextField_name.setFont(font.deriveFont(Font.PLAIN, 13));
+        jTextField_id.setFont(font.deriveFont(Font.PLAIN, 13));
+        Confirm.setFont(font.deriveFont(Font.BOLD, 18));
+        Cancel.setFont(font.deriveFont(Font.BOLD, 18));
     }
 
     private void centerFrame() {
@@ -53,7 +77,6 @@ public class Reservation extends javax.swing.JFrame {
         lab = new javax.swing.JLabel();
         jTextField_name = new javax.swing.JTextField();
         jTextField_id = new javax.swing.JTextField();
-        jTextField_lab = new javax.swing.JTextField();
         Confirm = new javax.swing.JLabel();
         bt_confirm = new javax.swing.JButton();
         Cancel = new javax.swing.JLabel();
@@ -65,6 +88,8 @@ public class Reservation extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+
 
         Reservation.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         Reservation.setForeground(new java.awt.Color(239, 210, 173));
@@ -132,23 +157,13 @@ public class Reservation extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 264, 130, 20));
 
-        Confirm.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Confirm.setForeground(new java.awt.Color(7, 103, 6));
-        Confirm.setText("Confirm");
-        Confirm.setToolTipText("");
-        getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 90, 50));
 
-        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
+        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
         getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
 
-        Cancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Cancel.setForeground(new java.awt.Color(126, 13, 0));
-        Cancel.setText("Cancel");
-        getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 90, 50));
-
-        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButton-2.png")); // NOI18N
+        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButtonFont.png")); // NOI18N
         bt_cancel.setBorderPainted(false);
         bt_cancel.setContentAreaFilled(false);
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -174,6 +189,8 @@ public class Reservation extends javax.swing.JFrame {
 
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        bg.setBackground(new java.awt.Color(84, 59, 45));
+        bg.setOpaque(true);
 
         pack();
     }// </editor-fold>
