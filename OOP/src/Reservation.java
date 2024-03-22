@@ -82,6 +82,7 @@ public class Reservation extends javax.swing.JFrame {
         Cancel = new javax.swing.JLabel();
         bt_cancel = new javax.swing.JButton();
         JComboBox<Object> jComboBox_lab = new JComboBox<>();
+        jComboBox_lab.setEditable(false);
         bg = new javax.swing.JLabel();
 
 
