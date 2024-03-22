@@ -109,23 +109,14 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         lab.setText("Lab");
         getContentPane().add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 320, 40, 20));
 
-        Confirm.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Confirm.setForeground(new java.awt.Color(7, 103, 6));
-        Confirm.setText("Confirm");
-        Confirm.setToolTipText("");
-        getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 390, 90, 50));
 
-        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
+        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
         getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 390, -1, -1));
 
-        Cancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Cancel.setForeground(new java.awt.Color(126, 13, 0));
-        Cancel.setText("Cancel");
-        getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 390, 90, 50));
 
-        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButton-2.png")); // NOI18N
+        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButtonFont.png")); // NOI18N
         bt_cancel.setBorderPainted(false);
         bt_cancel.setContentAreaFilled(false);
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {

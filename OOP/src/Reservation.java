@@ -155,23 +155,13 @@ public class Reservation extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 264, 130, 20));
 
-        Confirm.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Confirm.setForeground(new java.awt.Color(7, 103, 6));
-        Confirm.setText("Confirm");
-        Confirm.setToolTipText("");
-        getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 90, 50));
 
-        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
+        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
         getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
 
-        Cancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Cancel.setForeground(new java.awt.Color(126, 13, 0));
-        Cancel.setText("Cancel");
-        getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 90, 50));
-
-        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButton-2.png")); // NOI18N
+        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButtonFont.png")); // NOI18N
         bt_cancel.setBorderPainted(false);
         bt_cancel.setContentAreaFilled(false);
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
