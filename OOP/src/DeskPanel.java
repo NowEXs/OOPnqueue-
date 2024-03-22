@@ -59,8 +59,10 @@ public class DeskPanel extends JPanel {
             this.deskPanel.add(deletingButton);
             while (resultSet.next()) {
                 int compID = resultSet.getInt("SeatID");
-                Computer computer = new Computer(compID, 0, "", "", "");
-                this.deskPanel.add(new ComputerPanel(computer));
+                Computer computer = new Computer("", "", "", compID, 0);
+                ComputerPanel companel = new ComputerPanel(computer);
+                companel.setOpaque(false);
+                this.deskPanel.add(companel);
 
                 comp_arr.add(computer); // Add the created desk button to the list
                 updateStatement.setInt(1, 1); // Set Availability to 1
