@@ -48,5 +48,14 @@
     </orderEntry>
     <orderEntry type="library" name="ant-1.10.14" level="project" />
     <orderEntry type="library" name="AbsoluteLayout-RELEASE210" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-j-8.3.0/mysql-connector-j-8.3.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

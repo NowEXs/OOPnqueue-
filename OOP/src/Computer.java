@@ -7,7 +7,7 @@ public class Computer extends Student implements RoleChecker, Rerservable{
     public Computer() {
 
     }
-    public Computer(int status,String lab_name,String std_name, String std_id) {
+    public Computer(int comp_id,int status,String lab_name,String std_name, String std_id) {
     }
     @Override
     public void userType(){

@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class DbCon {
@@ -10,4 +11,9 @@ public class DbCon {
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
     }
+    public static PreparedStatement prepareStatement(String sql) throws SQLException {
+        Connection connection = getConnection();
+        return connection.prepareStatement(sql);
+    }
+
 }

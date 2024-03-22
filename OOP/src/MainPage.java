@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author huawei
@@ -14,6 +17,16 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            String resetSql = "UPDATE SeatManager SET Availability = NULL"; // รี sql
+
+            try (PreparedStatement delallstatement = DbCon.prepareStatement(resetSql)) {
+                delallstatement.executeUpdate();
+                System.out.println("del_data_completed");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }));
     }
 
     /**
