@@ -41,6 +41,8 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         jLabel_lab = new javax.swing.JLabel();
         bg = new javax.swing.JLabel();
 
+        setLocationRelativeTo(null);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,17 +80,17 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         Confirm.setForeground(new java.awt.Color(7, 103, 6));
         Confirm.setText("Confirm");
         Confirm.setToolTipText("");
-        getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 90, 50));
+        getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 390, 90, 50));
 
         bt_confirm.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/confirmButton-2.png"))); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
-        getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+        getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 390, -1, -1));
 
         Cancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         Cancel.setForeground(new java.awt.Color(126, 13, 0));
         Cancel.setText("Cancel");
-        getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 90, 50));
+        getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 390, 90, 50));
 
         bt_cancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/cancelButton-2.png"))); // NOI18N
         bt_cancel.setBorderPainted(false);
@@ -98,7 +100,7 @@ public class CheckQueueMDI extends javax.swing.JFrame {
                 bt_cancelActionPerformed(evt);
             }
         });
-        getContentPane().add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+        getContentPane().add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 390, -1, -1));
 
         jLabel_name.setForeground(new java.awt.Color(239, 210, 173));
         jLabel_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
