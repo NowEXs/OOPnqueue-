@@ -429,7 +429,6 @@ public class MainPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>
     private void addComputerPanels() {
-        // Create and add three instances of ComputerPanel
         for (int i = 0; i < 25; i++) {
             FlowLayout flowLayout = new FlowLayout(FlowLayout.LEFT, 30, 30);
             area_com.setLayout(flowLayout);
