@@ -1,11 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
 
 import java.awt.Color;
-
+import java.awt.Font;
+import java.io.File;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -23,6 +22,26 @@ public class Password extends javax.swing.JFrame {
     public Password() {
         initComponents();
         password_pwf.setFocusable(true);
+
+        try{
+            File fontStyle_apple = new File("OOP/src/Font/Big Apple 3PM.ttf");
+            File fontStyle_minecraft = new File("OOP/src/Font/minecraft_font.ttf");
+            Font font_welcome = Font.createFont(Font.TRUETYPE_FONT,fontStyle_apple).deriveFont(35f);
+            Font font_nqueue = Font.createFont(Font.TRUETYPE_FONT,fontStyle_apple).deriveFont(60f);
+            Font font_password = Font.createFont(Font.TRUETYPE_FONT,fontStyle_apple).deriveFont(30f);
+            Font font_enter = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(22f);
+            Font font_confirm = Font.createFont(Font.TRUETYPE_FONT,fontStyle_apple).deriveFont(18f);
+            welcome_l.setFont(font_welcome);
+            nqueue_l.setFont(font_nqueue);
+            password_l.setFont(font_password);
+            enter_l.setFont(font_enter);
+            confirm_l.setFont(font_confirm);
+        }catch(Exception e){
+            e.printStackTrace();
+
+        }
+
+
     }
 
     /**
@@ -54,18 +73,18 @@ public class Password extends javax.swing.JFrame {
         nqueue_l.setText("N - QUEUE ");
         nqueue_l.setToolTipText("");
         nqueue_l.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        getContentPane().add(nqueue_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 390, 70));
+        getContentPane().add(nqueue_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 390, 70));
 
         welcome_l.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         welcome_l.setForeground(new java.awt.Color(255, 255, 255));
         welcome_l.setText("Welcome to");
-        getContentPane().add(welcome_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 360, -1));
+        getContentPane().add(welcome_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 360, -1));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 68, 37, -1));
 
         enter_l.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         enter_l.setForeground(new java.awt.Color(255, 255, 255));
         enter_l.setText("Enter the secret code !");
-        getContentPane().add(enter_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 280, -1, -1));
+        getContentPane().add(enter_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, -1, -1));
 
         password_p.setBackground(new java.awt.Color(255, 255, 255));
         password_p.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -73,7 +92,7 @@ public class Password extends javax.swing.JFrame {
 
         password_l.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         password_l.setText("Password");
-        password_p.add(password_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 9, 118, 52));
+        password_p.add(password_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 9, 190, 52));
 
         password_pwf.setBackground(new java.awt.Color(235, 235, 235));
         password_pwf.setForeground(new java.awt.Color(153, 153, 153));
@@ -92,16 +111,16 @@ public class Password extends javax.swing.JFrame {
                 password_pwfActionPerformed(evt);
             }
         });
-        password_p.add(password_pwf, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 9, 633, 52));
+        password_p.add(password_pwf, new org.netbeans.lib.awtextra.AbsoluteConstraints(191, 9, 620, 52));
 
         getContentPane().add(password_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 820, 70));
 
         confirm_l.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         confirm_l.setForeground(new java.awt.Color(255, 255, 255));
         confirm_l.setText(" Confirm");
-        getContentPane().add(confirm_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, 80, -1));
+        getContentPane().add(confirm_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 430, 100, -1));
 
-        confirm_bt.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\confirmButtonArm.png")); // NOI18N
+        confirm_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
         confirm_bt.setBorderPainted(false);
         confirm_bt.setContentAreaFilled(false);
         confirm_bt.addActionListener(new java.awt.event.ActionListener() {
@@ -109,9 +128,9 @@ public class Password extends javax.swing.JFrame {
                 confirm_btActionPerformed(evt);
             }
         });
-        getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 420, -1, -1));
+        getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 420, -1, -1));
 
-        bg.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\bgArm.png")); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/bgArm.png")); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, -1, -1));
 
         pack();
@@ -136,7 +155,7 @@ public class Password extends javax.swing.JFrame {
 
     private void password_pwfFocusLost(java.awt.event.FocusEvent evt) {
 
-        if(password_pwf.getText().isEmpty()){
+        if(password_pwf.getText().equals("")){
             password_pwf.setText("Input Password");
         }
         //[153,153,153]
