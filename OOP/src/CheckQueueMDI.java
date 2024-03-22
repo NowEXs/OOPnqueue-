@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
+import java.awt.*;
+import java.io.File;
 /**
  *
  * @author nk
@@ -14,6 +11,42 @@ public class CheckQueueMDI extends javax.swing.JFrame {
      */
     public CheckQueueMDI() {
         initComponents();
+        setCustomFont();
+        centerFrame();
+    }
+
+    private void setCustomFont() {
+        try {
+            // Load and register the font
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+
+            // Set the font for components
+            Queue.setFont(customFont.deriveFont(Font.BOLD, 24));
+            seat.setFont(customFont.deriveFont(Font.BOLD, 18));
+            Name.setFont(customFont.deriveFont(Font.BOLD, 18));
+            std_id.setFont(customFont.deriveFont(Font.BOLD, 18));
+            lab.setFont(customFont.deriveFont(Font.BOLD, 18));
+            Confirm.setFont(customFont.deriveFont(Font.BOLD, 18));
+            Cancel.setFont(customFont.deriveFont(Font.BOLD, 18));
+            jLabel_name.setFont(customFont.deriveFont(Font.PLAIN, 13));
+            jLabel_id.setFont(customFont.deriveFont(Font.PLAIN, 13));
+            jLabel_lab.setFont(customFont.deriveFont(Font.PLAIN, 13));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    private void centerFrame() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        int frameWidth = this.getSize().width;
+        int frameHeight = this.getSize().height;
+        int x = (screenWidth - frameWidth) / 2;
+        int y = (screenHeight - frameHeight) / 2;
+        this.setLocation(x, y);
     }
 
     /**
@@ -76,23 +109,14 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         lab.setText("Lab");
         getContentPane().add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 320, 40, 20));
 
-        Confirm.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Confirm.setForeground(new java.awt.Color(7, 103, 6));
-        Confirm.setText("Confirm");
-        Confirm.setToolTipText("");
-        getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 390, 90, 50));
 
-        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
+        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
         getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 390, -1, -1));
 
-        Cancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Cancel.setForeground(new java.awt.Color(126, 13, 0));
-        Cancel.setText("Cancel");
-        getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(219, 390, 90, 50));
 
-        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButton-2.png")); // NOI18N
+        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButtonFont.png")); // NOI18N
         bt_cancel.setBorderPainted(false);
         bt_cancel.setContentAreaFilled(false);
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {

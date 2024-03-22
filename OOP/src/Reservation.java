@@ -1,6 +1,8 @@
 
+import javax.swing.*;
 import java.awt.Color;
-
+import java.awt.*;
+import java.io.*;
 
 
 /*
@@ -19,6 +21,42 @@ public class Reservation extends javax.swing.JFrame {
      */
     public Reservation() {
         initComponents();
+        centerFrame();
+
+        try {
+            // Load and register the font
+            Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(appleFont);
+
+
+            // Set the font for components
+            setCustomFont(appleFont);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void setCustomFont(Font font) {
+        Reservation.setFont(font.deriveFont(Font.BOLD, 24));
+        seat.setFont(font.deriveFont(Font.BOLD, 18));
+        Name.setFont(font.deriveFont(Font.BOLD, 18));
+        std_id.setFont(font.deriveFont(Font.BOLD, 18));
+        lab.setFont(font.deriveFont(Font.BOLD, 18));
+        jTextField_name.setFont(font.deriveFont(Font.PLAIN, 13));
+        jTextField_id.setFont(font.deriveFont(Font.PLAIN, 13));
+        Confirm.setFont(font.deriveFont(Font.BOLD, 18));
+        Cancel.setFont(font.deriveFont(Font.BOLD, 18));
+    }
+
+    private void centerFrame() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        int frameWidth = this.getSize().width;
+        int frameHeight = this.getSize().height;
+        int x = (screenWidth - frameWidth) / 2;
+        int y = (screenHeight - frameHeight) / 2;
+        this.setLocation(x, y);
     }
 
     /**
@@ -39,12 +77,13 @@ public class Reservation extends javax.swing.JFrame {
         lab = new javax.swing.JLabel();
         jTextField_name = new javax.swing.JTextField();
         jTextField_id = new javax.swing.JTextField();
-        jTextField_lab = new javax.swing.JTextField();
         Confirm = new javax.swing.JLabel();
         bt_confirm = new javax.swing.JButton();
         Cancel = new javax.swing.JLabel();
         bt_cancel = new javax.swing.JButton();
+        JComboBox<Object> jComboBox_lab = new JComboBox<>();
         bg = new javax.swing.JLabel();
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -81,8 +120,8 @@ public class Reservation extends javax.swing.JFrame {
 
         jTextField_name.setBackground(new java.awt.Color(76, 40, 20));
         jTextField_name.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jTextField_name.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField_name.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField_name.setForeground(new java.awt.Color(239,210,173));
+        jTextField_name.setHorizontalAlignment(javax.swing.JTextField.LEADING);
         jTextField_name.setText("name");
         jTextField_name.setBorder(null);
         jTextField_name.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -102,8 +141,8 @@ public class Reservation extends javax.swing.JFrame {
 
         jTextField_id.setBackground(new java.awt.Color(76, 40, 20));
         jTextField_id.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jTextField_id.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField_id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField_id.setForeground(new java.awt.Color(239,210,173));
+        jTextField_id.setHorizontalAlignment(javax.swing.JTextField.LEADING);
         jTextField_id.setText("Id");
         jTextField_id.setBorder(null);
         jTextField_id.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -116,39 +155,13 @@ public class Reservation extends javax.swing.JFrame {
         });
         getContentPane().add(jTextField_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 264, 130, 20));
 
-        jTextField_lab.setBackground(new java.awt.Color(76, 40, 20));
-        jTextField_lab.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jTextField_lab.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField_lab.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField_lab.setText("lab");
-        jTextField_lab.setBorder(null);
-        jTextField_lab.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                jTextField_labFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextField_labFocusLost(evt);
-            }
-        });
-        getContentPane().add(jTextField_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 323, 50, 20));
 
-        Confirm.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Confirm.setForeground(new java.awt.Color(7, 103, 6));
-        Confirm.setText("Confirm");
-        Confirm.setToolTipText("");
-        getContentPane().add(Confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 90, 50));
-
-        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
+        bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
         getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
 
-        Cancel.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        Cancel.setForeground(new java.awt.Color(126, 13, 0));
-        Cancel.setText("Cancel");
-        getContentPane().add(Cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 390, 90, 50));
-
-        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButton-2.png")); // NOI18N
+        bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButtonFont.png")); // NOI18N
         bt_cancel.setBorderPainted(false);
         bt_cancel.setContentAreaFilled(false);
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -157,6 +170,20 @@ public class Reservation extends javax.swing.JFrame {
             }
         });
         getContentPane().add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+
+
+
+        jComboBox_lab.setBackground(new java.awt.Color(76, 40, 20));
+        jComboBox_lab.setEditable(true);
+        jComboBox_lab.setForeground(new java.awt.Color(239, 210, 173));
+        jComboBox_lab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "lab 1", "lab 2", "lab 3", "lab 4" }));
+        jComboBox_lab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+               //
+            }
+        });
+        getContentPane().add(jComboBox_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 60, -1));
+
 
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -176,43 +203,31 @@ public class Reservation extends javax.swing.JFrame {
         if (jTextField_name.getText().equals("name")){
             jTextField_name.setText("");
         }
-        jTextField_name.setForeground(Color.white);
+        jTextField_name.setForeground(new Color(239,210,173));
     }
 
     private void jTextField_nameFocusLost(java.awt.event.FocusEvent evt) {
         if (jTextField_name.getText().equals("")){
             jTextField_name.setText("name");
         }
-        jTextField_name.setForeground(Color.white);
+        jTextField_name.setForeground(new Color(239,210,173));
     }
 
     private void jTextField_idFocusGained(java.awt.event.FocusEvent evt) {
         if (jTextField_id.getText().equals("Id")){
             jTextField_id.setText("");
         }
-        jTextField_id.setForeground(Color.white);
+        jTextField_id.setForeground(new Color(239,210,173));
     }
 
     private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {
         if (jTextField_id.getText().equals("")){
             jTextField_id.setText("Id");
         }
-        jTextField_id.setForeground(Color.white);
+        jTextField_id.setForeground(new Color(239,210,173));
     }
 
-    private void jTextField_labFocusGained(java.awt.event.FocusEvent evt) {
-        if (jTextField_lab.getText().equals("lab")){
-            jTextField_lab.setText("");
-        }
-        jTextField_lab.setForeground(Color.white);
-    }
 
-    private void jTextField_labFocusLost(java.awt.event.FocusEvent evt) {
-        if (jTextField_lab.getText().equals("")){
-            jTextField_lab.setText("lab");
-        }
-        jTextField_lab.setForeground(Color.white);
-    }
 
     /**
      * @param args the command line arguments
