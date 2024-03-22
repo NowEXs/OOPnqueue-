@@ -2,17 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
-
-
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
 import javax.swing.ImageIcon;
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+* Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+        */
 
 /**
  *
@@ -72,9 +68,7 @@ public class Feedback extends javax.swing.JFrame {
         time_p = new javax.swing.JPanel();
         label_time = new javax.swing.JLabel();
         time = new javax.swing.JLabel();
-        label_confirm = new javax.swing.JLabel();
         confirm_bt = new javax.swing.JButton();
-        label_cancel = new javax.swing.JLabel();
         cancel_bt = new javax.swing.JButton();
         label_giveme = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -197,31 +191,44 @@ public class Feedback extends javax.swing.JFrame {
 
         getContentPane().add(time_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, -1, -1));
 
-        label_confirm.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        label_confirm.setForeground(new java.awt.Color(255, 255, 255));
-        label_confirm.setText("  Confirm");
-        getContentPane().add(label_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 540, 70, -1));
-
-        confirm_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButton-2.png")); // NOI18N
+        confirm_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         confirm_bt.setBorderPainted(false);
         confirm_bt.setContentAreaFilled(false);
+        confirm_bt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirm_btMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirm_btMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirm_btMouseExited(evt);
+            }
+        });
+        confirm_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirm_btActionPerformed(evt);
+            }
+        });
         getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
 
-        label_cancel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        label_cancel.setForeground(new java.awt.Color(255, 255, 255));
-        label_cancel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        label_cancel.setText("Skip");
-        getContentPane().add(label_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 540, 100, 30));
-
-        cancel_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButton-2.png")); // NOI18N
+        cancel_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/skipButtonFont.png")); // NOI18N
         cancel_bt.setBorderPainted(false);
         cancel_bt.setContentAreaFilled(false);
         cancel_bt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancel_btMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 cancel_btMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 cancel_btMouseExited(evt);
+            }
+        });
+        cancel_bt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_btActionPerformed(evt);
             }
         });
         getContentPane().add(cancel_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, -1, -1));
@@ -251,8 +258,10 @@ public class Feedback extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 450, 220));
 
+        bg.setBackground(new java.awt.Color(84, 59, 45));
         bg.setForeground(new java.awt.Color(255, 244, 204));
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/Wood.png")); // NOI18N
+        bg.setOpaque(true);
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -294,6 +303,30 @@ public class Feedback extends javax.swing.JFrame {
     }
 
     private void cancel_btMouseEntered(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void cancel_btMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void confirm_btMouseEntered(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void confirm_btMouseExited(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void confirm_btMouseClicked(java.awt.event.MouseEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void cancel_btActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void confirm_btActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -342,9 +375,7 @@ public class Feedback extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lab;
     private javax.swing.JPanel lab_p;
-    private javax.swing.JLabel label_cancel;
     private javax.swing.JLabel label_complete;
-    private javax.swing.JLabel label_confirm;
     private javax.swing.JLabel label_giveme;
     private javax.swing.JLabel label_lab;
     private javax.swing.JLabel label_name;
