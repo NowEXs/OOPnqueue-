@@ -30,5 +30,4 @@ public class RoleTeller<role> {
         RoleTeller<Professor> pro = new RoleTeller<>(new Professor(), "Professor");
         System.out.println(std.getName());System.out.println(ta.getName());System.out.println(pro.getName());
     }
-
 }

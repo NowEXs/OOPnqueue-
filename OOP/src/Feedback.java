@@ -208,6 +208,12 @@ public class Feedback extends javax.swing.JFrame implements OnClick {
         cancel_bt.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/cancelButton-2.png"))); // NOI18N
         cancel_bt.setBorderPainted(false);
         cancel_bt.setContentAreaFilled(false);
+        cancel_bt.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pressCancel(e);
+            }
+        });
         getContentPane().add(cancel_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, -1, -1));
 
         label_giveme.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
