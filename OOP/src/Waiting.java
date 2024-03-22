@@ -37,7 +37,7 @@ public class Waiting extends javax.swing.JPanel {
         lb1_wait.setText("Please Waitting....");
         jInternalFrame2.getContentPane().add(lb1_wait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 73, 473, 33));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/N-Queue graphics/Panel/Waitting&YourQ(470, 160).png"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/Waitting&YourQ(470, 160).png")); // NOI18N
         jInternalFrame2.getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 163));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
