@@ -143,6 +143,8 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         getContentPane().add(jLabel_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 50, 20));
 
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
+        bg.setBackground(new java.awt.Color(84, 59, 45));
+        bg.setOpaque(true);
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

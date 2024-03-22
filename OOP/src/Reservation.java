@@ -89,6 +89,8 @@ public class Reservation extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+
+
         Reservation.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         Reservation.setForeground(new java.awt.Color(239, 210, 173));
         Reservation.setText("Reservation");
@@ -187,6 +189,8 @@ public class Reservation extends javax.swing.JFrame {
 
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        bg.setBackground(new java.awt.Color(84, 59, 45));
+        bg.setOpaque(true);
 
         pack();
     }// </editor-fold>
