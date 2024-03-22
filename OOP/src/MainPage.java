@@ -25,7 +25,7 @@ public class MainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        cont = new javax.swing.JPanel();
+        main = new javax.swing.JPanel();
         queue = new javax.swing.JPanel();
         q1 = new javax.swing.JPanel();
         image_status1 = new javax.swing.JLabel();
@@ -62,6 +62,9 @@ public class MainPage extends javax.swing.JFrame {
         txt_lab = new javax.swing.JLabel();
         txt_today = new javax.swing.JLabel();
         bg_dl = new javax.swing.JLabel();
+        mainwood_panel = new javax.swing.JPanel();
+        area_com = new javax.swing.JPanel();
+        wood = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("N-Queue");
@@ -71,7 +74,7 @@ public class MainPage extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1200, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cont.setMinimumSize(new java.awt.Dimension(1200, 700));
+        main.setMinimumSize(new java.awt.Dimension(1200, 700));
 
         queue.setOpaque(false);
         queue.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -332,12 +335,12 @@ public class MainPage extends javax.swing.JFrame {
 
         txt_empty.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_empty.setForeground(new java.awt.Color(87, 65, 43));
-        txt_empty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stempty.png"))); // NOI18N
+        txt_empty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stwait.png"))); // NOI18N
         txt_empty.setText("Empty");
 
         txt_wait.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_wait.setForeground(new java.awt.Color(87, 65, 43));
-        txt_wait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stwait.png"))); // NOI18N
+        txt_wait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stempty.png"))); // NOI18N
         txt_wait.setText("Wait");
 
         javax.swing.GroupLayout statusLayout = new javax.swing.GroupLayout(status);
@@ -392,12 +395,21 @@ public class MainPage extends javax.swing.JFrame {
         bg_dl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/imagever2.png"))); // NOI18N
         deadline.add(bg_dl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(cont);
-        cont.setLayout(mainLayout);
+        mainwood_panel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        area_com.setOpaque(false);
+        mainwood_panel.add(area_com, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 770, 550));
+
+        wood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/left.png"))); // NOI18N
+        mainwood_panel.add(wood, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 848, -1));
+
+        javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
+        main.setLayout(mainLayout);
         mainLayout.setHorizontalGroup(
                 mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(mainLayout.createSequentialGroup()
-                                .addGap(854, 854, 854)
+                                .addComponent(mainwood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(15, 15, 15)
                                 .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -406,13 +418,16 @@ public class MainPage extends javax.swing.JFrame {
         mainLayout.setVerticalGroup(
                 mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(mainLayout.createSequentialGroup()
-                                .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(mainLayout.createSequentialGroup()
+                                                .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, 0)
+                                                .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(mainwood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(100, Short.MAX_VALUE))
         );
 
-        getContentPane().add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
+        getContentPane().add(main, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
 
         pack();
     }// </editor-fold>
@@ -453,6 +468,7 @@ public class MainPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private javax.swing.JPanel area_com;
     private javax.swing.JLabel area_q;
     private javax.swing.JLabel bg_dl;
     private javax.swing.JPanel deadline;
@@ -466,7 +482,8 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel lab3;
     private javax.swing.JLabel lab4;
     private javax.swing.JLabel lab5;
-    private javax.swing.JPanel cont;
+    private javax.swing.JPanel main;
+    private javax.swing.JPanel mainwood_panel;
     private javax.swing.JLabel name_id1;
     private javax.swing.JLabel name_id2;
     private javax.swing.JLabel name_id3;
@@ -490,5 +507,6 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel txt_people;
     private javax.swing.JLabel txt_today;
     private javax.swing.JLabel txt_wait;
+    private javax.swing.JLabel wood;
     // End of variables declaration
 }
