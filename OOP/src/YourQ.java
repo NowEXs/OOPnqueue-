@@ -37,7 +37,7 @@ public class YourQ extends javax.swing.JPanel {
         lb1_urNext.setText("Good Luck You're Next!");
         jInternalFrame2.getContentPane().add(lb1_urNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, 61, 480, 45));
 
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/Waitting&YourQ(470, 160).png"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/Waitting&YourQ(470, 160).png")); // NOI18N
         jInternalFrame2.getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 163));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
