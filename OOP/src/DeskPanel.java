@@ -1,31 +1,38 @@
 import javax.swing.*;
+import java.awt.*;
 
-public class DeskPanel extends JPanel{
+import javax.swing.*;
+import java.awt.*;
+
+public class DeskPanel extends JPanel {
     private JPanel area_com;
     private JLabel wood;
+    private JScrollPane scrollPanel;
 
     public DeskPanel() {
         area_com = new JPanel();
         wood = new JLabel();
-
+        addComputerPanels();
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        area_com.setOpaque(false);
-
-        GroupLayout area_comLayout = new GroupLayout(area_com);
-        area_com.setLayout(area_comLayout);
-        area_comLayout.setHorizontalGroup(
-                area_comLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 770, Short.MAX_VALUE)
-        );
-        area_comLayout.setVerticalGroup(
-                area_comLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGap(0, 550, Short.MAX_VALUE)
-        );
-
-        add(area_com, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 770, 550));
-
-        wood.setIcon(new ImageIcon(getClass().getResource("/Image/left.png"))); // NOI18N
+        scrollPanel = new JScrollPane(area_com);
+        scrollPanel.getViewport().setOpaque(false);
+        scrollPanel.setOpaque(false);
+        scrollPanel.setBorder(null);
+        add(scrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 770, 550));
+        wood.setIcon(new ImageIcon(getClass().getResource("/Image/left.png")));
         add(wood, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+    }
+
+    private void addComputerPanels() {
+        area_com.setLayout(new GridLayout(0, 7));
+        area_com.setOpaque(false);
+        area_com.setBorder(null);
+        for (int i = 0; i < 50; i++) {
+            ComputerPanel computerPanel = new ComputerPanel(new Computer());
+            computerPanel.setPreferredSize(new Dimension(100, 100));
+            computerPanel.setOpaque(false);
+            area_com.add(computerPanel);
+        }
     }
 }
