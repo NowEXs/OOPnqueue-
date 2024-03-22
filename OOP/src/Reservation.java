@@ -26,12 +26,15 @@ public class Reservation extends javax.swing.JFrame {
         try {
             // Load and register the font
             Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            Font MCFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/minecraft_font.ttf"));
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(appleFont);
+            ge.registerFont(MCFont);
 
 
             // Set the font for components
             setCustomFont(appleFont);
+            setCustomTextFieldFont(MCFont);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,10 +45,12 @@ public class Reservation extends javax.swing.JFrame {
         Name.setFont(font.deriveFont(Font.BOLD, 18));
         std_id.setFont(font.deriveFont(Font.BOLD, 18));
         lab.setFont(font.deriveFont(Font.BOLD, 18));
-        jTextField_name.setFont(font.deriveFont(Font.PLAIN, 13));
-        jTextField_id.setFont(font.deriveFont(Font.PLAIN, 13));
         Confirm.setFont(font.deriveFont(Font.BOLD, 18));
         Cancel.setFont(font.deriveFont(Font.BOLD, 18));
+    }
+    private void setCustomTextFieldFont(Font font) {
+        jTextField_name.setFont(font.deriveFont(Font.PLAIN, 13));
+        jTextField_id.setFont(font.deriveFont(Font.PLAIN, 13));
     }
 
     private void centerFrame() {
@@ -92,7 +97,7 @@ public class Reservation extends javax.swing.JFrame {
 
 
         Reservation.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        Reservation.setForeground(new java.awt.Color(239, 210, 173));
+        Reservation.setForeground(new java.awt.Color(238,228,177));
         Reservation.setText("Reservation");
         getContentPane().add(Reservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
 
@@ -100,7 +105,7 @@ public class Reservation extends javax.swing.JFrame {
         getContentPane().add(img_checking, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
 
         seat.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
-        seat.setForeground(new java.awt.Color(239, 210, 173));
+        seat.setForeground(new java.awt.Color(238,228,177));
         seat.setText("32");
         getContentPane().add(seat, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
@@ -112,7 +117,7 @@ public class Reservation extends javax.swing.JFrame {
 
         std_id.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         std_id.setForeground(new java.awt.Color(239, 210, 173));
-        std_id.setText("STD_id");
+        std_id.setText("STD_ID");
         getContentPane().add(std_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, 50));
 
         lab.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
