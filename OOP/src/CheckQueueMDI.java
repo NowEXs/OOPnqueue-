@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
+import java.awt.*;
+import java.io.File;
 /**
  *
  * @author nk
@@ -14,6 +11,42 @@ public class CheckQueueMDI extends javax.swing.JFrame {
      */
     public CheckQueueMDI() {
         initComponents();
+        setCustomFont();
+        centerFrame();
+    }
+
+    private void setCustomFont() {
+        try {
+            // Load and register the font
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+
+            // Set the font for components
+            Queue.setFont(customFont.deriveFont(Font.BOLD, 24));
+            seat.setFont(customFont.deriveFont(Font.BOLD, 18));
+            Name.setFont(customFont.deriveFont(Font.BOLD, 18));
+            std_id.setFont(customFont.deriveFont(Font.BOLD, 18));
+            lab.setFont(customFont.deriveFont(Font.BOLD, 18));
+            Confirm.setFont(customFont.deriveFont(Font.BOLD, 18));
+            Cancel.setFont(customFont.deriveFont(Font.BOLD, 18));
+            jLabel_name.setFont(customFont.deriveFont(Font.PLAIN, 13));
+            jLabel_id.setFont(customFont.deriveFont(Font.PLAIN, 13));
+            jLabel_lab.setFont(customFont.deriveFont(Font.PLAIN, 13));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    private void centerFrame() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        int frameWidth = this.getSize().width;
+        int frameHeight = this.getSize().height;
+        int x = (screenWidth - frameWidth) / 2;
+        int y = (screenHeight - frameHeight) / 2;
+        this.setLocation(x, y);
     }
 
     /**

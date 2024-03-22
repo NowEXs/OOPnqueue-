@@ -1,8 +1,6 @@
 
 import javax.swing.*;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.*;
 import java.io.*;
 
@@ -44,9 +42,8 @@ public class Reservation extends javax.swing.JFrame {
         Name.setFont(font.deriveFont(Font.BOLD, 18));
         std_id.setFont(font.deriveFont(Font.BOLD, 18));
         lab.setFont(font.deriveFont(Font.BOLD, 18));
-        jTextField_name.setFont(font.deriveFont(Font.BOLD, 13));
-        jTextField_id.setFont(font.deriveFont(Font.BOLD, 13));
-        jTextField_lab.setFont(font.deriveFont(Font.BOLD, 13));
+        jTextField_name.setFont(font.deriveFont(Font.PLAIN, 13));
+        jTextField_id.setFont(font.deriveFont(Font.PLAIN, 13));
         Confirm.setFont(font.deriveFont(Font.BOLD, 18));
         Cancel.setFont(font.deriveFont(Font.BOLD, 18));
     }
@@ -80,7 +77,6 @@ public class Reservation extends javax.swing.JFrame {
         lab = new javax.swing.JLabel();
         jTextField_name = new javax.swing.JTextField();
         jTextField_id = new javax.swing.JTextField();
-        jTextField_lab = new javax.swing.JTextField();
         Confirm = new javax.swing.JLabel();
         bt_confirm = new javax.swing.JButton();
         Cancel = new javax.swing.JLabel();
