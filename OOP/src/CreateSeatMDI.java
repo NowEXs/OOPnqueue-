@@ -40,7 +40,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         setBackground(new java.awt.Color(84, 59, 49));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        confirmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("OOP/src/Image/confirmButtonFont.png"))); // NOI18N
+        confirmButton.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         confirmButton.setActionCommand("");
         confirmButton.setBorder(null);
         confirmButton.setContentAreaFilled(false);
@@ -65,7 +65,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         seatId_label.setText("Seat ID ");
         getContentPane().add(seatId_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 165, -1, -1));
 
-        cancelButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("OOP/src/Image/cancelButtonFont.png"))); // NOI18N
+        cancelButton.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButtonFont.png")); // NOI18N
         cancelButton.setBorder(null);
         cancelButton.setBorderPainted(false);
         cancelButton.setContentAreaFilled(false);
@@ -104,7 +104,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         getContentPane().add(seatId, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 165, -1, -1));
 
         image.setBackground(new java.awt.Color(84, 59, 45));
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/N-Queue graphics/testing/correctNew.png"))); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon("OOP/src/Image/NewSeat (1).png")); // NOI18N
         image.setOpaque(true);
         getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
