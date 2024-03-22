@@ -3,6 +3,8 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.*;
+import java.io.*;
 
 
 /*
@@ -22,6 +24,31 @@ public class Reservation extends javax.swing.JFrame {
     public Reservation() {
         initComponents();
         centerFrame();
+
+        try {
+            // Load and register the font
+            Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(appleFont);
+
+
+            // Set the font for components
+            setCustomFont(appleFont);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void setCustomFont(Font font) {
+        Reservation.setFont(font.deriveFont(Font.BOLD, 24));
+        seat.setFont(font.deriveFont(Font.BOLD, 18));
+        Name.setFont(font.deriveFont(Font.BOLD, 18));
+        std_id.setFont(font.deriveFont(Font.BOLD, 18));
+        lab.setFont(font.deriveFont(Font.BOLD, 18));
+        jTextField_name.setFont(font.deriveFont(Font.BOLD, 13));
+        jTextField_id.setFont(font.deriveFont(Font.BOLD, 13));
+        jTextField_lab.setFont(font.deriveFont(Font.BOLD, 13));
+        Confirm.setFont(font.deriveFont(Font.BOLD, 18));
+        Cancel.setFont(font.deriveFont(Font.BOLD, 18));
     }
 
     private void centerFrame() {
