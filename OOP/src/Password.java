@@ -136,7 +136,7 @@ public class Password extends javax.swing.JFrame {
 
     private void password_pwfFocusLost(java.awt.event.FocusEvent evt) {
 
-        if(password_pwf.getText().equals("")){
+        if(password_pwf.getText().isEmpty()){
             password_pwf.setText("Input Password");
         }
         //[153,153,153]
