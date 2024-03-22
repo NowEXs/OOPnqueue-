@@ -1,40 +1,32 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 //for making computer loop
-public class ComputerPanel extends Computer{
+public class ComputerPanel extends JPanel {
     private JPanel computerPanel, innerLabel;
     private JButton computerButton;
     private JLabel computerNumber;
-    private JFrame fr;
+    private Computer comp;
 
-    public ComputerPanel() {
-        fr = new JFrame();
-        Computer currentComp = new Computer();
-        computerNumber = new JLabel(currentComp.getComp_id()+"");
-        computerPanel = new JPanel();
-        computerPanel.setSize(10,30);
-        computerPanel.setLayout(new BorderLayout());
 
-        innerLabel = new JPanel();
-        innerLabel.setSize(15,12);
-        innerLabel.setLayout(new FlowLayout());
+    public ComputerPanel(Computer comp) {
+        this.comp = comp;
+        computerNumber = new JLabel(comp.getComp_id() + "");
+        setLayout(new BorderLayout());
+
+        JPanel innerLabel = new JPanel();
         innerLabel.add(computerNumber);
+        innerLabel.setOpaque(false);
 
         computerButton = new JButton(new ImageIcon(getClass().getResource("/Image/checking.png")));
         computerButton.setOpaque(false);
         computerButton.setContentAreaFilled(false);
         computerButton.setBorderPainted(false);
 
-
-        computerPanel.add(computerButton, BorderLayout.NORTH);
-        computerPanel.add(innerLabel);
-        fr.add(computerPanel);
-        fr.setVisible(true);
-        fr.setSize(400,300);
-        fr.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(computerButton, BorderLayout.NORTH);
+        add(innerLabel);
     }
 
-    public static void main(String[] args) {
-        new ComputerPanel();
-    }
 }
