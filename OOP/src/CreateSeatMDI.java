@@ -77,7 +77,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         imgcom.setIcon(new javax.swing.ImageIcon("OOP/src/Image/CreateCom.png")); // NOI18N
         getContentPane().add(imgcom, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 135, 345, 120));
 
-        img_txtfield.setIcon(new javax.swing.ImageIcon("OOP/src/Image/Waitting&YourQ(470, 160).png")); // NOI18N
+        img_txtfield.setIcon(new javax.swing.ImageIcon("OOP/src/Image/Txtbox(225, 35).png")); // NOI18N
         getContentPane().add(img_txtfield, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 255, 240, 45));
 
         Cancel_label.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

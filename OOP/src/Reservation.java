@@ -259,7 +259,14 @@ public class Reservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Reservation().setVisible(true);
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                    new Reservation().setVisible(true);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
             }
         });
     }
