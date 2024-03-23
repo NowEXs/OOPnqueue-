@@ -95,11 +95,7 @@ public class MainPage extends javax.swing.JFrame {
         txt_wait = new javax.swing.JLabel();
         txt_empty = new javax.swing.JLabel();
         area_q = new javax.swing.JLabel();
-        deadline = new javax.swing.JPanel();
-        txt_people = new javax.swing.JLabel();
-        txt_lab = new javax.swing.JLabel();
-        txt_today = new javax.swing.JLabel();
-        bg_dl = new javax.swing.JLabel();
+        deadline = new DeadlinePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("N-Queue");
@@ -405,28 +401,8 @@ public class MainPage extends javax.swing.JFrame {
         area_q.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/breadx2.png"))); // NOI18N
         queue.add(area_q, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        deadline.setOpaque(false);
-        deadline.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_people.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        txt_people.setForeground(new java.awt.Color(87, 65, 43));
-        txt_people.setText("people");
-        deadline.add(txt_people, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
 
-        txt_lab.setBackground(new java.awt.Color(255, 255, 255));
-        txt_lab.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        txt_lab.setForeground(new java.awt.Color(87, 65, 43));
-        txt_lab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        txt_lab.setText("Lab : ");
-        deadline.add(txt_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 48, 20));
-
-        txt_today.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        txt_today.setForeground(new java.awt.Color(87, 65, 43));
-        txt_today.setText("Today's Deadline");
-        deadline.add(txt_today, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, 30));
-
-        bg_dl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/imagever2.png"))); // NOI18N
-        deadline.add(bg_dl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout contLayout = new javax.swing.GroupLayout(cont);
         cont.setLayout(contLayout);
@@ -493,7 +469,6 @@ public class MainPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify
     private javax.swing.JLabel area_q;
-    private javax.swing.JLabel bg_dl;
     private javax.swing.JPanel cont;
     private javax.swing.JPanel deadline;
     private javax.swing.JLabel image_status1;
@@ -525,9 +500,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JPanel status;
     private javax.swing.JLabel txt_checking;
     private javax.swing.JLabel txt_empty;
-    private javax.swing.JLabel txt_lab;
-    private javax.swing.JLabel txt_people;
-    private javax.swing.JLabel txt_today;
+
     private javax.swing.JLabel txt_wait;
     private DeskPanel wood_panel;
 
