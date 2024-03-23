@@ -1,4 +1,4 @@
-public class Computer extends Student implements RoleChecker, Rerservable{
+public class Computer extends Student implements Rerservable{
     private Student std_data;
     private int comp_id, status;
     private boolean isReservable;
@@ -7,11 +7,12 @@ public class Computer extends Student implements RoleChecker, Rerservable{
     public Computer() {
 
     }
-    public Computer(int status,String lab_name,String std_name, String std_id) {
+    public Computer(String lab_name,String std_name, String std_id,int comp_id,int status) {
+        super(lab_name, std_name, std_id);
+        this.comp_id = comp_id;
+        this.status = status;
     }
-    @Override
-    public void userType(){
-    }
+
     @Override
     public void Availability(){
     }

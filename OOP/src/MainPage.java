@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author huawei
@@ -14,6 +17,36 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            String resetSeat = "UPDATE SeatManager SET Availability = NULL"; // รี sql
+            String resetQueue = "DELETE FROM Reservation";
+
+            try (PreparedStatement delallstatement = DbCon.prepareStatement(resetSeat);
+                 PreparedStatement delQstatement = DbCon.prepareStatement(resetQueue)) {
+                delallstatement.executeUpdate();
+                delQstatement.executeUpdate();
+                System.out.println("del_data_completed");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }));
+    }
+    public MainPage(User user) {
+         this.user = user;
+         initComponents();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            String resetSeat = "UPDATE SeatManager SET Availability = NULL"; // รี sql
+            String resetQueue = "DELETE FROM Reservation";
+
+            try (PreparedStatement delallstatement = DbCon.prepareStatement(resetSeat);
+                 PreparedStatement delQstatement = DbCon.prepareStatement(resetQueue)) {
+                delallstatement.executeUpdate();
+                delQstatement.executeUpdate();
+                System.out.println("del_data_completed");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }));
     }
 
     /**
@@ -24,8 +57,7 @@ public class MainPage extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
-        wood_panel = new DeskPanel();
+        wood_panel = new DeskPanel(user);
         cont = new javax.swing.JPanel();
         queue = new javax.swing.JPanel();
         q1 = new javax.swing.JPanel();
@@ -408,11 +440,11 @@ public class MainPage extends javax.swing.JFrame {
                         .addGroup(contLayout.createSequentialGroup()
                                 .addGroup(contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(contLayout.createSequentialGroup()
-                                        .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(100, Short.MAX_VALUE))
+                                                .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(0, 0, 0)
+                                                .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(100, Short.MAX_VALUE))
         );
         getContentPane().add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
         setLocationRelativeTo(null);
@@ -493,5 +525,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel txt_today;
     private javax.swing.JLabel txt_wait;
     private DeskPanel wood_panel;
+
+    private User user;
     // End of variables declaration
 }

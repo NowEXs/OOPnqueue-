@@ -77,7 +77,7 @@ public class SelectRole extends javax.swing.JFrame {
         TAButton.setText("TA");
         TAButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         TAButton.setMargin(new java.awt.Insets(3, 14, 3, 14));
-        TAButton.addActionListener(new java.awt.event.ActionListener() {
+        TAButton.addActionListener(new java.awt.event.ActionListener() {    
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TAButtonActionPerformed(evt);
             }
@@ -93,20 +93,26 @@ public class SelectRole extends javax.swing.JFrame {
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 510, 710));
-
+        setLocationRelativeTo(null);
         pack();
-    }// </editor-fold>
+    }
 
     private void PFSButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        Password pass_gui = new Password(new Professor());
+        pass_gui.setVisible(true);
     }
 
     private void STDButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        MainPage mainWindow = new MainPage(new Student());
+        mainWindow.setVisible(true);
     }
 
     private void TAButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        Password pass_gui = new Password(new TA());
+        pass_gui.setVisible(true);
     }
 
     /**
