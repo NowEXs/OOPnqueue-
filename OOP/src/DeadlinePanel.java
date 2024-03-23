@@ -2,12 +2,12 @@
  *
  * @author Newtellafolk
  */
-public class deadlinePanel extends javax.swing.JPanel {
+public class DeadlinePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form deadlinePanel
      */
-    public deadlinePanel() {
+    public DeadlinePanel() {
         initComponents();
 
     }
