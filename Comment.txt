@@ -13,7 +13,4 @@
 2024/03/15 14:31:51: can write?
 2024/03/15 14:34:04: Did 2 round?
 2024/03/15 14:35:31: 2?
-2024/03/22 17:41:00: Add a comment
-2024/03/23 17:21:26: Hi How are you???
-From Thananupat Rodpan: 2024/03/23 17:24:38: Hi!!!
-From Thananupat Rodpan: 24/03/23 17:25:29: test
+2024/03/22 17:51:22: Add a comment

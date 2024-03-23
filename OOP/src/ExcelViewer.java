@@ -135,17 +135,10 @@ public class ExcelViewer extends JFrame {
     }
 
     public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            SwingUtilities.invokeLater(() -> {
-                ExcelViewer excelViewer = new ExcelViewer();
-                excelViewer.setVisible(true);
-            });
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        SwingUtilities.invokeLater(() -> {
+            ExcelViewer excelViewer = new ExcelViewer();
+            excelViewer.setVisible(true);
+        });
     }
 
     // Custom cell renderer to mimic Excel's styling
@@ -155,7 +148,6 @@ public class ExcelViewer extends JFrame {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             // Set font color
-
             setForeground(Color.black);
 
             // Set background color
