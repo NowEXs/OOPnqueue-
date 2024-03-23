@@ -2,15 +2,16 @@
  *
  * @author Newtellafolk
  */
-public class deadlinePanel extends javax.swing.JPanel {
+public class DeadlinePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form deadlinePanel
      */
-    public deadlinePanel() {
+    public DeadlinePanel() {
         initComponents();
 
     }
+
 
 
     /**
@@ -47,7 +48,7 @@ public class deadlinePanel extends javax.swing.JPanel {
         txt_people.setText("people");
         add(txt_people, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 62, 45, -1));
 
-        bg_deadline.setIcon(new javax.swing.ImageIcon(getClass().getResource("OOP/src/Image/imagever2.png"))); // NOI18N
+        bg_deadline.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/imagever2.png"))); // NOI18N
         add(bg_deadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 105));
     }// </editor-fold>                        
 
