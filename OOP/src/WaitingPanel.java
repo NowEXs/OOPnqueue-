@@ -45,6 +45,7 @@ public class WaitingPanel extends JPanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
         comQueue = new ComQueuePanel();
+        comQueue.setOpaque(false);
         st_p = new javax.swing.JPanel();
         st_check = new javax.swing.JLabel();
         st_wait = new javax.swing.JLabel();
@@ -117,6 +118,7 @@ public class WaitingPanel extends JPanel{
         SpaceComQueue1.setOpaque(false);
         SpaceComQueue1.setLayout(new GridLayout(1,5));
         SpaceComQueue1.setLayout(new java.awt.GridLayout());
+        SpaceComQueue1.add(comQueue);
         add(SpaceComQueue1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 230, 410));
 
         bg.setBackground(new java.awt.Color(84, 59, 45));
