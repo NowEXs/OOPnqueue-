@@ -91,7 +91,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         label_complete.setText("COMPLETED!");
         getContentPane().add(label_complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Create.png"))); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/Create.png"))); // NOI18N
         getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         name_p.setBackground(new java.awt.Color(255, 244, 239));
