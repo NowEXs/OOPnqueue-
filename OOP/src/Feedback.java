@@ -89,19 +89,19 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         label_complete.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         label_complete.setForeground(new java.awt.Color(255, 244, 204));
         label_complete.setText("COMPLETED!");
-        getContentPane().add(label_complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, -1, -1));
+        getContentPane().add(label_complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
 
-        image.setIcon(new javax.swing.ImageIcon("OOP/src/Image/CreateSeatBot.png")); // NOI18N
-        getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, -1));
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Create.png"))); // NOI18N
+        getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         name_p.setBackground(new java.awt.Color(255, 244, 239));
         name_p.setForeground(new java.awt.Color(255, 244, 239));
 
-        label_name.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        label_name.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         label_name.setForeground(new java.awt.Color(80, 9, 9));
         label_name.setText("Name :");
 
-        name.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        name.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         name.setForeground(new java.awt.Color(80, 9, 9));
         name.setText("Thananupat Rodpan");
 
@@ -113,31 +113,31 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                                 .addContainerGap()
                                 .addComponent(label_name)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(31, Short.MAX_VALUE))
+                                .addComponent(name)
+                                .addContainerGap(17, Short.MAX_VALUE))
         );
         name_pLayout.setVerticalGroup(
                 name_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(name_pLayout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(1, 1, 1)
                                 .addGroup(name_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(label_name, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(name))
-                                .addContainerGap())
+                                .addGap(1, 1, 1))
         );
 
-        getContentPane().add(name_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, -1, -1));
+        getContentPane().add(name_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 170, 20));
 
         lab_p.setBackground(new java.awt.Color(255, 244, 239));
         lab_p.setForeground(new java.awt.Color(255, 244, 239));
 
-        label_lab.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        label_lab.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         label_lab.setForeground(new java.awt.Color(80, 9, 9));
         label_lab.setText("Lab :");
 
-        lab.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        lab.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lab.setForeground(new java.awt.Color(80, 9, 9));
-        lab.setText("9");
+        lab.setText("  9");
 
         javax.swing.GroupLayout lab_pLayout = new javax.swing.GroupLayout(lab_p);
         lab_p.setLayout(lab_pLayout);
@@ -148,28 +148,28 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                                 .addComponent(label_lab)
                                 .addGap(18, 18, 18)
                                 .addComponent(lab, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(112, Short.MAX_VALUE))
+                                .addContainerGap(44, Short.MAX_VALUE))
         );
         lab_pLayout.setVerticalGroup(
                 lab_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(lab_pLayout.createSequentialGroup()
-                                .addContainerGap()
+                                .addGap(1, 1, 1)
                                 .addGroup(lab_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(label_lab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lab))
-                                .addContainerGap())
+                                .addGap(1, 1, 1))
         );
 
-        getContentPane().add(lab_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 240, -1));
+        getContentPane().add(lab_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 170, -1));
 
         time_p.setBackground(new java.awt.Color(255, 244, 239));
         time_p.setForeground(new java.awt.Color(255, 244, 239));
 
-        label_time.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        label_time.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         label_time.setForeground(new java.awt.Color(80, 9, 9));
         label_time.setText("Time :");
 
-        time.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        time.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         time.setForeground(new java.awt.Color(80, 9, 9));
         time.setText("12:25:58");
 
@@ -182,21 +182,20 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                                 .addComponent(label_time)
                                 .addGap(18, 18, 18)
                                 .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(81, Short.MAX_VALUE))
+                                .addContainerGap(18, Short.MAX_VALUE))
         );
         time_pLayout.setVerticalGroup(
                 time_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(time_pLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(time_pLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(label_time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(time))
-                                .addContainerGap())
+                                .addGap(1, 1, 1)
+                                .addComponent(label_time, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
+                                .addGap(1, 1, 1))
+                        .addComponent(time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        getContentPane().add(time_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, -1, -1));
+        getContentPane().add(time_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 170, 20));
 
-        confirm_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
+        confirm_bt.setIcon(new javax.swing.ImageIcon("Image/confirmButtonFont.png")); // NOI18N
         confirm_bt.setBorderPainted(false);
         confirm_bt.setContentAreaFilled(false);
         confirm_bt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,9 +214,9 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                 confirm_btActionPerformed(evt);
             }
         });
-        getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 530, -1, -1));
+        getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
-        cancel_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/skipButtonFont.png")); // NOI18N
+        cancel_bt.setIcon(new javax.swing.ImageIcon("Image/skipButtonFont.png")); // NOI18N
         cancel_bt.setBorderPainted(false);
         cancel_bt.setContentAreaFilled(false);
         cancel_bt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -236,12 +235,12 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                 cancel_btActionPerformed(evt);
             }
         });
-        getContentPane().add(cancel_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 530, -1, -1));
+        getContentPane().add(cancel_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
 
         label_giveme.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_giveme.setForeground(new java.awt.Color(255, 244, 204));
         label_giveme.setText("Give me a feedback");
-        getContentPane().add(label_giveme, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, -1, -1));
+        getContentPane().add(label_giveme, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
 
         feedback_txtarea.setBackground(new java.awt.Color(102, 51, 0));
         feedback_txtarea.setColumns(20);
@@ -261,13 +260,13 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         });
         jScrollPane1.setViewportView(feedback_txtarea);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 310, 450, 220));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 240, 120));
 
         bg.setBackground(new java.awt.Color(84, 59, 45));
         bg.setForeground(new java.awt.Color(255, 244, 204));
-        bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/Wood.png")); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/FeedbackWood.png"))); // NOI18N
         bg.setOpaque(true);
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
