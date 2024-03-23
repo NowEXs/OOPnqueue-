@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -168,6 +169,8 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
                                                         }
                                                     } catch (SQLException ex) {
                                                         ex.printStackTrace();
+                                                    } catch (IOException ex) {
+                                                        throw new RuntimeException(ex);
                                                     }
                                                 }
                                             });
@@ -187,12 +190,16 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
 
                         } catch (SQLException ex) {
                             ex.printStackTrace();
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
                         }
                     }
                 });
             }
 
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -28,6 +29,8 @@ public class MainPage extends javax.swing.JFrame {
                 System.out.println("del_data_completed");
             } catch (SQLException ex) {
                 ex.printStackTrace();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }));
     }
@@ -45,6 +48,8 @@ public class MainPage extends javax.swing.JFrame {
                 System.out.println("del_data_completed");
             } catch (SQLException ex) {
                 ex.printStackTrace();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }));
     }
