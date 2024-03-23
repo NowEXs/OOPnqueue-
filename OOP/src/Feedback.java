@@ -4,8 +4,13 @@
  */
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.io.File;
-import javax.swing.ImageIcon;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import javax.swing.*;
+import java.net.*;
+import java.io.*;
 /*
 * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
         */
@@ -14,7 +19,7 @@ import javax.swing.ImageIcon;
  *
  * @author armmy
  */
-public class Feedback extends javax.swing.JFrame {
+public class Feedback extends javax.swing.JFrame implements OnClick{
 
     /**
      * Creates new form Feedback
@@ -323,11 +328,11 @@ public class Feedback extends javax.swing.JFrame {
     }
 
     private void cancel_btActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        pressCancel(evt);
     }
 
     private void confirm_btActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        pressConfirm(evt);
     }
 
     /**
@@ -384,5 +389,49 @@ public class Feedback extends javax.swing.JFrame {
     private javax.swing.JPanel name_p;
     private javax.swing.JLabel time;
     private javax.swing.JPanel time_p;
+    private String txt;
+    private BufferedReader in;
+
+    @Override
+    public void pressConfirm(ActionEvent event) {
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd HH:mm:ss");
+                Feedback.this.txt = "From "+Feedback.this.name.getText()+": "+dtf.format(LocalDateTime.now()) + ": " + feedback_txtarea.getText();
+                Feedback.this.startServer();
+            }
+        });
+    }
+    public void startServer() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (Socket clientSocket = new Socket("localhost", 1111)) {
+                    System.out.println("Client Start...");
+                    PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
+                    output.println(txt);
+                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    System.out.println(in.readLine());
+                } catch (ConnectException e) {
+                    System.out.println("Not Have Server!!");
+                } catch (EOFException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    @Override
+    public void pressCancel(ActionEvent event) {
+        this.dispose();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //not have anything
+    }
     // End of variables declaration
 }
