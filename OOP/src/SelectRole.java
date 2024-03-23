@@ -95,18 +95,24 @@ public class SelectRole extends javax.swing.JFrame {
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 510, 710));
 
         pack();
-    }// </editor-fold>
+    }
 
     private void PFSButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        Password pass_gui = new Password();
+        pass_gui.setVisible(true);
     }
 
     private void STDButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        MainPage mainWindow = new MainPage();
+        mainWindow.setVisible(true);
     }
 
     private void TAButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        Password pass_gui = new Password();
+        pass_gui.setVisible(true);
     }
 
     /**
