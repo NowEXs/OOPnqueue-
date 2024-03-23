@@ -3,7 +3,7 @@ public class RoleTeller<role> {
     private role rl;
     private String name;
 
-    public RoleTeller(role role, String name){
+    public RoleTeller(role role, String name) {
         this.setRl(role);
         this.setName(name);
     }

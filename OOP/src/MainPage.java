@@ -31,6 +31,23 @@ public class MainPage extends javax.swing.JFrame {
             }
         }));
     }
+    public MainPage(User user) {
+         this.user = user;
+         initComponents();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            String resetSeat = "UPDATE SeatManager SET Availability = NULL"; // รี sql
+            String resetQueue = "DELETE FROM Reservation";
+
+            try (PreparedStatement delallstatement = DbCon.prepareStatement(resetSeat);
+                 PreparedStatement delQstatement = DbCon.prepareStatement(resetQueue)) {
+                delallstatement.executeUpdate();
+                delQstatement.executeUpdate();
+                System.out.println("del_data_completed");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }));
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,8 +57,7 @@ public class MainPage extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
-        wood_panel = new DeskPanel();
+        wood_panel = new DeskPanel(user);
         cont = new javax.swing.JPanel();
         queue = new javax.swing.JPanel();
         q1 = new javax.swing.JPanel();
@@ -509,5 +525,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel txt_today;
     private javax.swing.JLabel txt_wait;
     private DeskPanel wood_panel;
+
+    private User user;
     // End of variables declaration
 }

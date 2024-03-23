@@ -7,6 +7,7 @@ public class Professor extends User implements Checkable {
 //
 //    } for run
     public Professor(){
+
         this.setRole(2);
     }
 

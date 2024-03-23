@@ -1,4 +1,5 @@
 
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.io.File;
@@ -13,12 +14,17 @@ import java.awt.Toolkit;
  *
  * @author armmy
  */
-public class Password extends javax.swing.JFrame {
+public class Password extends javax.swing.JFrame implements RoleChecker{
 
     /**
      * Creates new form Password
      */
     public Password() {
+        this(null);
+    }
+    public Password(User user) {
+        this.user = user;
+        role = userType();
         initComponents();
         password_pwf.setFocusable(true);
 
@@ -142,7 +148,28 @@ public class Password extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void confirm_btActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        String temp_pass = String.valueOf(password_pwf.getPassword());
+        if (this.role == 1) {
+            TA t_a = (TA) user;
+            if (t_a.getPassword().equals(temp_pass)) {
+                JOptionPane.showMessageDialog(null, "Welcome to NQUEUE");
+                this.dispose();
+                MainPage mainpage = new MainPage(new TA());
+                mainpage.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid password", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (this.role == 2) {
+            Professor pfs = (Professor) user;
+            if (pfs.getPassword().equals(temp_pass)) {
+                JOptionPane.showMessageDialog(null, "Welcome to NQUEUE");
+                this.dispose();
+                MainPage mainpage = new MainPage(new Professor());
+                mainpage.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid password", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }
 
     private void password_pwfActionPerformed(java.awt.event.ActionEvent evt) {
@@ -224,5 +251,20 @@ public class Password extends javax.swing.JFrame {
     private javax.swing.JPanel password_p;
     private javax.swing.JPasswordField password_pwf;
     private javax.swing.JLabel welcome_l;
+    private User user;
+    private int role;
+
+    @Override
+    public int userType() {
+        int role = 0;
+        if (user instanceof Professor) {
+            Professor prof = (Professor) user;
+            role = prof.getRole();
+        }  else if (user instanceof TA) {
+            TA t_a = (TA) user;
+            role = t_a.getRole();
+        }
+        return role;
+    }
     // End of variables declaration
 }
