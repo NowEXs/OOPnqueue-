@@ -24,6 +24,8 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
     private JScrollPane scrollPanel;
     private ArrayList<Computer> comp_arr = new ArrayList<>();
     private AddingButtonPanel addingButton;
+    private static boolean isRunning = false;
+
 
     public DeskPanel() {
        initComponents();
@@ -34,7 +36,6 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
         roleCheck = this.userType();
         initComponents();
         initializeTimer();
-
     }
     private void initializeTimer() {
         Timer timer = new Timer(5000, new ActionListener() {
@@ -142,5 +143,9 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    public void setIsRunning(boolean run) {
+        this.isRunning = run;
     }
 }

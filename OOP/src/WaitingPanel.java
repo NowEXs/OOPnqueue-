@@ -44,7 +44,7 @@ public class WaitingPanel extends JPanel{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-        comQueue = new ComQueuePanel();
+        comQueue = new ComQueuePanel(new Computer());
         comQueue.setOpaque(false);
         st_p = new javax.swing.JPanel();
         st_check = new javax.swing.JLabel();
@@ -141,4 +141,5 @@ public class WaitingPanel extends JPanel{
 
     private ComQueuePanel comQueue;
     // End of variables declaration
+
 }

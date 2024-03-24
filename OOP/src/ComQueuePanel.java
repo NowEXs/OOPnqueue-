@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.Font;
 import java.io.File;
 /*
@@ -14,16 +15,17 @@ public class ComQueuePanel extends javax.swing.JPanel {
     /**
      * Creates new form ComQueuePanel
      */
-    public ComQueuePanel() {
+    public ComQueuePanel(Computer comp) {
+        this.comp = comp;
         initComponents();
         try{
             File fontStyle_apple = new File("OOP/src/Font/Big Apple 3PM.ttf");
             File fontStyle_minecraft = new File("OOP/src/Font/minecraft_font.ttf");
             Font font_info = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(10f);
             Font font_status = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(10f);
-            seat_txt1.setFont(font_info);
-            lab_txt1.setFont(font_info);
-            name_id1.setFont(font_info);
+            seat_txt.setFont(font_info);
+            lab_txt.setFont(font_info);
+            name_id.setFont(font_info);
 //            checking_l.setFont(font_status);
 //            wait_l.setFont(font_status);
 //            empty_l.setFont(font_status);
@@ -42,75 +44,112 @@ public class ComQueuePanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
+        info_p = new javax.swing.JPanel();
+        lab_txt = new javax.swing.JLabel();
+        seat_txt = new javax.swing.JLabel();
+        name_id = new javax.swing.JLabel();
+        image_status = new javax.swing.JLabel();
 
-        info_p1 = new javax.swing.JPanel();
-        lab_txt1 = new javax.swing.JLabel();
-        seat_txt1 = new javax.swing.JLabel();
-        name_id1 = new javax.swing.JLabel();
-        image_status1 = new javax.swing.JLabel();
+        info_p.setOpaque(false);
 
-        info_p1.setOpaque(false);
+        lab_txt.setBackground(new java.awt.Color(255, 244, 204));
+        lab_txt.setForeground(new java.awt.Color(255, 244, 204));
+        lab_txt.setText("Lab : " + comp.getLab_name());
 
-        lab_txt1.setBackground(new java.awt.Color(255, 244, 204));
-        lab_txt1.setForeground(new java.awt.Color(255, 244, 204));
-        lab_txt1.setText("Lab :");
+        seat_txt.setBackground(new java.awt.Color(255, 244, 204));
+        seat_txt.setForeground(new java.awt.Color(255, 244, 204));
+        seat_txt.setText("Seat : " + comp.getComp_id());
 
-        seat_txt1.setBackground(new java.awt.Color(255, 244, 204));
-        seat_txt1.setForeground(new java.awt.Color(255, 244, 204));
-        seat_txt1.setText("Seat :");
+        name_id.setBackground(new java.awt.Color(255, 244, 204));
+        name_id.setForeground(new java.awt.Color(255, 244, 204));
+        name_id.setText(comp.getName() + "(" + comp.getStd_id() + ")");
 
-        name_id1.setBackground(new java.awt.Color(255, 244, 204));
-        name_id1.setForeground(new java.awt.Color(255, 244, 204));
-        name_id1.setText("Name (660xxxxx)");
+        image_status.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/wait.png"))); // NOI18N
 
-        image_status1.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/wait.png"))); // NOI18N
-
-        javax.swing.GroupLayout info_p1Layout = new javax.swing.GroupLayout(info_p1);
-        info_p1.setLayout(info_p1Layout);
+        javax.swing.GroupLayout info_p1Layout = new javax.swing.GroupLayout(info_p);
+        info_p.setLayout(info_p1Layout);
         info_p1Layout.setHorizontalGroup(
                 info_p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(info_p1Layout.createSequentialGroup()
                                 .addGap(0, 0, 0)
-                                .addComponent(image_status1)
+                                .addComponent(image_status)
                                 .addGap(18, 18, 18)
                                 .addGroup(info_p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lab_txt1)
-                                        .addComponent(seat_txt1)
-                                        .addComponent(name_id1))
+                                        .addComponent(lab_txt)
+                                        .addComponent(seat_txt)
+                                        .addComponent(name_id))
                                 .addContainerGap(53, Short.MAX_VALUE))
         );
         info_p1Layout.setVerticalGroup(
                 info_p1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(info_p1Layout.createSequentialGroup()
-                                .addComponent(seat_txt1)
+                                .addComponent(seat_txt)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lab_txt1)
+                                .addComponent(lab_txt)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(name_id1))
+                                .addComponent(name_id))
                         .addGroup(info_p1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(image_status1))
+                                .addComponent(image_status))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(info_p1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(info_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(info_p1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(info_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
     }// </editor-fold>
+    public javax.swing.JLabel getImage_status() {
+        return image_status;
+    }
 
+    public void setImage_status(javax.swing.JLabel image_status) {
+        this.image_status = image_status;
+    }
 
-    // Variables declaration - do not modify
-    private javax.swing.JLabel image_status1;
-    private javax.swing.JPanel info_p1;
-    private javax.swing.JLabel lab_txt1;
-    private javax.swing.JLabel name_id1;
-    private javax.swing.JLabel seat_txt1;
+    public javax.swing.JPanel getInfo_p() {
+        return info_p;
+    }
+
+    public void setInfo_p(javax.swing.JPanel info_p) {
+        this.info_p = info_p;
+    }
+
+    public javax.swing.JLabel getLab_txt() {
+        return lab_txt;
+    }
+
+    public void setLab_txt(javax.swing.JLabel lab_txt) {
+        this.lab_txt = lab_txt;
+    }
+
+    public javax.swing.JLabel getName_id() {
+        return name_id;
+    }
+
+    public void setName_id(javax.swing.JLabel name_id) {
+        this.name_id = name_id;
+    }
+
+    public javax.swing.JLabel getSeat_txt() {
+        return seat_txt;
+    }
+
+    public void setSeat_txt(javax.swing.JLabel seat_txt) {
+        this.seat_txt = seat_txt;
+    }
+
+    private javax.swing.JLabel image_status;
+    private javax.swing.JPanel info_p;
+    private javax.swing.JLabel lab_txt;
+    private javax.swing.JLabel name_id;
+    private javax.swing.JLabel seat_txt;
+    private Computer comp;
     // End of variables declaration
 }
 
