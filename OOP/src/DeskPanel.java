@@ -33,12 +33,23 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
         this.user = user;
         roleCheck = this.userType();
         initComponents();
+        initializeTimer();
+
+    }
+    private void initializeTimer() {
+        Timer timer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateAllSeat();
+            }
+        });
+        timer.start();
     }
 
     private void initComponents() {
         deskPanel = new JPanel();
         wood = new JLabel();
-        addComputerPanels();
+        addInitialComputerPanels();
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         scrollPanel = new JScrollPane(deskPanel);
@@ -50,10 +61,9 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
         add(wood, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }
 
-    private void addComputerPanels() {
+    private void addInitialComputerPanels() {
         String addingSql = "SELECT SeatID FROM SeatManager WHERE Availability IS NULL"; // เพิ่มโต๊ะ
         String updateSql = "UPDATE SeatManager SET Availability = ? WHERE SeatID = ?"; // เปลี่ยนสถานะ
-        String checkingSql = "SELECT SeatID FROM SeatManager WHERE Reservable = 0 AND SeatID = ?";
         String delSql = "UPDATE SeatManager SET Availability = NULL WHERE SeatID = ?"; // ลบโต๊ะ
 
         deskPanel.setLayout(new GridLayout(0, 7));
@@ -88,13 +98,24 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
                 }
 
             }
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+    private void updateAllSeat() {
+        this.deskPanel.removeAll();
+        for (Computer computer : comp_arr) {
+            ComputerPanel companel = new ComputerPanel(computer);
+            companel.updateComputerButtonIcon();
+            companel.setOpaque(false);
+            this.deskPanel.add(companel);
+        }
+        revalidate();
+        repaint();
+    }
+
     public ArrayList<Computer> getComp_arr() {
         return  this.comp_arr;
     }

@@ -19,7 +19,8 @@ public class ComputerPanel extends JPanel implements ActionListener{
         innerLabel.add(computerNumber);
         innerLabel.setOpaque(false);
 
-        computerButton = new JButton(new ImageIcon(getClass().getResource("/Image/checking.png")));
+        computerButton = new JButton();
+        updateComputerButtonIcon();
         computerButton.setOpaque(false);
         computerButton.setContentAreaFilled(false);
         computerButton.setBorderPainted(false);
@@ -32,8 +33,25 @@ public class ComputerPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(computerButton)) {
-            Reservation reservationWindow = new Reservation(comp);
-            reservationWindow.setVisible(true);
+            if (comp.getIsReservable() == true) {
+                Reservation reservationWindow = new Reservation(this ,comp);
+                reservationWindow.setVisible(true);
+            } else {
+                JFrame errorFrame = new JFrame();
+                System.out.println(comp.getStatus());
+                JOptionPane.showMessageDialog(errorFrame, "This seat is not Reservable There's a person in that seat.");
+            }
         }
     }
+    public void updateComputerButtonIcon() {
+        if (comp.getStatus() == 0) {
+            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/empty.png")));
+        } else if (comp.getStatus() == 1){
+            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/wait.png")));
+        } else if (comp.getStatus() == 2) {
+            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/checking.png")));
+        }
+    }
+
 }
+

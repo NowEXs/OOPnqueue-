@@ -11,10 +11,16 @@ public class Computer extends Student implements Rerservable{
         super(lab_name, std_name, std_id);
         this.comp_id = comp_id;
         this.status = status;
+        this.Availability();
     }
 
     @Override
-    public void Availability(){
+    public void Availability() {
+        if (this.getStatus() == 0) {
+            this.setIsReservable(true);
+        } else {
+            this.setIsReservable(false);
+        }
     }
     public int getComp_id() {
         return comp_id;
@@ -24,14 +30,15 @@ public class Computer extends Student implements Rerservable{
     }
     public void setStatus(int status) {
         this.status = status;
+        Availability();
     }
     public int getStatus() {
         return status;
     }
-    public boolean isReservable() {
+    public boolean getIsReservable() {
         return isReservable;
     }
-    public void isReservable(boolean isReservable) {
+    public void setIsReservable(boolean isReservable) {
         this.isReservable = isReservable;
     }
 }

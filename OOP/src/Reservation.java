@@ -1,8 +1,14 @@
 
+import org.bouncycastle.jcajce.provider.symmetric.DES;
+
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 
@@ -17,8 +23,9 @@ import java.awt.event.ActionListener;
  */
 public class Reservation extends javax.swing.JFrame implements OnClick{
 
-    public Reservation(Computer computer) {
-        this.computer = computer;
+    public Reservation(ComputerPanel companel,Computer comp) {
+        this.companel = companel;
+        this.comp = comp;
         initComponents();
     }
 
@@ -53,7 +60,7 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
 
         seat.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         seat.setForeground(new java.awt.Color(239, 210, 173));
-        seat.setText("Seat - " + this.computer.getComp_id());
+        seat.setText("Seat - " + this.comp.getComp_id());
         getContentPane().add(seat, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, -1, -1));
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
@@ -237,11 +244,41 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
     private javax.swing.JLabel seat;
     private javax.swing.JLabel std_id;
 
-    private Computer computer;
+    private ComputerPanel companel;
+    private Computer comp;
 
     @Override
     public void pressConfirm(ActionEvent event) {
+        String insertSql = "INSERT INTO Reservation (SM_SeatID, StudentID, StudentName, Lab_name) VALUES (?, ?, ?, ?)";
+
+        String st_idcheck = jTextField_id.getText();
+        int st_id;
+        try {
+            st_id = Integer.parseInt(st_idcheck);
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Please fill the studentID correctly.");
+            return;
+        }
+        String st_name = jTextField_name.getText();
+        String lab_name = jTextField_lab.getText();
+        int deskNumber = this.comp.getComp_id();
+            try (PreparedStatement stdstatement = DbCon.prepareStatement(insertSql)) {
+                System.out.println("Seat is reservable");
+                stdstatement.setInt(1, deskNumber);
+                stdstatement.setInt(2, st_id);
+                stdstatement.setString(3, st_name);
+                stdstatement.setString(4, lab_name);
+                stdstatement.executeUpdate();
+                System.out.println("Data inserted successfully");
+                this.comp.setStatus(1);
+                this.companel.updateComputerButtonIcon();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         JOptionPane.showMessageDialog(this, "Reservation completed", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        this.dispose();
     }
 
     @Override
