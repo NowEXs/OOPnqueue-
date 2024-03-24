@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 //for making computer loop
 public class ComputerPanel extends JPanel implements ActionListener{
-    private JPanel computerPanel, innerLabel;
+    private JPanel innerLabel;
     private JButton computerButton;
     private JLabel computerNumber;
     private Computer comp;
@@ -15,7 +15,7 @@ public class ComputerPanel extends JPanel implements ActionListener{
         computerNumber = new JLabel("Seat - " + comp.getComp_id());
         setLayout(new BorderLayout());
 
-        JPanel innerLabel = new JPanel();
+        innerLabel = new JPanel();
         innerLabel.add(computerNumber);
         innerLabel.setOpaque(false);
 

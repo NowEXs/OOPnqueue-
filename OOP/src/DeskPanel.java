@@ -25,7 +25,8 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
     private ArrayList<Computer> comp_arr = new ArrayList<>();
 
 
-    private JButton addingButton, deletingButton, testerButton;
+    private JButton addingButton, deletingButton;
+    private AddingButtonPanel testerButton;
 
     public DeskPanel() {
        initComponents();
@@ -71,8 +72,11 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
 
             int counter = 0;
             if (roleCheck == 2) {
+                testerButton = new AddingButtonPanel();
+
                 addingButton = new JButton("+"); // ปุ่มเพิ่ม
                 deletingButton = new JButton("-"); // ปุ่มลด
+                this.deskPanel.add(testerButton);
                 this.deskPanel.add(addingButton);
                 this.deskPanel.add(deletingButton);
                 addingButton.addActionListener(this);

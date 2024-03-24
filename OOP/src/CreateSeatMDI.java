@@ -37,7 +37,6 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         seatId = new javax.swing.JTextField();
         image = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(84, 59, 49));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
