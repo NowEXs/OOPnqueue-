@@ -23,10 +23,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
     private int roleCheck;
     private JScrollPane scrollPanel;
     private ArrayList<Computer> comp_arr = new ArrayList<>();
-
-
-    private JButton addingButton, deletingButton;
-    private AddingButtonPanel testerButton;
+    private AddingButtonPanel addingButton;
 
     public DeskPanel() {
        initComponents();
@@ -58,8 +55,6 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
         String updateSql = "UPDATE SeatManager SET Availability = ? WHERE SeatID = ?"; // เปลี่ยนสถานะ
         String checkingSql = "SELECT SeatID FROM SeatManager WHERE Reservable = 0 AND SeatID = ?";
         String delSql = "UPDATE SeatManager SET Availability = NULL WHERE SeatID = ?"; // ลบโต๊ะ
-        String resetSql = "UPDATE SeatManager SET Availability = NULL"; // รี sql
-        String s_addingSql = "SELECT SeatID FROM SeatManager WHERE SeatID = ?"; // เลือกโต๊ะ
 
         deskPanel.setLayout(new GridLayout(0, 7));
         deskPanel.setOpaque(false);
@@ -72,13 +67,8 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
 
             int counter = 0;
             if (roleCheck == 2) {
-                testerButton = new AddingButtonPanel(this); /**/
-                addingButton = new JButton("+"); // ปุ่มเพิ่ม
-                deletingButton = new JButton("-"); // ปุ่มลด
-                this.deskPanel.add(testerButton);
+                addingButton = new AddingButtonPanel(this); /**/
                 this.deskPanel.add(addingButton);
-                this.deskPanel.add(deletingButton);
-                addingButton.addActionListener(this);
             }
             while (resultSet.next()) {
                 int compID = resultSet.getInt("SeatID");
@@ -97,107 +87,6 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
                     break;
                 }
 
-            }
-            if (roleCheck == 2) {
-                addingButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        try (Connection conn = DbCon.getConnection();
-                             PreparedStatement addingstatement = conn.prepareStatement(addingSql)) {
-                            ResultSet addingStmt = addingstatement.executeQuery();
-                            String[] columnNames = {"Desknumber"};
-                            java.util.List<Object[]> dataList = new ArrayList<>();
-                            while (addingStmt.next()) {
-                                int seatID = addingStmt.getInt("SeatID");
-                                dataList.add(new Object[]{seatID});
-                            }
-
-                            Object[][] data = new Object[dataList.size()][1]; // Assuming 1 columns (Desknumber)
-                            for (int i = 0; i < dataList.size(); i++) {
-                                data[i] = dataList.get(i);
-                            }
-
-                            JTable table = new JTable(data, columnNames);
-                            JScrollPane scrollPane = new JScrollPane(table);
-                            JFrame dialog = new JFrame();
-                            JButton addButton = new JButton("add the desk");
-                            table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-                                @Override
-                                public void valueChanged(ListSelectionEvent e) {
-                                    if (!e.getValueIsAdjusting()) { // getValueIsAdjusting() = เพื่อให้ mouse detect ที่แค่การ click row */
-                                        int selectedRow = table.getSelectedRow();
-                                        if (selectedRow != -1) { // condition กันบั๊กในกรณ๊ที่ ไม่เหลือข้อมูล
-                                            Object deskNumber = table.getValueAt(selectedRow, 0);
-                                            String selectedText = "Desk Number: " + deskNumber;
-                                            System.out.println(selectedText);
-
-                                            addButton.addActionListener(new ActionListener() {
-                                                @Override
-                                                public void actionPerformed(ActionEvent e) {
-                                                    try (Connection conn = DbCon.getConnection();
-                                                         PreparedStatement addingStatement = conn.prepareStatement(s_addingSql);
-                                                         PreparedStatement updateStatement = conn.prepareStatement(updateSql);
-                                                         PreparedStatement r_tableStatement = conn.prepareStatement(addingSql)) {
-                                                        addingStatement.setInt(1, (int) deskNumber);
-                                                        ResultSet addingStmt_2 = addingStatement.executeQuery();
-                                                        if (addingStmt_2.next()) {
-                                                            int compID = addingStmt_2.getInt("SeatID");
-                                                            Computer computer = new Computer("", "", "", compID, 0);
-
-                                                            if (!comp_arr.contains(computer)) {
-                                                                comp_arr.add(computer);
-                                                                ComputerPanel compee = new ComputerPanel(computer);
-                                                                compee.setOpaque(false);
-                                                                DeskPanel.this.deskPanel.add(compee);
-                                                                DeskPanel.this.deskPanel.revalidate();
-                                                                DeskPanel.this.deskPanel.repaint();
-                                                            }
-                                                            updateStatement.setInt(1, 1);
-                                                            updateStatement.setInt(2, compID);
-                                                            updateStatement.executeUpdate();
-
-                                                            ResultSet newDataResultSet = r_tableStatement.executeQuery();
-                                                            List<Object[]> newDataList = new ArrayList<>(); // Parametic Polymor
-                                                            while (newDataResultSet.next()) {
-                                                                int seatID = newDataResultSet.getInt("SeatID");
-                                                                newDataList.add(new Object[]{seatID});
-                                                            }
-                                                            Object[][] newData = new Object[newDataList.size()][1];
-                                                            for (int i = 0; i < newDataList.size(); i++) {
-                                                                newData[i] = newDataList.get(i);
-                                                            }
-                                                            DefaultTableModel model = new DefaultTableModel(newData, columnNames);
-                                                            table.setModel(model);
-                                                            dialog.dispose();
-                                                        }
-                                                    } catch (SQLException ex) {
-                                                        ex.printStackTrace();
-                                                    } catch (IOException ex) {
-                                                        throw new RuntimeException(ex);
-                                                    }
-                                                }
-                                            });
-                                        }
-                                    }
-                                }
-                            });
-
-                            Container contentPane = dialog.getContentPane();
-                            contentPane.setLayout(new BorderLayout());
-                            contentPane.add(scrollPane, BorderLayout.CENTER);
-                            contentPane.add(addButton, BorderLayout.SOUTH);
-                            dialog.add(scrollPane);
-                            dialog.pack();
-                            dialog.setVisible(true);
-
-
-                        } catch (SQLException ex) {
-                            ex.printStackTrace();
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                });
             }
 
         } catch (SQLException e) {
