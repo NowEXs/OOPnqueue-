@@ -1,4 +1,11 @@
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -9,15 +16,19 @@ import java.awt.*;
  *
  * @author Newtellafolk
  */
-public class CreateSeatMDI extends javax.swing.JFrame {
+public class CreateSeatMDI extends javax.swing.JFrame implements OnClick{
 
     /**
      * Creates new form CreateSeatMDI
      */
     public CreateSeatMDI() {
+        this(null);
+    }
+
+    public CreateSeatMDI(DeskPanel deskPanel) {
+        this.deskPanel = deskPanel;
         initComponents();
         seatId.setFocusable(true);
-        seatId.setEditable(false);
         setLocationRelativeTo(null);
     }
 
@@ -54,7 +65,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         });
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmButtonActionPerformed(evt);
+                pressConfirm(evt);
             }
         });
         getContentPane().add(confirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 195, 120, 60));
@@ -71,7 +82,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         cancelButton.setContentAreaFilled(false);
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                pressCancel(evt);
             }
         });
         getContentPane().add(cancelButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 165, 90));
@@ -85,7 +96,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         seatId.setBackground(new java.awt.Color(71, 45, 12));
         seatId.setFont(new java.awt.Font("OOP/src/Font/minecraft_font.ttf", 1, 12)); // NOI18N
         seatId.setForeground(new java.awt.Color(239, 210, 173));
-        seatId.setText("Enter Seat ID");
+        seatId.setText("aaaa");
         seatId.setBorder(null);
         seatId.setDisabledTextColor(new java.awt.Color(239, 210, 173));
         seatId.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -96,11 +107,6 @@ public class CreateSeatMDI extends javax.swing.JFrame {
                 seatIdFocusLost(evt);
             }
         });
-        seatId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                seatIdActionPerformed(evt);
-            }
-        });
         getContentPane().add(seatId, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 165, -1, -1));
 
         image.setBackground(new java.awt.Color(84, 59, 45));
@@ -109,19 +115,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
-    }// </editor-fold>                        
-
-    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void seatIdActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+    }// </editor-fold>
 
     private void seatIdFocusGained(java.awt.event.FocusEvent evt) {
         if (seatId.getText().equals("Enter Seat ID")){
@@ -144,30 +138,6 @@ public class CreateSeatMDI extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CreateSeatMDI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CreateSeatMDI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CreateSeatMDI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateSeatMDI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CreateSeatMDI().setVisible(true);
@@ -182,5 +152,60 @@ public class CreateSeatMDI extends javax.swing.JFrame {
     private javax.swing.JLabel image;
     private javax.swing.JTextField seatId;
     private javax.swing.JLabel seatId_label;
-    // End of variables declaration                   
+    private DeskPanel deskPanel;
+
+    @Override
+    public void pressConfirm(ActionEvent event) {
+        String addingSql = "SELECT SeatID FROM SeatManager WHERE SeatID = ?";
+        String updateSql = "UPDATE SeatManager SET Availability = ? WHERE SeatID = ?";
+        try (Connection conn = DbCon.getConnection();
+             PreparedStatement updateStatement = conn.prepareStatement(updateSql);
+             PreparedStatement addingStatement = conn.prepareStatement(addingSql)) {
+            try {
+                int selectedDesk = Integer.parseInt(seatId.getText());
+                addingStatement.setInt(1, selectedDesk);
+                ResultSet addingStmt = addingStatement.executeQuery();
+                if (addingStmt.next()) {
+                    int compID = addingStmt.getInt("SeatID");
+                    Computer computer = new Computer("", "", "", compID, 0);
+                    if (!this.deskPanel.getComp_arr().contains(computer)) {
+                        this.deskPanel.getComp_arr().add(computer);
+                        ComputerPanel compee = new ComputerPanel(computer);
+                        compee.setOpaque(false);
+                        System.out.println("alo");
+                        this.deskPanel.getDeskPanel().add(compee);
+                        this.deskPanel.getDeskPanel().revalidate();
+                        this.deskPanel.getDeskPanel().repaint();
+                        updateStatement.setInt(1, 1);
+                        updateStatement.setInt(2, compID);
+                        updateStatement.executeUpdate();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "This seat already added.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "This room has only 60 seats.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Please enter a valid seat ID.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
+
+    @Override
+    public void pressCancel(ActionEvent event) {
+        this.dispose();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+    // End of variables declaration
 }

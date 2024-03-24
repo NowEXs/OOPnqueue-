@@ -72,8 +72,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
 
             int counter = 0;
             if (roleCheck == 2) {
-                testerButton = new AddingButtonPanel();
-
+                testerButton = new AddingButtonPanel(this); /**/
                 addingButton = new JButton("+"); // ปุ่มเพิ่ม
                 deletingButton = new JButton("-"); // ปุ่มลด
                 this.deskPanel.add(testerButton);
@@ -105,11 +104,11 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
                     public void actionPerformed(ActionEvent e) {
                         try (Connection conn = DbCon.getConnection();
                              PreparedStatement addingstatement = conn.prepareStatement(addingSql)) {
-                            ResultSet resultSet = addingstatement.executeQuery();
+                            ResultSet addingStmt = addingstatement.executeQuery();
                             String[] columnNames = {"Desknumber"};
                             java.util.List<Object[]> dataList = new ArrayList<>();
-                            while (resultSet.next()) {
-                                int seatID = resultSet.getInt("SeatID");
+                            while (addingStmt.next()) {
+                                int seatID = addingStmt.getInt("SeatID");
                                 dataList.add(new Object[]{seatID});
                             }
 
@@ -140,9 +139,9 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
                                                          PreparedStatement updateStatement = conn.prepareStatement(updateSql);
                                                          PreparedStatement r_tableStatement = conn.prepareStatement(addingSql)) {
                                                         addingStatement.setInt(1, (int) deskNumber);
-                                                        ResultSet resultSet = addingStatement.executeQuery();
-                                                        if (resultSet.next()) {
-                                                            int compID = resultSet.getInt("SeatID");
+                                                        ResultSet addingStmt_2 = addingStatement.executeQuery();
+                                                        if (addingStmt_2.next()) {
+                                                            int compID = addingStmt_2.getInt("SeatID");
                                                             Computer computer = new Computer("", "", "", compID, 0);
 
                                                             if (!comp_arr.contains(computer)) {
@@ -206,6 +205,12 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public ArrayList<Computer> getComp_arr() {
+        return  this.comp_arr;
+    }
+    public JPanel getDeskPanel() {
+        return this.deskPanel;
     }
 
     @Override

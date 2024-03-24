@@ -7,9 +7,11 @@ public class AddingButtonPanel extends JPanel implements ActionListener{
     private JPanel innerLabel;
     private JLabel buttonLabel;
     private JButton addingButton;
+    private DeskPanel deskPanel;
 
 
-    public AddingButtonPanel() {
+    public AddingButtonPanel(DeskPanel deskPanel) {
+        this.deskPanel = deskPanel;
         setOpaque(false);
         setLayout(new BorderLayout());
         buttonLabel = new JLabel("Add the seat");
@@ -31,7 +33,7 @@ public class AddingButtonPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(addingButton)) {
-            CreateSeatMDI createSeatMDI = new CreateSeatMDI();
+            CreateSeatMDI createSeatMDI = new CreateSeatMDI(this.deskPanel);
             createSeatMDI.setVisible(true);
         }
     }
