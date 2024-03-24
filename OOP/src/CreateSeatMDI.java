@@ -165,10 +165,17 @@ public class CreateSeatMDI extends javax.swing.JFrame implements OnClick{
                 int selectedDesk = Integer.parseInt(seatId.getText());
                 addingStatement.setInt(1, selectedDesk);
                 ResultSet addingStmt = addingStatement.executeQuery();
+                boolean containsCompID = false;
+                for (Computer computer : this.deskPanel.getComp_arr()) {
+                    if (computer.getComp_id() == selectedDesk) {
+                        containsCompID = true;
+                        break; 
+                    }
+                }
                 if (addingStmt.next()) {
                     int compID = addingStmt.getInt("SeatID");
                     Computer computer = new Computer("", "", "", compID, 0);
-                    if (!this.deskPanel.getComp_arr().contains(computer)) {
+                    if (containsCompID == false) {
                         this.deskPanel.getComp_arr().add(computer);
                         ComputerPanel compee = new ComputerPanel(computer);
                         compee.setOpaque(false);
