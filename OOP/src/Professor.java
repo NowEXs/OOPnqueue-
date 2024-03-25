@@ -14,4 +14,5 @@ public class Professor extends User implements Checkable {
     public void Checkable() {
 
     }
+
 }
