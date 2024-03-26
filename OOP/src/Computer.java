@@ -7,8 +7,8 @@ public class Computer extends Student implements Rerservable{
     public Computer() {
 
     }
-    public Computer(String lab_name,String std_name, String std_id,int comp_id,int status) {
-        super(lab_name, std_name, std_id);
+    public Computer(String std_id, String std_name, String lab_name,int comp_id,int status) {
+        super(std_id, std_name, lab_name);
         this.comp_id = comp_id;
         this.status = status;
         this.Availability();

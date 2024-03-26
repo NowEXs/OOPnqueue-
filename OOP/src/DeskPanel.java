@@ -109,7 +109,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
         this.deskPanel.removeAll();
         for (Computer computer : comp_arr) {
             ComputerPanel companel = new ComputerPanel(computer);
-            companel.updateComputerButtonIcon();
+            companel.updateButtonIcon();
             companel.setOpaque(false);
             this.deskPanel.add(companel);
         }

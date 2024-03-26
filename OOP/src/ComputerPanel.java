@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //for making computer loop
-public class ComputerPanel extends JPanel implements ActionListener{
+public class ComputerPanel extends JPanel implements ActionListener, updateIcon{
     private JPanel innerLabel;
     private JButton computerButton;
     private JLabel computerNumber;
@@ -20,7 +20,7 @@ public class ComputerPanel extends JPanel implements ActionListener{
         innerLabel.setOpaque(false);
 
         computerButton = new JButton();
-        updateComputerButtonIcon();
+        updateButtonIcon();
         computerButton.setOpaque(false);
         computerButton.setContentAreaFilled(false);
         computerButton.setBorderPainted(false);
@@ -43,7 +43,8 @@ public class ComputerPanel extends JPanel implements ActionListener{
             }
         }
     }
-    public void updateComputerButtonIcon() {
+    @Override
+    public void updateButtonIcon() {
         if (comp.getStatus() == 0) {
             computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/empty.png")));
         } else if (comp.getStatus() == 1){
@@ -52,6 +53,5 @@ public class ComputerPanel extends JPanel implements ActionListener{
             computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/checking.png")));
         }
     }
-
 }
 

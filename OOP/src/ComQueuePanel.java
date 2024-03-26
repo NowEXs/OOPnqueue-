@@ -10,7 +10,7 @@ import java.io.File;
  *
  * @author armmy
  */
-public class ComQueuePanel extends javax.swing.JPanel {
+public class ComQueuePanel extends javax.swing.JPanel implements updateIcon{
 
     /**
      * Creates new form ComQueuePanel
@@ -18,6 +18,7 @@ public class ComQueuePanel extends javax.swing.JPanel {
     public ComQueuePanel(Computer comp) {
         this.comp = comp;
         initComponents();
+        updateButtonIcon();
         try{
             File fontStyle_apple = new File("OOP/src/Font/Big Apple 3PM.ttf");
             File fontStyle_minecraft = new File("OOP/src/Font/minecraft_font.ttf");
@@ -64,8 +65,6 @@ public class ComQueuePanel extends javax.swing.JPanel {
         name_id.setForeground(new java.awt.Color(255, 244, 204));
         name_id.setText(comp.getName() + "(" + comp.getStd_id() + ")");
 
-        image_status.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/wait.png"))); // NOI18N
-
         javax.swing.GroupLayout info_p1Layout = new javax.swing.GroupLayout(info_p);
         info_p.setLayout(info_p1Layout);
         info_p1Layout.setHorizontalGroup(
@@ -103,7 +102,8 @@ public class ComQueuePanel extends javax.swing.JPanel {
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(info_p, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-    }// </editor-fold>
+    }
+
     public javax.swing.JLabel getImage_status() {
         return image_status;
     }
@@ -150,6 +150,17 @@ public class ComQueuePanel extends javax.swing.JPanel {
     private javax.swing.JLabel name_id;
     private javax.swing.JLabel seat_txt;
     private Computer comp;
+
+    @Override
+    public void updateButtonIcon() {
+        if (comp.getStatus() == 0) {
+            image_status.setIcon(new ImageIcon(getClass().getResource("/Image/empty.png")));
+        } else if (comp.getStatus() == 1){
+            image_status.setIcon(new ImageIcon(getClass().getResource("/Image/wait.png")));
+        } else if (comp.getStatus() == 2) {
+            image_status.setIcon(new ImageIcon(getClass().getResource("/Image/checking.png")));
+        }
+    }
     // End of variables declaration
 }
 

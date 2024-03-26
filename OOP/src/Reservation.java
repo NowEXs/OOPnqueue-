@@ -274,7 +274,7 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
                 this.comp.setLab_name(lab_name);
                 this.comp.setStd_id(String.valueOf(st_id));
                 this.comp.setStatus(1);
-                this.companel.updateComputerButtonIcon();
+                this.companel.updateButtonIcon();
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (IOException e) {
