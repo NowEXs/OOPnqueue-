@@ -79,7 +79,6 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         jScrollPane1 = new javax.swing.JScrollPane();
         feedback_txtarea = new javax.swing.JTextArea();
         bg = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
@@ -89,9 +88,9 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         label_complete.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         label_complete.setForeground(new java.awt.Color(255, 244, 204));
         label_complete.setText("COMPLETED!");
-        getContentPane().add(label_complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, -1));
+        getContentPane().add(label_complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/Create.png"))); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Create.png"))); // NOI18N
         getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         name_p.setBackground(new java.awt.Color(255, 244, 239));
@@ -195,7 +194,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
 
         getContentPane().add(time_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 170, 20));
 
-        confirm_bt.setIcon(new javax.swing.ImageIcon("Image/confirmButtonFont.png")); // NOI18N
+        confirm_bt.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\confirmButtonFont.png")); // NOI18N
         confirm_bt.setBorderPainted(false);
         confirm_bt.setContentAreaFilled(false);
         confirm_bt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -216,7 +215,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         });
         getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
-        cancel_bt.setIcon(new javax.swing.ImageIcon("Image/skipButtonFont.png")); // NOI18N
+        cancel_bt.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\skipButtonFont.png")); // NOI18N
         cancel_bt.setBorderPainted(false);
         cancel_bt.setContentAreaFilled(false);
         cancel_bt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -240,7 +239,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         label_giveme.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_giveme.setForeground(new java.awt.Color(255, 244, 204));
         label_giveme.setText("Give me a feedback");
-        getContentPane().add(label_giveme, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, -1, -1));
+        getContentPane().add(label_giveme, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, -1, -1));
 
         feedback_txtarea.setBackground(new java.awt.Color(102, 51, 0));
         feedback_txtarea.setColumns(20);
@@ -260,26 +259,13 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         });
         jScrollPane1.setViewportView(feedback_txtarea);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 240, 120));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 240, 110));
 
         bg.setBackground(new java.awt.Color(84, 59, 45));
         bg.setForeground(new java.awt.Color(255, 244, 204));
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/FeedbackWood.png"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FeedbackWood.png"))); // NOI18N
         bg.setOpaque(true);
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 200, -1, -1));
 
         pack();
     }// </editor-fold>
