@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
+public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Updater{
     private JPanel deskPanel;
     private JLabel wood;
     private User user;
@@ -35,16 +35,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
         this.user = user;
         roleCheck = this.userType();
         initComponents();
-        initializeTimer();
-    }
-    private void initializeTimer() {
-        Timer timer = new Timer(5000, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                updateAllSeat();
-            }
-        });
-        timer.start();
+        dataFetcher();
     }
 
     private void initComponents() {
@@ -105,7 +96,31 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
             throw new RuntimeException(e);
         }
     }
-    private void updateAllSeat() {
+
+    public ArrayList<Computer> getComp_arr() {
+        return  this.comp_arr;
+    }
+    public JPanel getDeskPanel() {
+        return this.deskPanel;
+    }
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    public void setIsRunning(boolean run) {
+        this.isRunning = run;
+    }
+
+    @Override
+    public void updateButtonIcon() {
+
+    }
+
+    @Override
+    public void updateGUI() {
         this.deskPanel.removeAll();
         for (Computer computer : comp_arr) {
             ComputerPanel companel = new ComputerPanel(computer);
@@ -117,13 +132,16 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
         repaint();
     }
 
-    public ArrayList<Computer> getComp_arr() {
-        return  this.comp_arr;
+    @Override
+    public void dataFetcher() {
+        Timer timer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateGUI();
+            }
+        });
+        timer.start();
     }
-    public JPanel getDeskPanel() {
-        return this.deskPanel;
-    }
-
     @Override
     public int userType() {
         int role = 0;
@@ -140,12 +158,4 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener{
         return role;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    public void setIsRunning(boolean run) {
-        this.isRunning = run;
-    }
 }

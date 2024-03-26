@@ -1,14 +1,24 @@
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Newtellafolk
  */
-public class DeadlinePanel extends javax.swing.JPanel {
+public class DeadlinePanel extends javax.swing.JPanel implements Updater{
 
     /**
      * Creates new form deadlinePanel
      */
     public DeadlinePanel() {
         initComponents();
+        dataFetcher();
 
     }
 
@@ -33,13 +43,13 @@ public class DeadlinePanel extends javax.swing.JPanel {
 
         txt_lab.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_lab.setForeground(new java.awt.Color(87, 65, 43));
-        txt_lab.setText("Lab:");
-        add(txt_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 62, -1, -1));
+        txt_lab.setText("Lab: 7");
+        add(txt_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 62, 60, -1));
 
         txt_people.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_people.setForeground(new java.awt.Color(87, 65, 43));
-        txt_people.setText("people");
-        add(txt_people, new org.netbeans.lib.awtextra.AbsoluteConstraints(193, 62, 45, -1));
+        txt_people.setText("50 people");
+        add(txt_people, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 62, 80, -1));
 
         bg_deadline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/imagever2.png"))); // NOI18N
         add(bg_deadline, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 105));
@@ -53,5 +63,39 @@ public class DeadlinePanel extends javax.swing.JPanel {
     private javax.swing.JLabel txt_people;
     private javax.swing.JLabel txt_today;
 
-    // End of variables declaration
+
+    @Override
+    public void updateGUI() {
+        String countSql = "SELECT COUNT(*) AS row_count FROM Reservation";
+        try (Connection conn = DbCon.getConnection();
+             PreparedStatement countStatement = conn.prepareStatement(countSql);
+             ResultSet countResult = countStatement.executeQuery()) {
+            countResult.next();
+            int rowCount = countResult.getInt("row_count");
+            txt_people.setText(rowCount + " people");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @Override
+    public void dataFetcher() {
+        Timer timer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateGUI();
+            }
+        });
+        timer.start();
+    }
+
+    @Override
+    public void updateButtonIcon() {
+
+    }
+
 }

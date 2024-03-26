@@ -69,7 +69,7 @@ public class MainPage extends javax.swing.JFrame {
     private void initComponents() {
         wood_panel = new DeskPanel(user);
         cont = new javax.swing.JPanel();
-        waitingPanel = new WaitingPanel();
+        waitingPanel = new WaitingPanel(wood_panel);
         area_q = new javax.swing.JLabel();
         deadline = new DeadlinePanel();
 

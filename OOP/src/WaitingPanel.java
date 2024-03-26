@@ -1,12 +1,15 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
@@ -16,14 +19,16 @@ import java.sql.SQLException;
  *
  * @author armmy
  */
-public class WaitingPanel extends JPanel{
+public class WaitingPanel extends JPanel implements Updater{
 
     /**
      * Creates new form WaitingPanel
      */
-    public WaitingPanel() {
+    public WaitingPanel(DeskPanel alldesk) {
+        this.alldesk = alldesk;
         initComponents();
         addInitialComqueue();
+        dataFetcher();
         try{
             File fontStyle_apple = new File("OOP/src/Font/Big Apple 3PM.ttf");
             File fontStyle_minecraft = new File("OOP/src/Font/minecraft_font.ttf");
@@ -120,31 +125,7 @@ public class WaitingPanel extends JPanel{
         bg.setOpaque(true);
         add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 490));
     }// </editor-fold>
-    private void addInitialComqueue() {
-        SpaceComQueue1.setLayout(new GridLayout(5, 1));
 
-        for (int i = 0; i < 5; i++) {
-            JPanel comp_box = new JPanel();
-            comp_box.setOpaque(false);
-            ComQueuePanel comQueuePanel = new ComQueuePanel(new Computer("No queue rn", "", "", 0, 0));
-            comQueuePanel.setOpaque(false);
-            comp_box.add(comQueuePanel);
-            SpaceComQueue1.add(comp_box);
-        }
-    }
-   /* private void updateAllSeat() {
-        this.deskPanel.removeAll();
-        for (Computer computer : comp_arr) {
-            ComputerPanel companel = new ComputerPanel(computer);
-            companel.updateComputerButtonIcon();
-            companel.setOpaque(false);
-            this.deskPanel.add(companel);
-        }
-        revalidate();
-        repaint();
-    } */
-
-    // Variables declaration - do not modify
     private javax.swing.JPanel SpaceComQueue1;
     private javax.swing.JLabel bg;
     private javax.swing.JLabel checking_l;
@@ -154,7 +135,83 @@ public class WaitingPanel extends JPanel{
     private javax.swing.JPanel st_p;
     private javax.swing.JLabel st_wait;
     private javax.swing.JLabel wait_l;
+    private ArrayList<Computer> comp_arr;
+    private Computer defaultCom = new Computer("No queue rn", "", "", 0, 0);
+    private DeskPanel alldesk;
 
-    // End of variables declaration
+    private void addInitialComqueue() {
+        SpaceComQueue1.setLayout(new GridLayout(5, 1));
+        for (int i = 0; i < 5; i++) {
+            JPanel comp_box = new JPanel();
+            comp_box.setOpaque(false);
+            ComQueuePanel comQueuePanel = new ComQueuePanel(defaultCom);
+            comQueuePanel.setOpaque(false);
+            comp_box.add(comQueuePanel);
+            SpaceComQueue1.add(comp_box);
+        }
+    }
+    @Override
+    public void updateGUI() {
+        comp_arr = this.alldesk.getComp_arr();
+        String retrievingSql = "SELECT * FROM Reservation LIMIT 5";
+        String countSql = "SELECT COUNT(*) AS row_count FROM Reservation";
+        try (Connection conn = DbCon.getConnection();
+             PreparedStatement countStatement = conn.prepareStatement(countSql);
+             PreparedStatement selectStatement = conn.prepareStatement(retrievingSql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+             ResultSet selector = selectStatement.executeQuery();
+             ResultSet countResult = countStatement.executeQuery()) {
+            countResult.next();
+            int rowCount = countResult.getInt("row_count");
+            if (rowCount == 0) {
+                SpaceComQueue1.removeAll();
+                addInitialComqueue();
+            }
+            selector.beforeFirst();
+            int queueCounter = 0;
+            while (selector.next()) {
+                int seatID = selector.getInt("SM_SeatID");
+                JPanel compBox = (JPanel) SpaceComQueue1.getComponent(queueCounter);
+                ComQueuePanel comQueuePanel = (ComQueuePanel) compBox.getComponent(0);
+                for (Computer computer : comp_arr) {
+                    if (computer.getComp_id() == seatID) {
+                        comQueuePanel.setComputer(computer);
+                        comQueuePanel.updateGUI();
+                        comQueuePanel.updateButtonIcon();
+                        break;
+                    }
+                }
+                queueCounter++;
+            }
+            while (queueCounter < 5) {
+                JPanel compBox = (JPanel) SpaceComQueue1.getComponent(queueCounter);
+                ComQueuePanel comQueuePanel = (ComQueuePanel) compBox.getComponent(0);
+                comQueuePanel.setComputer(defaultCom);
+                comQueuePanel.updateGUI();
+                comQueuePanel.updateButtonIcon();
+                queueCounter++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @Override
+    public void dataFetcher() {
+        Timer timer = new Timer(5000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                updateGUI();
+            }
+        });
+        timer.start();
+    }
+
+    @Override
+    public void updateButtonIcon() {
+
+    }
 
 }

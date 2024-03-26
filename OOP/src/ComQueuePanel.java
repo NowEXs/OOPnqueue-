@@ -10,7 +10,7 @@ import java.io.File;
  *
  * @author armmy
  */
-public class ComQueuePanel extends javax.swing.JPanel implements updateIcon{
+public class ComQueuePanel extends javax.swing.JPanel implements Updater{
 
     /**
      * Creates new form ComQueuePanel
@@ -107,6 +107,9 @@ public class ComQueuePanel extends javax.swing.JPanel implements updateIcon{
     public javax.swing.JLabel getImage_status() {
         return image_status;
     }
+    public void setComputer(Computer comp) {
+        this.comp = comp;
+    }
 
     public void setImage_status(javax.swing.JLabel image_status) {
         this.image_status = image_status;
@@ -161,6 +164,17 @@ public class ComQueuePanel extends javax.swing.JPanel implements updateIcon{
             image_status.setIcon(new ImageIcon(getClass().getResource("/Image/checking.png")));
         }
     }
-    // End of variables declaration
+
+    @Override
+    public void updateGUI() {
+        lab_txt.setText("Lab : " + comp.getLab_name());
+        seat_txt.setText("Seat : " + comp.getComp_id());
+        name_id.setText(comp.getName() + "(" + comp.getStd_id() + ")");
+    }
+
+    @Override
+    public void dataFetcher() {
+
+    }
 }
 

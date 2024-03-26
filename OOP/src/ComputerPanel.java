@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 //for making computer loop
-public class ComputerPanel extends JPanel implements ActionListener, updateIcon{
+public class ComputerPanel extends JPanel implements ActionListener, Updater{
     private JPanel innerLabel;
     private JButton computerButton;
     private JLabel computerNumber;
@@ -52,6 +52,16 @@ public class ComputerPanel extends JPanel implements ActionListener, updateIcon{
         } else if (comp.getStatus() == 2) {
             computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/checking.png")));
         }
+    }
+
+    @Override
+    public void updateGUI() {
+
+    }
+
+    @Override
+    public void dataFetcher() {
+
     }
 }
 
