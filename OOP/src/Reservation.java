@@ -2,6 +2,8 @@
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.io.*;
 
 
@@ -15,10 +17,26 @@ import java.io.*;
  * @author nk
  */
 public class Reservation extends javax.swing.JFrame {
+    // Variables declaration - do not modify
+    private javax.swing.JLabel Cancel;
+    private javax.swing.JLabel Confirm;
+    private javax.swing.JLabel Name;
+    private javax.swing.JLabel Reservation;
+    private javax.swing.JLabel bg;
+    private javax.swing.JButton bt_cancel;
+    private javax.swing.JButton bt_confirm;
+    private javax.swing.JLabel img_checking;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField jTextField_id;
+    private javax.swing.JComboBox jComboBox_lab;
+    private javax.swing.JTextField jTextField_name;
+    private javax.swing.JLabel lab;
+    private javax.swing.JLabel seat;
+    private javax.swing.JLabel std_id;
+    private Student student;
 
-    /**
-     * Creates new form Reservation
-     */
+    // End of variables declaration
+
     public Reservation() {
         initComponents();
         centerFrame();
@@ -67,7 +85,7 @@ public class Reservation extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
+        student = new Student();
         Reservation = new javax.swing.JLabel();
         img_checking = new javax.swing.JLabel();
         seat = new javax.swing.JLabel();
@@ -81,8 +99,7 @@ public class Reservation extends javax.swing.JFrame {
         bt_confirm = new javax.swing.JButton();
         Cancel = new javax.swing.JLabel();
         bt_cancel = new javax.swing.JButton();
-        JComboBox<Object> jComboBox_lab = new JComboBox<>();
-        jComboBox_lab.setEditable(false);
+        jComboBox_lab = new JComboBox();
         bg = new javax.swing.JLabel();
 
 
@@ -109,21 +126,21 @@ public class Reservation extends javax.swing.JFrame {
         Name.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         Name.setForeground(new java.awt.Color(239, 210, 173));
         Name.setText("Name");
-        getContentPane().add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 203, 60, 30));
+        getContentPane().add(Name, new org.netbeans.lib.awtextra.AbsoluteConstraints(74, 203, 60, 30));
 
         std_id.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         std_id.setForeground(new java.awt.Color(239, 210, 173));
         std_id.setText("STD_id");
-        getContentPane().add(std_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 70, 50));
+        getContentPane().add(std_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 250, 70, 50));
 
         lab.setFont(new java.awt.Font("Helvetica Neue", 1, 18)); // NOI18N
         lab.setForeground(new java.awt.Color(239, 210, 173));
         lab.setText("Lab");
-        getContentPane().add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(72, 320, 40, 20));
+        getContentPane().add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 324, 40, 20));
 
         jTextField_name.setBackground(new java.awt.Color(76, 40, 20));
         jTextField_name.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
-        jTextField_name.setForeground(new java.awt.Color(239,210,173));
+        jTextField_name.setForeground(new java.awt.Color(248,210,173));
         jTextField_name.setHorizontalAlignment(javax.swing.JTextField.LEADING);
         jTextField_name.setText("name");
         jTextField_name.setBorder(null);
@@ -140,7 +157,7 @@ public class Reservation extends javax.swing.JFrame {
                 jTextField_nameActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 206, 140, 20));
+        add(jTextField_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 208, 140, 20));
 
         jTextField_id.setBackground(new java.awt.Color(76, 40, 20));
         jTextField_id.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
@@ -156,13 +173,26 @@ public class Reservation extends javax.swing.JFrame {
                 jTextField_idFocusLost(evt);
             }
         });
-        getContentPane().add(jTextField_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 264, 130, 20));
+        getContentPane().add(jTextField_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(164, 265, 130, 20));
 
 
         bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
-        getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, -1, -1));
+        bt_confirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_confirmActionPerformed(evt);
+            }
+        });
+        bt_confirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bt_confirmMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bt_confirmMouseExited(evt);
+            }
+        });
+        add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 390, -1, -1));
 
         bt_cancel.setIcon(new javax.swing.ImageIcon("OOP/src/Image/cancelButtonFont.png")); // NOI18N
         bt_cancel.setBorderPainted(false);
@@ -172,7 +202,15 @@ public class Reservation extends javax.swing.JFrame {
                 bt_cancelActionPerformed(evt);
             }
         });
-        getContentPane().add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 390, -1, -1));
+        bt_cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bt_cancelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bt_cancelMouseExited(evt);
+            }
+        });
+        add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
 
 
 
@@ -182,10 +220,9 @@ public class Reservation extends javax.swing.JFrame {
         jComboBox_lab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "lab 1", "lab 2", "lab 3", "lab 4" }));
         jComboBox_lab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-               //
             }
         });
-        getContentPane().add(jComboBox_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 60, -1));
+        add(jComboBox_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 60, -1));
 
 
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
@@ -195,13 +232,42 @@ public class Reservation extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
-
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        dispose();
     }
 
     private void jTextField_nameActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    }
+
+    private void bt_confirmActionPerformed(java.awt.event.ActionEvent evt) {
+        student.setStd_name(jTextField_name.getText());
+        student.setStd_id(jTextField_id.getText());
+        student.setLab_name(jComboBox_lab.getSelectedItem()+"");
+        JOptionPane.showMessageDialog(null, "Successfully reserved! :D", "Reservation status", JOptionPane.INFORMATION_MESSAGE);
+        setVisible(true);
+    }
+
+    private void bt_cancelMouseEntered(java.awt.event.MouseEvent evt) {
+        //        Change cursor to hand cursor and change pic to bigger button
+        bt_cancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        bt_cancel.setIcon(new ImageIcon("OOP/src/Image/Button/cancelButtonBig.png"));
+    }
+
+    private void bt_cancelMouseExited(java.awt.event.MouseEvent evt) {
+        //        Change pic to smaller button
+        bt_cancel.setIcon(new ImageIcon("OOP/src/Image/Button/cancelButtonSmall.png"));
+    }
+
+    private void bt_confirmMouseEntered(java.awt.event.MouseEvent evt) {
+        //        Change cursor to hand cursor and change pic to bigger button
+        bt_confirm.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        bt_confirm.setIcon(new ImageIcon("OOP/src/Image/Button/confirmButtonBig.png")); // Change to your desired image path
+    }
+
+    private void bt_confirmMouseExited(java.awt.event.MouseEvent evt) {
+        //        Change pic to smaller button
+        bt_confirm.setIcon(new ImageIcon("OOP/src/Image/Button/confirmButtonSmall.png"));
     }
 
     private void jTextField_nameFocusGained(java.awt.event.FocusEvent evt) {
@@ -212,7 +278,7 @@ public class Reservation extends javax.swing.JFrame {
     }
 
     private void jTextField_nameFocusLost(java.awt.event.FocusEvent evt) {
-        if (jTextField_name.getText().equals("")){
+        if (jTextField_name.getText().isEmpty()){
             jTextField_name.setText("name");
         }
         jTextField_name.setForeground(new Color(239,210,173));
@@ -226,7 +292,7 @@ public class Reservation extends javax.swing.JFrame {
     }
 
     private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {
-        if (jTextField_id.getText().equals("")){
+        if (jTextField_id.getText().isEmpty()){
             jTextField_id.setText("Id");
         }
         jTextField_id.setForeground(new Color(239,210,173));
@@ -264,33 +330,10 @@ public class Reservation extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-                    new Reservation().setVisible(true);
-                }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-
+                new Reservation().setVisible(true);
             }
         });
     }
 
-    // Variables declaration - do not modify
-    private javax.swing.JLabel Cancel;
-    private javax.swing.JLabel Confirm;
-    private javax.swing.JLabel Name;
-    private javax.swing.JLabel Reservation;
-    private javax.swing.JLabel bg;
-    private javax.swing.JButton bt_cancel;
-    private javax.swing.JButton bt_confirm;
-    private javax.swing.JLabel img_checking;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JTextField jTextField_id;
-    private javax.swing.JTextField jTextField_lab;
-    private javax.swing.JTextField jTextField_name;
-    private javax.swing.JLabel lab;
-    private javax.swing.JLabel seat;
-    private javax.swing.JLabel std_id;
-    // End of variables declaration
+
 }

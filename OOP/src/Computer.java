@@ -5,9 +5,11 @@ public class Computer extends Student implements RoleChecker, Rerservable{
 
 
     public Computer() {
-
+        this(0, null);
     }
-    public Computer(int status,String lab_name,String std_name, String std_id) {
+    public Computer(int status,Student std_data) {
+        this.status = status;
+        this.std_data = std_data;
     }
     @Override
     public void userType(){
@@ -32,5 +34,11 @@ public class Computer extends Student implements RoleChecker, Rerservable{
     }
     public void isReservable(boolean isReservable) {
         this.isReservable = isReservable;
+    }
+    public void setStd_data(Student std_data) {
+        this.std_data = std_data;
+    }
+    public Student getStd_data() {
+        return std_data;
     }
 }
