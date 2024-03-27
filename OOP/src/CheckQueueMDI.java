@@ -170,7 +170,7 @@ public class CheckQueueMDI extends javax.swing.JFrame {
 
         jLabel_id.setForeground(new java.awt.Color(239, 210, 173));
         jLabel_id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_id.setText("id");
+        jLabel_id.setText("ID");
         getContentPane().add(jLabel_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 120, 30));
 
         jLabel_lab.setForeground(new java.awt.Color(239, 210, 173));

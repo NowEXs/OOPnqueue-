@@ -30,12 +30,12 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         try{
             File fontStyle_apple = new File("OOP/src/Font/Big Apple 3PM.ttf");
             File fontStyle_minecraft = new File("OOP/src/Font/minecraft_font.ttf");
-            Font font_complete = Font.createFont(Font.TRUETYPE_FONT,fontStyle_apple).deriveFont(44f);
+            Font font_complete = Font.createFont(Font.TRUETYPE_FONT,fontStyle_apple).deriveFont(40f);
             Font font_giveme = Font.createFont(Font.TRUETYPE_FONT,fontStyle_apple).deriveFont(18f);
             Font font_name = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
             Font font_lab = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
             Font font_time = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
-            Font font_name_user = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            Font font_name_user = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(9f);
             Font font_lab_user = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
             Font font_time_user = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
             Font font_feedback = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
@@ -194,7 +194,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
 
         getContentPane().add(time_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 170, 20));
 
-        confirm_bt.setIcon(new javax.swing.ImageIcon("Image/confirmButtonFont.png")); // NOI18N
+        confirm_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         confirm_bt.setBorderPainted(false);
         confirm_bt.setContentAreaFilled(false);
         confirm_bt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,7 +215,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         });
         getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
-        cancel_bt.setIcon(new javax.swing.ImageIcon("Image/skipButtonFont.png")); // NOI18N
+        cancel_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/skipButtonFont.png")); // NOI18N
         cancel_bt.setBorderPainted(false);
         cancel_bt.setContentAreaFilled(false);
         cancel_bt.addMouseListener(new java.awt.event.MouseAdapter() {

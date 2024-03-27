@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.awt.*;
+import java.io.File;
+
 /**
  *
  * @author huawei
@@ -14,6 +17,45 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
+
+        try {
+            // Load and register the font
+            Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(appleFont);
+
+
+            // Set the font for components
+            setCustomFont(appleFont);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void setCustomFont(Font font){
+        seat1.setFont(font.deriveFont(Font.PLAIN, 14));
+        lab1.setFont(font.deriveFont(Font.PLAIN, 14));
+        name_id1.setFont(font.deriveFont(Font.PLAIN, 14));
+        seat2.setFont(font.deriveFont(Font.PLAIN, 14));
+        lab2.setFont(font.deriveFont(Font.PLAIN, 14));
+        name_id2.setFont(font.deriveFont(Font.PLAIN, 14));
+        seat3.setFont(font.deriveFont(Font.PLAIN, 14));
+        lab3.setFont(font.deriveFont(Font.PLAIN, 14));
+        name_id3.setFont(font.deriveFont(Font.PLAIN, 14));
+        seat4.setFont(font.deriveFont(Font.PLAIN, 14));
+        lab4.setFont(font.deriveFont(Font.PLAIN, 14));
+        name_id4.setFont(font.deriveFont(Font.PLAIN, 14));
+        seat5.setFont(font.deriveFont(Font.PLAIN, 14));
+        lab5.setFont(font.deriveFont(Font.PLAIN, 14));
+        name_id5.setFont(font.deriveFont(Font.PLAIN, 14));
+        txt_checking.setFont(font.deriveFont(Font.PLAIN, 16));
+        txt_empty.setFont(font.deriveFont(Font.PLAIN, 16));
+        txt_wait.setFont(font.deriveFont(Font.PLAIN, 16));
+        area_q.setFont(font.deriveFont(Font.BOLD, 16));
+        status_computer.setFont(font.deriveFont(Font.BOLD, 16));
+        seat.setFont(font.deriveFont(Font.BOLD, 16));
+        txt_people.setFont(font.deriveFont(Font.BOLD, 16));
+        txt_lab.setFont(font.deriveFont(Font.BOLD, 16));
+        txt_today.setFont(font.deriveFont(Font.BOLD, 16));
     }
 
     /**
@@ -25,39 +67,43 @@ public class MainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        wood_panel = new DeskPanel();
-        cont = new javax.swing.JPanel();
+        main = new javax.swing.JPanel();
         queue = new javax.swing.JPanel();
         q1 = new javax.swing.JPanel();
         image_status1 = new javax.swing.JLabel();
-        seat_txt1 = new javax.swing.JLabel();
+        seat1 = new javax.swing.JLabel();
         lab1 = new javax.swing.JLabel();
         name_id1 = new javax.swing.JLabel();
         q2 = new javax.swing.JPanel();
         image_status2 = new javax.swing.JLabel();
-        seat_txt2 = new javax.swing.JLabel();
+        seat2 = new javax.swing.JLabel();
         lab2 = new javax.swing.JLabel();
         name_id2 = new javax.swing.JLabel();
         q3 = new javax.swing.JPanel();
         image_status3 = new javax.swing.JLabel();
-        seat_txt3 = new javax.swing.JLabel();
+        seat3 = new javax.swing.JLabel();
         lab3 = new javax.swing.JLabel();
         name_id3 = new javax.swing.JLabel();
         q4 = new javax.swing.JPanel();
         image_status4 = new javax.swing.JLabel();
-        seat_txt4 = new javax.swing.JLabel();
+        seat4 = new javax.swing.JLabel();
         lab4 = new javax.swing.JLabel();
         name_id4 = new javax.swing.JLabel();
         q5 = new javax.swing.JPanel();
         image_status5 = new javax.swing.JLabel();
-        seat_txt5 = new javax.swing.JLabel();
+        seat5 = new javax.swing.JLabel();
         lab5 = new javax.swing.JLabel();
         name_id5 = new javax.swing.JLabel();
         status = new javax.swing.JPanel();
         txt_checking = new javax.swing.JLabel();
-        txt_wait = new javax.swing.JLabel();
         txt_empty = new javax.swing.JLabel();
+        txt_wait = new javax.swing.JLabel();
         area_q = new javax.swing.JLabel();
+        area = new javax.swing.JPanel();
+        computer = new javax.swing.JPanel();
+        status_computer = new javax.swing.JLabel();
+        seat = new javax.swing.JLabel();
+        computer_area = new javax.swing.JLabel();
         deadline = new javax.swing.JPanel();
         txt_people = new javax.swing.JLabel();
         txt_lab = new javax.swing.JLabel();
@@ -66,11 +112,13 @@ public class MainPage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("N-Queue");
+        setMaximumSize(new java.awt.Dimension(1200, 700));
         setMinimumSize(new java.awt.Dimension(1200, 700));
+        setPreferredSize(new java.awt.Dimension(1200, 700));
         setSize(new java.awt.Dimension(1200, 700));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cont.setMinimumSize(new java.awt.Dimension(1200, 700));
+        main.setMinimumSize(new java.awt.Dimension(1200, 700));
 
         queue.setOpaque(false);
         queue.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -79,12 +127,12 @@ public class MainPage extends javax.swing.JFrame {
         q1.setOpaque(false);
 
         image_status1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status1.setIcon(new javax.swing.ImageIcon("OOP/src/Image/wait.png")); // NOI18N
         image_status1.setVerifyInputWhenFocusTarget(false);
 
-        seat_txt1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        seat_txt1.setForeground(new java.awt.Color(87, 65, 43));
-        seat_txt1.setText("Seat :");
+        seat1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        seat1.setForeground(new java.awt.Color(87, 65, 43));
+        seat1.setText("Seat :");
 
         lab1.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         lab1.setForeground(new java.awt.Color(87, 65, 43));
@@ -104,7 +152,7 @@ public class MainPage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(q1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lab1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(seat_txt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(seat1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(name_id1, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
                                 .addGap(15, 15, 15))
         );
@@ -115,7 +163,7 @@ public class MainPage extends javax.swing.JFrame {
                                         .addComponent(image_status1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(q1Layout.createSequentialGroup()
                                                 .addGap(7, 7, 7)
-                                                .addComponent(seat_txt1)
+                                                .addComponent(seat1)
                                                 .addGap(5, 5, 5)
                                                 .addComponent(lab1)
                                                 .addGap(5, 5, 5)
@@ -128,12 +176,12 @@ public class MainPage extends javax.swing.JFrame {
         q2.setOpaque(false);
 
         image_status2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status2.setIcon(new javax.swing.ImageIcon("OOP/src/Image/wait.png")); // NOI18N
         image_status2.setVerifyInputWhenFocusTarget(false);
 
-        seat_txt2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        seat_txt2.setForeground(new java.awt.Color(87, 65, 43));
-        seat_txt2.setText("Seat :");
+        seat2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        seat2.setForeground(new java.awt.Color(87, 65, 43));
+        seat2.setText("Seat :");
 
         lab2.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         lab2.setForeground(new java.awt.Color(87, 65, 43));
@@ -153,7 +201,7 @@ public class MainPage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(q2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lab2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(seat_txt2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(seat2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(name_id2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
                                 .addGap(15, 15, 15))
         );
@@ -164,7 +212,7 @@ public class MainPage extends javax.swing.JFrame {
                                         .addComponent(image_status2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(q2Layout.createSequentialGroup()
                                                 .addGap(7, 7, 7)
-                                                .addComponent(seat_txt2)
+                                                .addComponent(seat2)
                                                 .addGap(5, 5, 5)
                                                 .addComponent(lab2)
                                                 .addGap(5, 5, 5)
@@ -177,12 +225,12 @@ public class MainPage extends javax.swing.JFrame {
         q3.setOpaque(false);
 
         image_status3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status3.setIcon(new javax.swing.ImageIcon("OOP/src/Image/wait.png")); // NOI18N
         image_status3.setVerifyInputWhenFocusTarget(false);
 
-        seat_txt3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        seat_txt3.setForeground(new java.awt.Color(87, 65, 43));
-        seat_txt3.setText("Seat :");
+        seat3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        seat3.setForeground(new java.awt.Color(87, 65, 43));
+        seat3.setText("Seat :");
 
         lab3.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         lab3.setForeground(new java.awt.Color(87, 65, 43));
@@ -202,7 +250,7 @@ public class MainPage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(q3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lab3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(seat_txt3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(seat3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(name_id3, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
                                 .addGap(15, 15, 15))
         );
@@ -213,7 +261,7 @@ public class MainPage extends javax.swing.JFrame {
                                         .addComponent(image_status3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(q3Layout.createSequentialGroup()
                                                 .addGap(7, 7, 7)
-                                                .addComponent(seat_txt3)
+                                                .addComponent(seat3)
                                                 .addGap(5, 5, 5)
                                                 .addComponent(lab3)
                                                 .addGap(5, 5, 5)
@@ -226,12 +274,12 @@ public class MainPage extends javax.swing.JFrame {
         q4.setOpaque(false);
 
         image_status4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status4.setIcon(new javax.swing.ImageIcon("OOP/src/Image/wait.png")); // NOI18N
         image_status4.setVerifyInputWhenFocusTarget(false);
 
-        seat_txt4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        seat_txt4.setForeground(new java.awt.Color(87, 65, 43));
-        seat_txt4.setText("Seat :");
+        seat4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        seat4.setForeground(new java.awt.Color(87, 65, 43));
+        seat4.setText("Seat :");
 
         lab4.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         lab4.setForeground(new java.awt.Color(87, 65, 43));
@@ -251,7 +299,7 @@ public class MainPage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(q4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lab4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(seat_txt4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(seat4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(name_id4, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
                                 .addGap(15, 15, 15))
         );
@@ -262,7 +310,7 @@ public class MainPage extends javax.swing.JFrame {
                                         .addComponent(image_status4, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(q4Layout.createSequentialGroup()
                                                 .addGap(7, 7, 7)
-                                                .addComponent(seat_txt4)
+                                                .addComponent(seat4)
                                                 .addGap(5, 5, 5)
                                                 .addComponent(lab4)
                                                 .addGap(5, 5, 5)
@@ -275,12 +323,12 @@ public class MainPage extends javax.swing.JFrame {
         q5.setOpaque(false);
 
         image_status5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        image_status5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/wait.png"))); // NOI18N
+        image_status5.setIcon(new javax.swing.ImageIcon("OOP/src/Image/wait.png")); // NOI18N
         image_status5.setVerifyInputWhenFocusTarget(false);
 
-        seat_txt5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        seat_txt5.setForeground(new java.awt.Color(87, 65, 43));
-        seat_txt5.setText("Seat :");
+        seat5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        seat5.setForeground(new java.awt.Color(87, 65, 43));
+        seat5.setText("Seat :");
 
         lab5.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         lab5.setForeground(new java.awt.Color(87, 65, 43));
@@ -300,7 +348,7 @@ public class MainPage extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(q5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(lab5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(seat_txt5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(seat5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(name_id5, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE))
                                 .addGap(15, 15, 15))
         );
@@ -311,7 +359,7 @@ public class MainPage extends javax.swing.JFrame {
                                         .addComponent(image_status5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(q5Layout.createSequentialGroup()
                                                 .addGap(7, 7, 7)
-                                                .addComponent(seat_txt5)
+                                                .addComponent(seat5)
                                                 .addGap(5, 5, 5)
                                                 .addComponent(lab5)
                                                 .addGap(5, 5, 5)
@@ -326,18 +374,18 @@ public class MainPage extends javax.swing.JFrame {
 
         txt_checking.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_checking.setForeground(new java.awt.Color(87, 65, 43));
-        txt_checking.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stcheck.png"))); // NOI18N
+        txt_checking.setIcon(new javax.swing.ImageIcon("OOP/src/Image/stcheck.png")); // NOI18N
         txt_checking.setText("Checking");
-
-        txt_wait.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        txt_wait.setForeground(new java.awt.Color(87, 65, 43));
-        txt_wait.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stwait.png"))); // NOI18N
-        txt_wait.setText("Wait");
 
         txt_empty.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_empty.setForeground(new java.awt.Color(87, 65, 43));
-        txt_empty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/stempty.png"))); // NOI18N
+        txt_empty.setIcon(new javax.swing.ImageIcon("OOP/src/Image/stempty.png")); // NOI18N
         txt_empty.setText("Empty");
+
+        txt_wait.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
+        txt_wait.setForeground(new java.awt.Color(87, 65, 43));
+        txt_wait.setIcon(new javax.swing.ImageIcon("OOP/src/Image/stwait.png")); // NOI18N
+        txt_wait.setText("Wait");
 
         javax.swing.GroupLayout statusLayout = new javax.swing.GroupLayout(status);
         status.setLayout(statusLayout);
@@ -365,8 +413,49 @@ public class MainPage extends javax.swing.JFrame {
 
         queue.add(status, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 304, 60));
 
-        area_q.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/breadx2.png"))); // NOI18N
+        area_q.setIcon(new javax.swing.ImageIcon("OOP/src/Image/breadx2.png")); // NOI18N
         queue.add(area_q, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        area.setOpaque(false);
+        area.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        computer.setOpaque(false);
+
+        status_computer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        status_computer.setIcon(new javax.swing.ImageIcon("OOP/src/Image/wait.png")); // NOI18N
+        status_computer.setVerifyInputWhenFocusTarget(false);
+
+        seat.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
+        seat.setForeground(new java.awt.Color(87, 65, 43));
+        seat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        seat.setText("01");
+
+        javax.swing.GroupLayout computerLayout = new javax.swing.GroupLayout(computer);
+        computer.setLayout(computerLayout);
+        computerLayout.setHorizontalGroup(
+                computerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(computerLayout.createSequentialGroup()
+                                .addComponent(status_computer)
+                                .addGap(0, 1, Short.MAX_VALUE))
+                        .addGroup(computerLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(seat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(10, 10, 10))
+        );
+        computerLayout.setVerticalGroup(
+                computerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(computerLayout.createSequentialGroup()
+                                .addComponent(status_computer)
+                                .addGap(0, 0, 0)
+                                .addComponent(seat)
+                                .addGap(0, 0, 0))
+        );
+
+        area.add(computer, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 70, -1));
+
+        computer_area.setForeground(new java.awt.Color(102, 76, 50));
+        computer_area.setIcon(new javax.swing.ImageIcon("OOP/src/Image/left.png")); // NOI18N
+        area.add(computer_area, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, -1));
 
         deadline.setOpaque(false);
         deadline.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -388,34 +477,39 @@ public class MainPage extends javax.swing.JFrame {
         txt_today.setText("Today's Deadline");
         deadline.add(txt_today, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, -1, 30));
 
-        bg_dl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/imagever2.png"))); // NOI18N
+        bg_dl.setIcon(new javax.swing.ImageIcon("OOP/src/Image/imagever2.png")); // NOI18N
         deadline.add(bg_dl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout contLayout = new javax.swing.GroupLayout(cont);
-        cont.setLayout(contLayout);
-        contLayout.setHorizontalGroup(
-                contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(contLayout.createSequentialGroup()
-                                .addComponent(wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(15, 15, 15)
-                                .addGroup(contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout mainLayout = new javax.swing.GroupLayout(main);
+        main.setLayout(mainLayout);
+        mainLayout.setHorizontalGroup(
+                mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(mainLayout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addComponent(area, javax.swing.GroupLayout.PREFERRED_SIZE, 854, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, 0))
         );
-        contLayout.setVerticalGroup(
-                contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(contLayout.createSequentialGroup()
-                                .addGroup(contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(contLayout.createSequentialGroup()
-                                        .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(100, Short.MAX_VALUE))
+        mainLayout.setVerticalGroup(
+                mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(mainLayout.createSequentialGroup()
+                                .addGroup(mainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(mainLayout.createSequentialGroup()
+                                                .addGap(0, 0, 0)
+                                                .addComponent(area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(mainLayout.createSequentialGroup()
+                                                .addGap(0, 0, 0)
+                                                .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(10, 10, 10)
+                                                .addComponent(queue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        getContentPane().add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
-        setLocationRelativeTo(null);
+
+        getContentPane().add(main, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
+
         pack();
     }// </editor-fold>
 
@@ -455,9 +549,11 @@ public class MainPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
+    private javax.swing.JPanel area;
     private javax.swing.JLabel area_q;
     private javax.swing.JLabel bg_dl;
-    private javax.swing.JPanel cont;
+    private javax.swing.JPanel computer;
+    private javax.swing.JLabel computer_area;
     private javax.swing.JPanel deadline;
     private javax.swing.JLabel image_status1;
     private javax.swing.JLabel image_status2;
@@ -469,6 +565,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JLabel lab3;
     private javax.swing.JLabel lab4;
     private javax.swing.JLabel lab5;
+    private javax.swing.JPanel main;
     private javax.swing.JLabel name_id1;
     private javax.swing.JLabel name_id2;
     private javax.swing.JLabel name_id3;
@@ -480,18 +577,19 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JPanel q4;
     private javax.swing.JPanel q5;
     private javax.swing.JPanel queue;
-    private javax.swing.JLabel seat_txt1;
-    private javax.swing.JLabel seat_txt2;
-    private javax.swing.JLabel seat_txt3;
-    private javax.swing.JLabel seat_txt4;
-    private javax.swing.JLabel seat_txt5;
+    private javax.swing.JLabel seat;
+    private javax.swing.JLabel seat1;
+    private javax.swing.JLabel seat2;
+    private javax.swing.JLabel seat3;
+    private javax.swing.JLabel seat4;
+    private javax.swing.JLabel seat5;
     private javax.swing.JPanel status;
+    private javax.swing.JLabel status_computer;
     private javax.swing.JLabel txt_checking;
     private javax.swing.JLabel txt_empty;
     private javax.swing.JLabel txt_lab;
     private javax.swing.JLabel txt_people;
     private javax.swing.JLabel txt_today;
     private javax.swing.JLabel txt_wait;
-    private DeskPanel wood_panel;
     // End of variables declaration
 }

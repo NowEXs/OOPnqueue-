@@ -3,6 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+
 /**
  *
  * @author gypprt
@@ -12,8 +16,46 @@ public class Checkingpage extends javax.swing.JFrame {
     /**
      * Creates new form Checkingpage
      */
+    // Variables declaration - do not modify
+    private javax.swing.JLabel Computer;
+    private javax.swing.JButton confirmButton;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel lab_l;
+    private javax.swing.JLabel name_l;
+    private javax.swing.JLabel std_l;
+    // End of variables declaration
     public Checkingpage() {
         initComponents();
+
+        try {
+            // Load and register the font
+            Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(appleFont);
+
+
+            // Set the font for components
+            setCustomFont(appleFont);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void setCustomFont(Font font){
+        lab_l.setFont(font.deriveFont(Font.PLAIN, 13));
+        jLabel10.setFont(font.deriveFont(Font.BOLD, 18));
+        std_l.setFont(font.deriveFont(Font.PLAIN, 13));
+        jLabel8.setFont(font.deriveFont(Font.BOLD, 18));
+        name_l.setFont(font.deriveFont(Font.PLAIN, 13));
+        jLabel6.setFont(font.deriveFont(Font.BOLD, 18));
+        jLabel5.setFont(font.deriveFont(Font.BOLD, 18));
+        jLabel4.setFont(font.deriveFont(Font.PLAIN, 16));
+        jLabel2.setFont(font.deriveFont(Font.BOLD, 20));
     }
 
     /**
@@ -57,7 +99,15 @@ public class Checkingpage extends javax.swing.JFrame {
                 confirmButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(confirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, 140, 40));
+        confirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmButtonMouseExited(evt);
+            }
+        });
+        getContentPane().add(confirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 420, 150, 40));
 
         lab_l.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         lab_l.setForeground(new java.awt.Color(255, 255, 255));
@@ -131,7 +181,16 @@ public class Checkingpage extends javax.swing.JFrame {
 //        pi.setVisible(true);
 
     }
+    private void confirmButtonMouseEntered(java.awt.event.MouseEvent evt) {
+        //        Change cursor to hand cursor and change pic to bigger button
+        confirmButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        confirmButton.setIcon(new ImageIcon("OOP/src/Image/Button/FillScoreButtonBig.png"));
+    }
 
+    private void confirmButtonMouseExited(java.awt.event.MouseEvent evt) {
+        //        Change pic to smaller button
+        confirmButton.setIcon(new ImageIcon("OOP/src/Image/Button/FillScoreButtonSmall.png"));
+    }
     /**
      * @param args the command line arguments
      */
@@ -166,19 +225,4 @@ public class Checkingpage extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify
-    private javax.swing.JLabel Computer;
-    private javax.swing.JButton confirmButton;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel lab_l;
-    private javax.swing.JLabel name_l;
-    private javax.swing.JLabel std_l;
-    // End of variables declaration
 }
