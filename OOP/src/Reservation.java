@@ -1,5 +1,6 @@
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.Color;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -55,7 +56,7 @@ public class Reservation extends javax.swing.JFrame {
         }
     }
     private void setCustomFont(Font font) {
-        Reservation.setFont(font.deriveFont(Font.BOLD, 24));
+        Reservation.setFont(font.deriveFont(Font.BOLD, 27));
         seat.setFont(font.deriveFont(Font.BOLD, 18));
         Name.setFont(font.deriveFont(Font.BOLD, 18));
         std_id.setFont(font.deriveFont(Font.BOLD, 18));
@@ -112,7 +113,7 @@ public class Reservation extends javax.swing.JFrame {
         Reservation.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
         Reservation.setForeground(new java.awt.Color(239, 210, 173));
         Reservation.setText("Reservation");
-        getContentPane().add(Reservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 20, -1, -1));
+        getContentPane().add(Reservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(105, 20, -1, -1));
 
         img_checking.setIcon(new javax.swing.ImageIcon("OOP/src/Image/checking-2.png")); // NOI18N
         getContentPane().add(img_checking, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 50, -1, -1));
