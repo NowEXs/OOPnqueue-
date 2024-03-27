@@ -82,7 +82,7 @@ public class Checkingpage extends javax.swing.JFrame {
                 confirmButtonMouseExited(evt);
             }
         });
-        getContentPane().add(confirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 420, 140, 40));
+        getContentPane().add(confirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(85, 420, 150, 40));
 
         lab_l.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         lab_l.setForeground(new java.awt.Color(255, 255, 255));
