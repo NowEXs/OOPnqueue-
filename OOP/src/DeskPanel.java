@@ -126,14 +126,52 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             addingButton = new AddingButtonPanel(this); /**/
             this.deskPanel.add(addingButton);
         }
-        for (Computer computer : comp_arr) {
-            ComputerPanel companel = new ComputerPanel(computer);
-            companel.updateButtonIcon();
-            companel.setOpaque(false);
-            this.deskPanel.add(companel);
+        String fetchingSql = "SELECT * FROM Reservation";
+        List<Integer> checkerList = new ArrayList<>();
+        try (Connection conn = DbCon.getConnection();
+             PreparedStatement fetchingStatement = conn.prepareStatement(fetchingSql);
+             ResultSet fetchResult = fetchingStatement.executeQuery()) {
+            while (fetchResult.next()) {
+                int seatID = fetchResult.getInt("SM_SeatID");
+                checkerList.add(seatID);
+            }
+            if (checkerList.isEmpty()) {
+                for (Computer computer : comp_arr) {
+                    computer.setName("");
+                    computer.setStd_id("");
+                    computer.setLab_name("");
+                    computer.setStatus(0);
+                    ComputerPanel companel = new ComputerPanel(computer);
+                    companel.updateButtonIcon();
+                    companel.setOpaque(false);
+                    this.deskPanel.add(companel);
+                }
+            } else {
+                int index = 0;
+                for (Computer computer : comp_arr) {
+                    if (computer.getStatus() != 0) {
+                        if (index < checkerList.size() && checkerList.get(index) == computer.getComp_id()) {
+                            index++;
+                        } else {
+                            computer.setName("");
+                            computer.setStd_id("");
+                            computer.setLab_name("");
+                            computer.setStatus(0);
+                        }
+                    }
+                    ComputerPanel companel = new ComputerPanel(computer);
+                    companel.updateButtonIcon();
+                    companel.setOpaque(false);
+                    this.deskPanel.add(companel);
+                }
+            }
+            revalidate();
+            repaint();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        revalidate();
-        repaint();
     }
 
     @Override

@@ -48,7 +48,7 @@ public class DeadlinePanel extends javax.swing.JPanel implements Updater{
 
         txt_people.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_people.setForeground(new java.awt.Color(87, 65, 43));
-        txt_people.setText("50 people");
+        txt_people.setText("0 people");
         add(txt_people, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 62, 80, -1));
 
         bg_deadline.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/imagever2.png"))); // NOI18N
