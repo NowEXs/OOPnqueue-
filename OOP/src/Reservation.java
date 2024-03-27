@@ -112,11 +112,7 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
                 jTextField_nameFocusLost(evt);
             }
         });
-        jTextField_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_nameActionPerformed(evt);
-            }
-        });
+
         add(jTextField_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 208, 140, 20));
 
         jTextField_id.setBackground(new java.awt.Color(76, 40, 20));
@@ -201,9 +197,6 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
 
     }// </editor-fold>
 
-    private void jTextField_nameActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
 
 
     private void bt_cancelMouseEntered(java.awt.event.MouseEvent evt) {
@@ -243,7 +236,7 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
     }
 
     private void jTextField_idFocusGained(java.awt.event.FocusEvent evt) {
-        if (jTextField_id.getText().equals("Id")){
+        if (jTextField_id.getText().equals("ID")){
             jTextField_id.setText("");
         }
         jTextField_id.setForeground(Color.white);
@@ -255,21 +248,6 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
         }
         jTextField_id.setForeground(Color.white);
     }
-
-    private void jTextField_labFocusGained(java.awt.event.FocusEvent evt) {
-        if (jTextField_lab.getText().equals("lab")){
-            jTextField_lab.setText("");
-        }
-        jTextField_lab.setForeground(Color.white);
-    }
-
-    private void jTextField_labFocusLost(java.awt.event.FocusEvent evt) {
-        if (jTextField_lab.getText().equals("")){
-            jTextField_lab.setText("lab");
-        }
-        jTextField_lab.setForeground(Color.white);
-    }
-
     /**
      * @param args the command line arguments
      */

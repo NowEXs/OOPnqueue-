@@ -8,6 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ import java.util.List;
 public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Updater{
     private JPanel deskPanel;
     private JLabel wood;
+    private JButton queueButton;
     private User user;
     private int roleCheck;
     private JScrollPane scrollPanel;
@@ -40,18 +42,33 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
 
     private void initComponents() {
         deskPanel = new JPanel();
+        queueButton = new JButton();
         wood = new JLabel();
         addInitialComputerPanels();
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonSmall.png"));
+        queueButton.setBorderPainted(false);
+        queueButton.setContentAreaFilled(false);
+        queueButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                queueButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                queueButtonMouseExited(evt);
+            }
+        });
+        deskPanel.setBorder(null);
 
-        scrollPanel = new JScrollPane(deskPanel);
+        /* scrollPanel = new JScrollPane(deskPanel);
         scrollPanel.getViewport().setOpaque(false);
         scrollPanel.setOpaque(false);
-        scrollPanel.setBorder(null);
-        add(scrollPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 770, 550));
+        scrollPanel.setBorder(null); */
+
+        add(deskPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 770, 550));
         wood.setIcon(new ImageIcon(getClass().getResource("/Image/left.png")));
         add(wood, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }
+
 
     private void addInitialComputerPanels() {
         String addingSql = "SELECT SeatID FROM SeatManager WHERE Availability IS NULL"; // เพิ่มโต๊ะ
@@ -61,6 +78,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         deskPanel.setLayout(new GridLayout(0, 7));
         deskPanel.setOpaque(false);
         deskPanel.setBorder(null);
+        this.deskPanel.add(queueButton);
         try (Connection conn = DbCon.getConnection();
              PreparedStatement addingstatement = conn.prepareStatement(addingSql);
              PreparedStatement updateStatement = conn.prepareStatement(updateSql)) {
@@ -69,7 +87,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
 
             int counter = 0;
             if (roleCheck == 2) {
-                addingButton = new AddingButtonPanel(this); /**/
+                addingButton = new AddingButtonPanel(this);
                 this.deskPanel.add(addingButton);
             }
             while (resultSet.next()) {
@@ -104,7 +122,14 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         return this.deskPanel;
     }
 
+    private void queueButtonMouseEntered(java.awt.event.MouseEvent evt) {
+        queueButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonBig.png"));
+    }
 
+    private void queueButtonMouseExited(java.awt.event.MouseEvent evt) {
+        queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonSmall.png"));
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -122,6 +147,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     @Override
     public void updateGUI() {
         this.deskPanel.removeAll();
+        this.deskPanel.add(queueButton);
         if (roleCheck == 2) {
             addingButton = new AddingButtonPanel(this); /**/
             this.deskPanel.add(addingButton);

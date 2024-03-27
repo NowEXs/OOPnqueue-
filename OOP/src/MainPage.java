@@ -73,6 +73,7 @@ public class MainPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
         wood_panel = new DeskPanel(user);
+        wood_panel.setBorder(null);
         cont = new javax.swing.JPanel();
         waitingPanel = new WaitingPanel(wood_panel);
         area_q = new javax.swing.JLabel();
