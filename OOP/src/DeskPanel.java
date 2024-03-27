@@ -122,6 +122,10 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     @Override
     public void updateGUI() {
         this.deskPanel.removeAll();
+        if (roleCheck == 2) {
+            addingButton = new AddingButtonPanel(this); /**/
+            this.deskPanel.add(addingButton);
+        }
         for (Computer computer : comp_arr) {
             ComputerPanel companel = new ComputerPanel(computer);
             companel.updateButtonIcon();
