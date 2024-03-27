@@ -29,7 +29,7 @@ public class SelectRole extends javax.swing.JFrame {
         setTitle("N-Queue");
         setBackground(new java.awt.Color(255, 255, 255));
         setLocation(new java.awt.Point(0, 0));
-        setLocationByPlatform(true);
+        setLocationRelativeTo(null);
         setMaximumSize(new java.awt.Dimension(1200, 700));
         setMinimumSize(new java.awt.Dimension(1200, 700));
         setPreferredSize(new java.awt.Dimension(1200, 700));
