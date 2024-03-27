@@ -262,7 +262,7 @@ public class Reservation extends javax.swing.JFrame {
     private void bt_confirmMouseEntered(java.awt.event.MouseEvent evt) {
         //        Change cursor to hand cursor and change pic to bigger button
         bt_confirm.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        bt_confirm.setIcon(new ImageIcon("OOP/src/Image/Button/confirmButtonBig.png")); // Change to your desired image path
+        bt_confirm.setIcon(new ImageIcon("OOP/src/Image/Button/confirmButtonBig.png"));
     }
 
     private void bt_confirmMouseExited(java.awt.event.MouseEvent evt) {
