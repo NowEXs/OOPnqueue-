@@ -29,8 +29,10 @@ public class Checkingpage extends javax.swing.JFrame {
     private javax.swing.JLabel lab_l;
     private javax.swing.JLabel name_l;
     private javax.swing.JLabel std_l;
+    private Computer comp;
     // End of variables declaration
-    public Checkingpage() {
+    public Checkingpage(Computer comp) {
+        this.comp = comp;
         initComponents();
 
         try {
@@ -80,7 +82,6 @@ public class Checkingpage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Checking");
         setAutoRequestFocus(false);
         setBounds(new java.awt.Rectangle(0, 25, 300, 500));
@@ -112,7 +113,7 @@ public class Checkingpage extends javax.swing.JFrame {
         lab_l.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         lab_l.setForeground(new java.awt.Color(255, 255, 255));
         lab_l.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lab_l.setText("9");
+        lab_l.setText(comp.getLab_name());
         getContentPane().add(lab_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 50, 30));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -122,7 +123,7 @@ public class Checkingpage extends javax.swing.JFrame {
 
         std_l.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         std_l.setForeground(new java.awt.Color(255, 255, 255));
-        std_l.setText("std");
+        std_l.setText("  " + comp.getStd_id());
         getContentPane().add(std_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 90, 30));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -132,7 +133,7 @@ public class Checkingpage extends javax.swing.JFrame {
 
         name_l.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         name_l.setForeground(new java.awt.Color(255, 255, 255));
-        name_l.setText("name");
+        name_l.setText("  " + comp.getName());
         getContentPane().add(name_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 80, 30));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -143,7 +144,7 @@ public class Checkingpage extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("25");
+        jLabel5.setText(""+comp.getComp_id());
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 130, 290, 40));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 2, 24)); // NOI18N
@@ -191,38 +192,5 @@ public class Checkingpage extends javax.swing.JFrame {
         //        Change pic to smaller button
         confirmButton.setIcon(new ImageIcon("OOP/src/Image/Button/FillScoreButtonSmall.png"));
     }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Checkingpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Checkingpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Checkingpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Checkingpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Checkingpage().setVisible(true);
-            }
-        });
-    }
 }

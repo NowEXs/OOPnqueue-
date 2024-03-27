@@ -113,7 +113,7 @@ public class CreateSeatMDI extends javax.swing.JFrame implements OnClick{
         seatId.setBackground(new java.awt.Color(71, 45, 12));
         seatId.setFont(new java.awt.Font("OOP/src/Font/minecraft_font.ttf", 1, 12)); // NOI18N
         seatId.setForeground(new java.awt.Color(239, 210, 173));
-        seatId.setText("aaaa");
+        seatId.setText("");
         seatId.setBorder(null);
         seatId.setDisabledTextColor(new java.awt.Color(239, 210, 173));
         seatId.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -226,7 +226,7 @@ public class CreateSeatMDI extends javax.swing.JFrame implements OnClick{
                     Computer computer = new Computer("", "", "", compID, 0);
                     if (containsCompID == false) {
                         this.deskPanel.getComp_arr().add(computer);
-                        ComputerPanel compee = new ComputerPanel(computer);
+                        ComputerPanel compee = new ComputerPanel(computer, deskPanel.userType());
                         compee.setOpaque(false);
                         System.out.println("alo");
                         this.deskPanel.getDeskPanel().add(compee);

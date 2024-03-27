@@ -105,7 +105,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             while (resultSet.next()) {
                 int compID = resultSet.getInt("SeatID");
                 Computer computer = new Computer("", "", "", compID, 0);
-                ComputerPanel companel = new ComputerPanel(computer);
+                ComputerPanel companel = new ComputerPanel(computer, userType());
                 companel.setOpaque(false);
                 this.deskPanel.add(companel);
 
@@ -207,7 +207,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                     computer.setStd_id("");
                     computer.setLab_name("");
                     computer.setStatus(0);
-                    ComputerPanel companel = new ComputerPanel(computer);
+                    ComputerPanel companel = new ComputerPanel(computer, userType());
                     companel.updateButtonIcon();
                     companel.setOpaque(false);
                     this.deskPanel.add(companel);
@@ -229,7 +229,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                             computer.setStatus(0);
                         }
                     }
-                    ComputerPanel companel = new ComputerPanel(computer);
+                    ComputerPanel companel = new ComputerPanel(computer, userType());
                     companel.updateButtonIcon();
                     companel.setOpaque(false);
                     this.deskPanel.add(companel);
@@ -261,7 +261,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                         computer.setLab_name(lab_name);
                         computer.setStatus(status);
                     }
-                    ComputerPanel companel = new ComputerPanel(computer);
+                    ComputerPanel companel = new ComputerPanel(computer, userType());
                     companel.updateButtonIcon();
                     companel.setOpaque(false);
                     this.deskPanel.add(companel);

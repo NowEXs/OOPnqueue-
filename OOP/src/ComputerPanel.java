@@ -9,8 +9,10 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater{
     private JButton computerButton;
     private JLabel computerNumber;
     private Computer comp;
+    private int userType;
 
-    public ComputerPanel(Computer comp) {
+    public ComputerPanel(Computer comp, int userType) {
+        this.userType = userType;
         this.comp = comp;
         computerNumber = new JLabel("Seat - " + comp.getComp_id());
         setLayout(new BorderLayout());
@@ -33,14 +35,20 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(computerButton)) {
-            if (comp.getIsReservable() == true) {
-                Reservation reservationWindow = new Reservation(this ,comp);
-                reservationWindow.setVisible(true);
+            if (userType == 0) {
+                if (comp.getIsReservable() == true) {
+                    Reservation reservationWindow = new Reservation(this ,comp);
+                    reservationWindow.setVisible(true);
+                } else {
+                    JFrame errorFrame = new JFrame();
+                    System.out.println(comp.getStatus());
+                    JOptionPane.showMessageDialog(errorFrame, "This seat is not Reservable There's a person in that seat.");
+                }
             } else {
-                JFrame errorFrame = new JFrame();
-                System.out.println(comp.getStatus());
-                JOptionPane.showMessageDialog(errorFrame, "This seat is not Reservable There's a person in that seat.");
+                CheckQueueMDI queueWindow = new CheckQueueMDI(comp);
+                queueWindow.setVisible(true);
             }
+
         }
     }
     @Override

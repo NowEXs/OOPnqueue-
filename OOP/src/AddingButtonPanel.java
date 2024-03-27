@@ -33,6 +33,7 @@ public class AddingButtonPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(addingButton)) {
+            JOptionPane.showMessageDialog(null, "The seats is limit at 60 seats so please do not fill the number that more than 60.", "How to use", JOptionPane.OK_CANCEL_OPTION);
             CreateSeatMDI createSeatMDI = new CreateSeatMDI(this.deskPanel);
             createSeatMDI.setVisible(true);
         }

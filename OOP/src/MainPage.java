@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -62,6 +65,7 @@ public class MainPage extends javax.swing.JFrame {
                 throw new RuntimeException(e);
             }
         }));
+        countdown();
     }
 
     /**
@@ -76,7 +80,6 @@ public class MainPage extends javax.swing.JFrame {
         wood_panel.setBorder(null);
         cont = new javax.swing.JPanel();
         waitingPanel = new WaitingPanel(wood_panel);
-        area_q = new javax.swing.JLabel();
         deadline = new DeadlinePanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -151,42 +154,38 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
     }
+    public static void countdown() {
+        JOptionPane loading = new JOptionPane("Loading data, please wait...", JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
+        JDialog dialog = loading.createDialog("Countdown");
+        dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        Thread countdownThread = new Thread(() -> {
+            try {
+                Thread.sleep(5000);
+                SwingUtilities.invokeLater(() -> {
+                    dialog.dispose();
+                    JOptionPane.showMessageDialog(null, "Loading finished!", "Countdown", JOptionPane.INFORMATION_MESSAGE);
+                });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        countdownThread.setDaemon(true); // low priority thread that run in the bg
+        countdownThread.start();
+
+        dialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                countdownThread.interrupt(); //shut thread down
+            }
+        });
+
+        dialog.setVisible(true);
+    }
+
 
     // Variables declaration - do not modify
-    private javax.swing.JLabel area_q;
     private javax.swing.JPanel cont;
     private javax.swing.JPanel deadline;
-    private javax.swing.JLabel image_status1;
-    private javax.swing.JLabel image_status2;
-    private javax.swing.JLabel image_status3;
-    private javax.swing.JLabel image_status4;
-    private javax.swing.JLabel image_status5;
-    private javax.swing.JLabel lab1;
-    private javax.swing.JLabel lab2;
-    private javax.swing.JLabel lab3;
-    private javax.swing.JLabel lab4;
-    private javax.swing.JLabel lab5;
-    private javax.swing.JLabel name_id1;
-    private javax.swing.JLabel name_id2;
-    private javax.swing.JLabel name_id3;
-    private javax.swing.JLabel name_id4;
-    private javax.swing.JLabel name_id5;
-    private javax.swing.JPanel q1;
-    private javax.swing.JPanel q2;
-    private javax.swing.JPanel q3;
-    private javax.swing.JPanel q4;
-    private javax.swing.JPanel q5;
-    private javax.swing.JPanel queue;
-    private javax.swing.JLabel seat_txt1;
-    private javax.swing.JLabel seat_txt2;
-    private javax.swing.JLabel seat_txt3;
-    private javax.swing.JLabel seat_txt4;
-    private javax.swing.JLabel seat_txt5;
-    private javax.swing.JPanel status;
-    private javax.swing.JLabel txt_checking;
-    private javax.swing.JLabel txt_empty;
-
-    private javax.swing.JLabel txt_wait;
     private DeskPanel wood_panel;
     private WaitingPanel waitingPanel;
 
