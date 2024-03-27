@@ -27,6 +27,9 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private ArrayList<Computer> comp_arr = new ArrayList<>();
     private AddingButtonPanel addingButton;
     private static boolean isRunning = false;
+    private JTable queueTable;
+    private DefaultTableModel model;
+
 
 
     public DeskPanel() {
@@ -43,6 +46,10 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private void initComponents() {
         deskPanel = new JPanel();
         queueButton = new JButton();
+        queueTable = new JTable();
+        String[] columnNames = {"QueueNumber", "Seat_ID", "Student_ID", "Student_Name", "Lab_name"};
+        model = new DefaultTableModel(columnNames, 0);
+        queueTable.setModel(model);
         wood = new JLabel();
         addInitialComputerPanels();
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,6 +62,11 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 queueButtonMouseExited(evt);
+            }
+        });
+        queueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QueuePerformed(evt);
             }
         });
         deskPanel.setBorder(null);
@@ -110,6 +122,34 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void QueuePerformed (java.awt.event.ActionEvent evt) {
+        JFrame queueFrame = new JFrame();
+        JScrollPane queuescrollPane = new JScrollPane(queueTable);
+        Container contentPane = queueFrame.getContentPane();
+        contentPane.setLayout(new BorderLayout());
+        contentPane.add(queuescrollPane, BorderLayout.CENTER);
+        queueFrame.pack();
+        queueFrame.setVisible(true);
+    }
+    private void updateQueueTable() {
+        String queueSql = "SELECT * FROM Reservation";
+        try (PreparedStatement addingstatement = DbCon.prepareStatement(queueSql)) {
+            ResultSet resultSet = addingstatement.executeQuery();
+            model.setRowCount(0);
+            while (resultSet.next()) {
+                int queueNumber = resultSet.getInt("QueueNumber");
+                int seatID = resultSet.getInt("SM_SeatID");
+                String studentID = resultSet.getString("StudentID");
+                String studentName = resultSet.getString("StudentName");
+                String labName = resultSet.getString("Lab_name");
+                model.addRow(new Object[]{queueNumber, seatID, studentID, studentName, labName});
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -210,6 +250,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             @Override
             public void actionPerformed(ActionEvent e) {
                 updateGUI();
+                updateQueueTable();
             }
         });
         timer.start();

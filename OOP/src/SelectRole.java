@@ -10,13 +10,9 @@ public class SelectRole extends javax.swing.JFrame {
         initComponents();
 
         try {
-            // Load and register the font
             Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(appleFont);
-
-
-            // Set the font for components
             setCustomFont(appleFont);
         } catch (Exception e) {
             e.printStackTrace();

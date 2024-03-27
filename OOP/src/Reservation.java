@@ -12,13 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.io.*;
 
-
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
 /**
  *
  * @author nk
@@ -47,8 +40,6 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
         jTextField_name.setFont(font.deriveFont(Font.PLAIN, 13));
         jComboBox_lab.setFont(font.deriveFont(Font.PLAIN, 13));
         jTextField_id.setFont(font.deriveFont(Font.PLAIN, 13));
-        Confirm.setFont(font.deriveFont(Font.BOLD, 18));
-        Cancel.setFont(font.deriveFont(Font.BOLD, 18));
     }
 
     private void initComponents() {
@@ -254,8 +245,7 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
 
 
     // Variables declaration - do not modify
-    private javax.swing.JLabel Cancel;
-    private javax.swing.JLabel Confirm;
+
     private javax.swing.JLabel Name;
     private javax.swing.JLabel Reservation;
     private javax.swing.JLabel bg;
