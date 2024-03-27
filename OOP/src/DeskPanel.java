@@ -147,12 +147,16 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                     this.deskPanel.add(companel);
                 }
             } else {
-                int index = 0;
                 for (Computer computer : comp_arr) {
                     if (computer.getStatus() != 0) {
-                        if (index < checkerList.size() && checkerList.get(index) == computer.getComp_id()) {
-                            index++;
-                        } else {
+                        boolean found = false;
+                        for (Integer compId : checkerList) {
+                            if (compId == computer.getComp_id()) {
+                                found = true;
+                                break;
+                            }
+                        }
+                        if (!found) {
                             computer.setName("");
                             computer.setStd_id("");
                             computer.setLab_name("");
