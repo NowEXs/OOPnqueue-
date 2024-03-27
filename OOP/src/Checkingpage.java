@@ -5,6 +5,7 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  *
@@ -31,6 +32,30 @@ public class Checkingpage extends javax.swing.JFrame {
     // End of variables declaration
     public Checkingpage() {
         initComponents();
+
+        try {
+            // Load and register the font
+            Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(appleFont);
+
+
+            // Set the font for components
+            setCustomFont(appleFont);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void setCustomFont(Font font){
+        lab_l.setFont(font.deriveFont(Font.PLAIN, 13));
+        jLabel10.setFont(font.deriveFont(Font.BOLD, 18));
+        std_l.setFont(font.deriveFont(Font.PLAIN, 13));
+        jLabel8.setFont(font.deriveFont(Font.BOLD, 18));
+        name_l.setFont(font.deriveFont(Font.PLAIN, 13));
+        jLabel6.setFont(font.deriveFont(Font.BOLD, 18));
+        jLabel5.setFont(font.deriveFont(Font.BOLD, 18));
+        jLabel4.setFont(font.deriveFont(Font.PLAIN, 16));
+        jLabel2.setFont(font.deriveFont(Font.BOLD, 20));
     }
 
     /**
