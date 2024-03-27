@@ -90,7 +90,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         label_complete.setText("COMPLETED!");
         getContentPane().add(label_complete, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/Create.png"))); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/create.png"))); // NOI18N
         getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         name_p.setBackground(new java.awt.Color(255, 244, 239));
@@ -194,7 +194,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
 
         getContentPane().add(time_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 170, 20));
 
-        confirm_bt.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\confirmButtonFont.png")); // NOI18N
+        confirm_bt.setIcon(new javax.swing.ImageIcon("Image/confirmButtonFont.png")); // NOI18N
         confirm_bt.setBorderPainted(false);
         confirm_bt.setContentAreaFilled(false);
         confirm_bt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -215,7 +215,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         });
         getContentPane().add(confirm_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, -1, -1));
 
-        cancel_bt.setIcon(new javax.swing.ImageIcon("D:\\NetBeans Projects\\PasswordGUI\\src\\img\\skipButtonFont.png")); // NOI18N
+        cancel_bt.setIcon(new javax.swing.ImageIcon("Image/skipButtonFont.png")); // NOI18N
         cancel_bt.setBorderPainted(false);
         cancel_bt.setContentAreaFilled(false);
         cancel_bt.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -263,7 +263,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
 
         bg.setBackground(new java.awt.Color(84, 59, 45));
         bg.setForeground(new java.awt.Color(255, 244, 204));
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/FeedbackWood.png"))); // NOI18N
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/FeedbackWood.png"))); // NOI18N
         bg.setOpaque(true);
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
