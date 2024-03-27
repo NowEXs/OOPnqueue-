@@ -8,7 +8,6 @@ public class SelectRole extends javax.swing.JFrame {
      */
     public SelectRole() {
         initComponents();
-
         try {
             Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();

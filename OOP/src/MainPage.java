@@ -52,9 +52,9 @@ public class MainPage extends javax.swing.JFrame {
                  PreparedStatement resetQstatement = DbCon.prepareStatement(resetQNum);
                  PreparedStatement reserveStatement = DbCon.prepareStatement(resetReserv)) {
                 delallstatement.executeUpdate();
-                delQstatement.executeUpdate();
-                resetQstatement.executeUpdate();
-                reserveStatement.executeUpdate();
+                //delQstatement.executeUpdate();
+                //resetQstatement.executeUpdate();
+                //reserveStatement.executeUpdate();
                 System.out.println("del_data_completed");
             } catch (SQLException ex) {
                 ex.printStackTrace();

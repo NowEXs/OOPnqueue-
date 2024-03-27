@@ -243,12 +243,43 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             throw new RuntimeException(e);
         }
     }
+    private void loadInitialDataFromDatabase() {
+        String fetchingSql = "SELECT * FROM Reservation";
+        try (Connection conn = DbCon.getConnection();
+             PreparedStatement fetchingStatement = conn.prepareStatement(fetchingSql);
+             ResultSet fetchResult = fetchingStatement.executeQuery()) {
+            while (fetchResult.next()) {
+                int comp_id = fetchResult.getInt("SM_SeatID");
+                String name = fetchResult.getString("StudentName");
+                String std_id = fetchResult.getString("StudentID");
+                String lab_name = fetchResult.getString("Lab_name");
+                int status = fetchResult.getInt("Status");
+                for (Computer computer : comp_arr) {
+                    if (comp_id == computer.getComp_id()) {
+                        computer.setStd_id(std_id);
+                        computer.setName(name);
+                        computer.setLab_name(lab_name);
+                        computer.setStatus(status);
+                    }
+                    ComputerPanel companel = new ComputerPanel(computer);
+                    companel.updateButtonIcon();
+                    companel.setOpaque(false);
+                    this.deskPanel.add(companel);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @Override
     public void dataFetcher() {
         Timer timer = new Timer(5000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                loadInitialDataFromDatabase();
                 updateGUI();
                 updateQueueTable();
             }
