@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 
 /*
@@ -10,7 +11,12 @@ import java.awt.*;
  * @author Newtellafolk
  */
 public class CreateSeatMDI extends javax.swing.JFrame {
-
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JButton confirmButton;
+    private javax.swing.JLabel createSeat;
+    private javax.swing.JLabel image;
+    private javax.swing.JTextField seatId;
+    private javax.swing.JLabel seatId_label;
     /**
      * Creates new form CreateSeatMDI
      */
@@ -40,6 +46,7 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(84, 59, 49));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setResizable(false);
 
         confirmButton.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         confirmButton.setActionCommand("");
@@ -58,6 +65,14 @@ public class CreateSeatMDI extends javax.swing.JFrame {
                 confirmButtonActionPerformed(evt);
             }
         });
+        confirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bt_confirmMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bt_confirmMouseExited(evt);
+            }
+        });
         getContentPane().add(confirmButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 195, 120, 60));
         confirmButton.getAccessibleContext().setAccessibleName("");
 
@@ -70,6 +85,14 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         cancelButton.setBorder(null);
         cancelButton.setBorderPainted(false);
         cancelButton.setContentAreaFilled(false);
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cancelButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cancelButtonMouseExited(evt);
+            }
+        });
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelButtonActionPerformed(evt);
@@ -110,14 +133,34 @@ public class CreateSeatMDI extends javax.swing.JFrame {
         getContentPane().add(image, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>
+    private void bt_confirmMouseEntered(java.awt.event.MouseEvent evt) {
+        //        Change cursor to hand cursor and change pic to bigger button
+        confirmButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        confirmButton.setIcon(new ImageIcon("OOP/src/Image/Button/confirmButtonBig.png"));
+    }
+
+    private void bt_confirmMouseExited(java.awt.event.MouseEvent evt) {
+        //        Change pic to smaller button
+        confirmButton.setIcon(new ImageIcon("OOP/src/Image/Button/confirmButtonSmall.png"));
+    }
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+
     }
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
+    }
+    private void cancelButtonMouseEntered(java.awt.event.MouseEvent evt) {
+        //        Change cursor to hand cursor and change pic to bigger button
+        cancelButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        cancelButton.setIcon(new ImageIcon("OOP/src/Image/Button/cancelButtonBig.png"));
+    }
+
+    private void cancelButtonMouseExited(java.awt.event.MouseEvent evt) {
+        //        Change pic to smaller button
+        cancelButton.setIcon(new ImageIcon("OOP/src/Image/Button/cancelButtonSmall.png"));
     }
 
     private void seatIdActionPerformed(java.awt.event.ActionEvent evt) {
@@ -175,13 +218,4 @@ public class CreateSeatMDI extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify                     
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JButton confirmButton;
-    private javax.swing.JLabel createSeat;
-    private javax.swing.JLabel image;
-    private javax.swing.JTextField seatId;
-    private javax.swing.JLabel seatId_label;
-    // End of variables declaration                   
 }
