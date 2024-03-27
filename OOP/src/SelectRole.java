@@ -1,3 +1,6 @@
+
+import java.awt.*;
+import java.io.*;
 public class SelectRole extends javax.swing.JFrame {
 
     /**
@@ -5,7 +8,30 @@ public class SelectRole extends javax.swing.JFrame {
      */
     public SelectRole() {
         initComponents();
+
+        try {
+            // Load and register the font
+            Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(appleFont);
+
+
+            // Set the font for components
+            setCustomFont(appleFont);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
+    private void setCustomFont(Font font){
+        txt_select.setFont(font.deriveFont(Font.PLAIN, 16));
+        txt_welcome.setFont(font.deriveFont(Font.BOLD, 36));
+        txt_nq.setFont(font.deriveFont(Font.BOLD, 48));
+        PFSButton.setFont(font.deriveFont(Font.PLAIN, 24));
+        STDButton.setFont(font.deriveFont(Font.PLAIN, 24));
+        TAButton.setFont(font.deriveFont(Font.PLAIN, 24));
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -85,7 +111,7 @@ public class SelectRole extends javax.swing.JFrame {
         getContentPane().add(TAButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 420, 170, -1));
         TAButton.getAccessibleContext().setAccessibleDescription("");
 
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/BG.png"))); // NOI18N
+        image.setIcon(new javax.swing.ImageIcon("OOP/src/Image/BG.png")); // NOI18N
         image.setMaximumSize(new java.awt.Dimension(1200, 1080));
         image.setMinimumSize(new java.awt.Dimension(1200, 1080));
         image.setPreferredSize(new java.awt.Dimension(1200, 1080));

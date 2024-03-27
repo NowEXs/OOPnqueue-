@@ -1,19 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
-
 /**
  *
  * @author Newtellafolk
  */
-public class Waiting extends javax.swing.JPanel {
+
+
+public class Waiting extends javax.swing.JDialog {
 
     /**
-     * Creates new form NewJPanel
+     *
      */
-    public Waiting() {
+    public Waiting(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -25,37 +24,79 @@ public class Waiting extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
 
-        jInternalFrame2 = new javax.swing.JInternalFrame();
-        lb1_wait = new javax.swing.JLabel();
-        bg = new javax.swing.JLabel();
+        lb_wait = new javax.swing.JLabel();
+        board = new javax.swing.JLabel();
+        bg_color = new javax.swing.JPanel();
 
-        jInternalFrame2.setVisible(true);
-        jInternalFrame2.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setFocusCycleRoot(false);
+        setUndecorated(true);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lb1_wait.setFont(new java.awt.Font("JasmineUPC", 1, 36)); // NOI18N
-        lb1_wait.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb1_wait.setText("Please Waitting....");
-        jInternalFrame2.getContentPane().add(lb1_wait, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 73, 473, 33));
+        lb_wait.setFont(new java.awt.Font("Big Apple 3PM", 1, 22)); // NOI18N
+        lb_wait.setForeground(new java.awt.Color(87, 65, 43));
+        lb_wait.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_wait.setText("Please Wait A Moment...");
+        getContentPane().add(lb_wait, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 75, 465, -1));
 
-        bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/Waitting&YourQ(470, 160).png")); // NOI18N
-        jInternalFrame2.getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 163));
+        board.setBackground(new java.awt.Color(84, 59, 45));
+        board.setForeground(new java.awt.Color(84, 59, 45));
+        board.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/Waitting&YourQ(470, 160).png"))); // NOI18N
+        getContentPane().add(board, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jInternalFrame2)
-        );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jInternalFrame2)
-        );
+        bg_color.setBackground(new java.awt.Color(84, 59, 45));
+        getContentPane().add(bg_color, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 160));
+
+        pack();
     }// </editor-fold>
 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Waiting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Waiting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Waiting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Waiting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                Waiting dialog = new Waiting(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify
-    private javax.swing.JLabel bg;
-    private javax.swing.JInternalFrame jInternalFrame2;
-    private javax.swing.JLabel lb1_wait;
+    private javax.swing.JPanel bg_color;
+    private javax.swing.JLabel board;
+    private javax.swing.JLabel lb_wait;
     // End of variables declaration
 }

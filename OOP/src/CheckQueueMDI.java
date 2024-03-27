@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 /**
@@ -5,7 +6,21 @@ import java.io.File;
  * @author nk
  */
 public class CheckQueueMDI extends javax.swing.JFrame {
-
+    private javax.swing.JLabel Cancel;
+    private javax.swing.JLabel Confirm;
+    private javax.swing.JLabel Name;
+    private javax.swing.JLabel Queue;
+    private javax.swing.JLabel bg;
+    private javax.swing.JButton bt_cancel;
+    private javax.swing.JButton bt_confirm;
+    private javax.swing.JLabel img_checking;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel_id;
+    private javax.swing.JLabel jLabel_lab;
+    private javax.swing.JLabel jLabel_name;
+    private javax.swing.JLabel lab;
+    private javax.swing.JLabel seat;
+    private javax.swing.JLabel std_id;
     /**
      * Creates new form Reservation
      */
@@ -112,6 +127,19 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         bt_confirm.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png")); // NOI18N
         bt_confirm.setBorderPainted(false);
         bt_confirm.setContentAreaFilled(false);
+        bt_confirm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bt_confirmActionPerformed(evt);
+            }
+        });
+        bt_confirm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bt_confirmMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bt_confirmMouseExited(evt);
+            }
+        });
         getContentPane().add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(36, 390, -1, -1));
 
 
@@ -121,6 +149,14 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         bt_cancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bt_cancelActionPerformed(evt);
+            }
+        });
+        bt_cancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bt_cancelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bt_cancelMouseExited(evt);
             }
         });
         getContentPane().add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(175, 390, -1, -1));
@@ -133,7 +169,7 @@ public class CheckQueueMDI extends javax.swing.JFrame {
 
         jLabel_id.setForeground(new java.awt.Color(239, 210, 173));
         jLabel_id.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel_id.setText("id");
+        jLabel_id.setText("ID");
         getContentPane().add(jLabel_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 260, 120, 30));
 
         jLabel_lab.setForeground(new java.awt.Color(239, 210, 173));
@@ -147,15 +183,49 @@ public class CheckQueueMDI extends javax.swing.JFrame {
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
-    }// </editor-fold>
-
-    private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    }
+    private void bt_confirmActionPerformed(java.awt.event.ActionEvent evt) {
+        dispose();
+//        next page >> Checkingpage
     }
 
-    /**
-     * @param args the command line arguments
-     */
+    private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {
+        int userChoice = JOptionPane.showConfirmDialog(null, "You can't skip queues. If you press OK you will delete this queue. Are you sure you want to do it?", "Warning", JOptionPane.OK_CANCEL_OPTION);
+        switch(userChoice) {
+            case JOptionPane.OK_OPTION:
+                System.out.println("User deleted queue");
+//                delete the queue code goes here!!
+                dispose();
+                JOptionPane.showMessageDialog(null, "Queue deleted");
+            case JOptionPane.CANCEL_OPTION:
+                System.out.println("User canceled queue deletion");
+
+        }
+    }
+
+    private void bt_cancelMouseEntered(java.awt.event.MouseEvent evt) {
+        //        Change cursor to hand cursor and change pic to bigger button
+        bt_cancel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        bt_cancel.setIcon(new ImageIcon("OOP/src/Image/Button/cancelButtonBig.png"));
+    }
+
+    private void bt_cancelMouseExited(java.awt.event.MouseEvent evt) {
+        //        Change pic to smaller button
+        bt_cancel.setIcon(new ImageIcon("OOP/src/Image/Button/cancelButtonSmall.png"));
+    }
+
+    private void bt_confirmMouseEntered(java.awt.event.MouseEvent evt) {
+        //        Change cursor to hand cursor and change pic to bigger button
+        bt_confirm.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        bt_confirm.setIcon(new ImageIcon("OOP/src/Image/Button/confirmButtonBig.png"));
+    }
+
+    private void bt_confirmMouseExited(java.awt.event.MouseEvent evt) {
+        //        Change pic to smaller button
+        bt_confirm.setIcon(new ImageIcon("OOP/src/Image/Button/confirmButtonSmall.png"));
+    }
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -187,22 +257,4 @@ public class CheckQueueMDI extends javax.swing.JFrame {
             }
         });
     }
-
-    // Variables declaration - do not modify
-    private javax.swing.JLabel Cancel;
-    private javax.swing.JLabel Confirm;
-    private javax.swing.JLabel Name;
-    private javax.swing.JLabel Queue;
-    private javax.swing.JLabel bg;
-    private javax.swing.JButton bt_cancel;
-    private javax.swing.JButton bt_confirm;
-    private javax.swing.JLabel img_checking;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel_id;
-    private javax.swing.JLabel jLabel_lab;
-    private javax.swing.JLabel jLabel_name;
-    private javax.swing.JLabel lab;
-    private javax.swing.JLabel seat;
-    private javax.swing.JLabel std_id;
-    // End of variables declaration
 }
