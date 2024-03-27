@@ -21,13 +21,16 @@ public class MainPage extends javax.swing.JFrame {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             String resetSeat = "UPDATE SeatManager SET Availability = NULL"; // รี sql
             String resetQueue = "DELETE FROM Reservation";
+            String resetReserv = "UPDATE SeatManager SET Reservable = NULL";
             String resetQNum = "ALTER TABLE Reservation AUTO_INCREMENT = 1";
             try (PreparedStatement delallstatement = DbCon.prepareStatement(resetSeat);
                  PreparedStatement delQstatement = DbCon.prepareStatement(resetQueue);
-                 PreparedStatement resetQstatement = DbCon.prepareStatement(resetQNum)) {
+                 PreparedStatement resetQstatement = DbCon.prepareStatement(resetQNum);
+                 PreparedStatement reserveStatement = DbCon.prepareStatement(resetReserv)) {
                 delallstatement.executeUpdate();
                 delQstatement.executeUpdate();
                 resetQstatement.executeUpdate();
+                reserveStatement.executeUpdate();
                 System.out.println("del_data_completed");
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -42,14 +45,16 @@ public class MainPage extends javax.swing.JFrame {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             String resetSeat = "UPDATE SeatManager SET Availability = NULL"; // รี sql
             String resetQueue = "DELETE FROM Reservation";
+            String resetReserv = "UPDATE SeatManager SET Reservable = 1";
             String resetQNum = "ALTER TABLE Reservation AUTO_INCREMENT = 1";
-
             try (PreparedStatement delallstatement = DbCon.prepareStatement(resetSeat);
                  PreparedStatement delQstatement = DbCon.prepareStatement(resetQueue);
-                 PreparedStatement resetQstatement = DbCon.prepareStatement(resetQNum)) {
+                 PreparedStatement resetQstatement = DbCon.prepareStatement(resetQNum);
+                 PreparedStatement reserveStatement = DbCon.prepareStatement(resetReserv)) {
                 delallstatement.executeUpdate();
                 delQstatement.executeUpdate();
                 resetQstatement.executeUpdate();
+                reserveStatement.executeUpdate();
                 System.out.println("del_data_completed");
             } catch (SQLException ex) {
                 ex.printStackTrace();

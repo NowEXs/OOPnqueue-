@@ -3,7 +3,8 @@ import javax.swing.*;
 public class YourQPop {
     YourQ UrQ; JFrame frme;
     public YourQPop(){
-        frme = new JFrame(); UrQ = new YourQ();
+        frme = new JFrame();
+        //UrQ = new YourQ();
         frme.add(UrQ);
 
         frme.pack();
