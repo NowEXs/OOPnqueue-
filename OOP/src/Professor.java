@@ -15,4 +15,8 @@ public class Professor extends User implements Checkable {
 
     }
 
+    @Override
+    public int getRole() {
+        return 2;
+    }
 }
