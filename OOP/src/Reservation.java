@@ -62,6 +62,7 @@ public class Reservation extends javax.swing.JFrame {
         std_id.setFont(font.deriveFont(Font.BOLD, 18));
         lab.setFont(font.deriveFont(Font.BOLD, 18));
         jTextField_name.setFont(font.deriveFont(Font.PLAIN, 13));
+        jComboBox_lab.setFont(font.deriveFont(Font.PLAIN, 13));
         jTextField_id.setFont(font.deriveFont(Font.PLAIN, 13));
         Confirm.setFont(font.deriveFont(Font.BOLD, 18));
         Cancel.setFont(font.deriveFont(Font.BOLD, 18));
@@ -164,7 +165,7 @@ public class Reservation extends javax.swing.JFrame {
         jTextField_id.setFont(new java.awt.Font("Helvetica Neue", 1, 13)); // NOI18N
         jTextField_id.setForeground(new java.awt.Color(239,210,173));
         jTextField_id.setHorizontalAlignment(javax.swing.JTextField.LEADING);
-        jTextField_id.setText("Id");
+        jTextField_id.setText("ID");
         jTextField_id.setBorder(null);
         jTextField_id.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -216,14 +217,14 @@ public class Reservation extends javax.swing.JFrame {
 
 
         jComboBox_lab.setBackground(new java.awt.Color(76, 40, 20));
-        jComboBox_lab.setEditable(true);
+        jComboBox_lab.setEditable(false);
         jComboBox_lab.setForeground(new java.awt.Color(239, 210, 173));
         jComboBox_lab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "lab 1", "lab 2", "lab 3", "lab 4" }));
         jComboBox_lab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
             }
         });
-        add(jComboBox_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 60, -1));
+        add(jComboBox_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 318, 70, 30));
 
 
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
@@ -294,7 +295,7 @@ public class Reservation extends javax.swing.JFrame {
 
     private void jTextField_idFocusLost(java.awt.event.FocusEvent evt) {
         if (jTextField_id.getText().isEmpty()){
-            jTextField_id.setText("Id");
+            jTextField_id.setText("ID");
         }
         jTextField_id.setForeground(new Color(239,210,173));
     }
