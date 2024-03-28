@@ -2,14 +2,22 @@
  *
  * @author Newtellafolk
  */
+import javax.swing.*;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class DeleteSeatMDI extends javax.swing.JFrame {
 
     /**
      * Creates new form DeleteSeatMDI
      */
-    public DeleteSeatMDI() {
+    public DeleteSeatMDI(DeskPanel desk, Computer comp) {
+        this.desk = desk;
+        this.comp = comp;
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
@@ -26,12 +34,11 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
     private void initComponents() {
 
         seatId_label = new javax.swing.JLabel();
-        enterSeatId = new javax.swing.JTextField();
+        seatID = new javax.swing.JTextField();
         delete_label = new javax.swing.JLabel();
         deleteButton = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         seatId_label.setFont(new java.awt.Font("Big Apple 3PM", 1, 16)); // NOI18N
@@ -40,12 +47,13 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         seatId_label.setText("Seat ID");
         getContentPane().add(seatId_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 166, 75, -1));
 
-        enterSeatId.setBackground(new java.awt.Color(79, 47, 19));
-        enterSeatId.setFont(new java.awt.Font("Big Apple 3PM", 1, 12)); // NOI18N
-        enterSeatId.setForeground(new java.awt.Color(245, 243, 230));
-        enterSeatId.setText("Enter Seat ID");
-        enterSeatId.setBorder(null);
-        enterSeatId.addFocusListener(new java.awt.event.FocusAdapter() {
+        seatID.setBackground(new java.awt.Color(79, 47, 19));
+        seatID.setFont(new java.awt.Font("Big Apple 3PM", 1, 12)); // NOI18N
+        seatID.setForeground(new java.awt.Color(245, 243, 230));
+        seatID.setText("            " + comp.getComp_id() + "");
+        seatID.setEditable(false);
+        seatID.setBorder(null);
+        seatID.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 enterSeatIdFocusGained(evt);
             }
@@ -53,12 +61,12 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
                 enterSeatIdFocusLost(evt);
             }
         });
-        enterSeatId.addActionListener(new java.awt.event.ActionListener() {
+        seatID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterSeatIdActionPerformed(evt);
             }
         });
-        getContentPane().add(enterSeatId, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 167, 90, 15));
+        getContentPane().add(seatID, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 167, 90, 15));
 
         delete_label.setFont(new java.awt.Font("Big Apple 3PM", 1, 24)); // NOI18N
         delete_label.setForeground(new java.awt.Color(255, 244, 204));
@@ -70,11 +78,11 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         deleteButton.setBorder(null);
         deleteButton.setBorderPainted(false);
         deleteButton.setContentAreaFilled(false);
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+        /* deleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteButtonActionPerformed(evt);
             }
-        });
+        }); */
         getContentPane().add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 205, 330, -1));
 
         bg.setBackground(new java.awt.Color(84, 59, 45));
@@ -91,62 +99,56 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
     }
 
     private void enterSeatIdFocusGained(java.awt.event.FocusEvent evt) {
-        if (enterSeatId.getText().equals("Enter Seat ID")){
-            enterSeatId.setText("");
+        if (seatID.getText().equals("Enter Seat ID")){
+            seatID.setText("");
         }
-        enterSeatId.setForeground(Color.WHITE);
+        seatID.setForeground(Color.WHITE);
     }
 
     private void enterSeatIdFocusLost(java.awt.event.FocusEvent evt) {
-        if (enterSeatId.getText().equals("")){
-            enterSeatId.setText("Enter Seat ID");
+        if (seatID.getText().equals("")){
+            seatID.setText("Enter Seat ID");
         }
     }
 
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
+   /* private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+        String delSql = "UPDATE SeatManager SET Availability = NULL WHERE SeatID = ?"; // ลบโต๊ะ
+        try (Connection conn = DbCon.getConnection();
+             PreparedStatement delStatement = conn.prepareStatement(delSql)) {
+            int deskNumber = Integer.parseInt(seatID.getText());
+            ArrayList<ComputerPanel> desk_list = desk.getDesk_arr();
+            JPanel deskPanel = desk.getDeskPanel();
+            for (ComputerPanel comp : desk_list) {
+                int comp_id = comp.getComp().getComp_id();
+                if (deskNumber.equals()) {
+                    deskPanel.remove(comp);
+                    desk_list.remove(comp);
+                    deskPanel.revalidate();
+                    deskPanel.repaint();
+                    System.out.println("delete Desk number : " + demo.deskGetter());
+                    demo.deskSetter("Desk number : " + demo.deskGetter() + " has been deleted");
+                    delStatement.setInt(1, deskNumber);
+                    delStatement.executeUpdate();
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DeleteSeatMDI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DeleteSeatMDI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DeleteSeatMDI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DeleteSeatMDI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        //</editor-fold>
+    } */
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new DeleteSeatMDI().setVisible(true);
-            }
-        });
-    }
 
-    // Variables declaration - do not modify                     
+
+    // Variables declaration - do not modify
     private javax.swing.JLabel bg;
     private javax.swing.JButton deleteButton;
     private javax.swing.JLabel delete_label;
-    private javax.swing.JTextField enterSeatId;
+    private javax.swing.JTextField seatID;
     private javax.swing.JLabel seatId_label;
-    // End of variables declaration                   
+    private DeskPanel desk;
+    private Computer comp;
+    // End of variables declaration
 }
