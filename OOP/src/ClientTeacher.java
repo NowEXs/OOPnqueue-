@@ -57,7 +57,7 @@ public class ClientTeacher implements ActionListener {
 
     public void startServer() {
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true), "UTF-8")))) {
-            soc = new ServerSocket(1111);
+            soc = new ServerSocket(1112);
             while (true) {
                 System.out.println("Waiting for input...");
                 Socket sev = soc.accept();

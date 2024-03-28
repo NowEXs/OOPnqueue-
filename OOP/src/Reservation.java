@@ -6,6 +6,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.io.*;
+import java.net.ConnectException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 
 /*
@@ -243,11 +246,22 @@ public class Reservation extends javax.swing.JFrame {
     }
 
     private void bt_confirmActionPerformed(java.awt.event.ActionEvent evt) {
+        try (Socket socket = new Socket("localhost", 1111)){
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println(2);
+        }catch (ConnectException e){
+            System.out.println("Not have server...");
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         student.setStd_name(jTextField_name.getText());
         student.setStd_id(jTextField_id.getText());
         student.setLab_name(jComboBox_lab.getSelectedItem()+"");
         JOptionPane.showMessageDialog(null, "Successfully reserved! :D", "Reservation status", JOptionPane.INFORMATION_MESSAGE);
         setVisible(true);
+        this.dispose();
     }
 
     private void bt_cancelMouseEntered(java.awt.event.MouseEvent evt) {

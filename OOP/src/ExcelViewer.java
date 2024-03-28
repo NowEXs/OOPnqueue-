@@ -11,10 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -60,6 +57,8 @@ public class ExcelViewer extends JFrame implements WindowListener {
                 }
             }
         });
+
+        addWindowListener(this);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(saveButton);
@@ -161,8 +160,9 @@ public class ExcelViewer extends JFrame implements WindowListener {
 
     @Override
     public void windowClosing(WindowEvent e) {
-        try (Socket socket = new Socket("localhost",11111)){
-//            Prin
+        try (Socket socket = new Socket("localhost",1111)){
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println(1);
         }catch (ConnectException ex){
             System.out.println("Not have Server...");
         } catch (UnknownHostException ex) {

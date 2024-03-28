@@ -29,9 +29,9 @@ public class Waiting extends javax.swing.JDialog {
         bg_color = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setFocusCycleRoot(false);
-        setUndecorated(true);
-        setResizable(false);
+//        setFocusCycleRoot(false);
+//        setUndecorated(true);
+//        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lb_wait.setFont(new java.awt.Font("Big Apple 3PM", 1, 22)); // NOI18N

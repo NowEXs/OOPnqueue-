@@ -5,7 +5,7 @@ public class DemoServer {
     public DemoServer() {
         new Thread(new Runnable() {
             public void run() {
-                try( ServerSocket welcomeSocket = new ServerSocket(1111);
+                try( ServerSocket welcomeSocket = new ServerSocket(1112);
                     PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true),"UTF-8")))) {
                     while(true){
                         System.out.println("Please Wait...");

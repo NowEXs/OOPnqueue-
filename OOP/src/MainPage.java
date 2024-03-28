@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
@@ -35,6 +36,7 @@ public class MainPage extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
     }
     private void setCustomFont(Font font){
         seat1.setFont(font.deriveFont(Font.PLAIN, 14));
@@ -71,7 +73,7 @@ public class MainPage extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
+        parent = this;
         main = new javax.swing.JPanel();
         queue = new javax.swing.JPanel();
         q1 = new javax.swing.JPanel();
@@ -532,10 +534,9 @@ public class MainPage extends javax.swing.JFrame {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    new MainPage().setVisible(true);
                     java.awt.EventQueue.invokeLater(new Runnable() {
                         public void run() {
-                            new MainPage().serverStart();
+                            new MainPage().setVisible(true);
                         }
                     });
                     break;
@@ -551,30 +552,12 @@ public class MainPage extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        new CenterServer().serverStart(parent);
 
-        /* Create and display the form */
-
-    }
-
-    public void serverStart(){
-        try (ServerSocket svSocket = new ServerSocket(1111);){
-            while(true){
-                System.out.println("Waiting for command...");
-                Socket socket = svSocket.accept();
-                System.out.println("Command Received!!");
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
-                String com = in.readLine();
-                if (in != null & com.equals("0")){
-                    new YourQ( this,true).setVisible(true);
-                }
-                socket.close();
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
     }
 
     // Variables declaration - do not modify
+    private static javax.swing.JFrame parent;
     private javax.swing.JPanel area;
     private javax.swing.JLabel area_q;
     private javax.swing.JLabel bg_dl;
