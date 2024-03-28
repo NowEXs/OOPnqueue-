@@ -4,17 +4,22 @@
  */
 
 import java.awt.*;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 /**
  *
  * @author huawei
  */
 public class MainPage extends javax.swing.JFrame {
-
     /**
      * Creates new form MainPage
      */
+
     public MainPage() {
         initComponents();
 
@@ -511,6 +516,7 @@ public class MainPage extends javax.swing.JFrame {
         getContentPane().add(main, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
 
         pack();
+
     }// </editor-fold>
 
     /**
@@ -546,6 +552,23 @@ public class MainPage extends javax.swing.JFrame {
                 new MainPage().setVisible(true);
             }
         });
+    }
+
+    public void serverStart(){
+        try (ServerSocket svSocket = new ServerSocket(1111);){
+            while(true){
+                System.out.println("Waiting for command...");
+                Socket socket = svSocket.accept();
+                System.out.println("Command Received!!");
+                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
+                String com = in.readLine();
+                if (in != null & com.equals("0")){
+                    new YourQ( this,true).setVisible(true);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     // Variables declaration - do not modify

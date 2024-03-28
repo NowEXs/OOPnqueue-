@@ -60,7 +60,7 @@ public class ExcelViewer extends JFrame {
         buttonPanel.add(saveButton);
         buttonPanel.add(chooseSheetButton);
         getContentPane().add(buttonPanel, BorderLayout.NORTH);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set Excel-like styling for the table
         table.setGridColor(Color.gray); // Set grid color
