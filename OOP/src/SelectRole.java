@@ -1,4 +1,3 @@
-
 import java.awt.*;
 import java.io.*;
 public class SelectRole extends javax.swing.JFrame {
@@ -113,20 +112,26 @@ public class SelectRole extends javax.swing.JFrame {
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 510, 710));
-
+        setLocationRelativeTo(null);
         pack();
-    }// </editor-fold>
+    }
 
     private void PFSButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        Password pass_gui = new Password(new Professor());
+        pass_gui.setVisible(true);
     }
 
     private void STDButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        MainPage mainWindow = new MainPage(new Student());
+        mainWindow.setVisible(true);
     }
 
     private void TAButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        this.dispose();
+        Password pass_gui = new Password(new TA());
+        pass_gui.setVisible(true);
     }
 
     /**
