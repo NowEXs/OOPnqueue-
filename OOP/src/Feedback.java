@@ -304,10 +304,11 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
     }
 
     private void cancel_btMouseExited(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+        cancel_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/skipButtonFont.png"));
     }
 
     private void cancel_btMouseEntered(java.awt.event.MouseEvent evt) {
+        cancel_bt.setIcon(new ImageIcon("OOP/src/Image/button/skipButtonBig.png"));
         cancel_bt.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
@@ -316,15 +317,16 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
     }
 
     private void confirm_btMouseEntered(java.awt.event.MouseEvent evt) {
+        confirm_bt.setIcon(new ImageIcon("OOP/src/Image/button/confirmButtonBig.png"));
         confirm_bt.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }
 
     private void confirm_btMouseExited(java.awt.event.MouseEvent evt) {
-
+        confirm_bt.setIcon(new javax.swing.ImageIcon("OOP/src/Image/confirmButtonFont.png"));
     }
 
     private void confirm_btMouseClicked(java.awt.event.MouseEvent evt) {
-        // TODO add your handling code here:
+
     }
 
     private void cancel_btActionPerformed(java.awt.event.ActionEvent evt) {
