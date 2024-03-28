@@ -5,13 +5,14 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.File;
 
 /**
  *
  * @author gypprt
  */
-public class Checkingpage extends javax.swing.JFrame {
+public class Checkingpage extends javax.swing.JFrame implements OnClick {
 
     /**
      * Creates new form Checkingpage
@@ -175,7 +176,7 @@ public class Checkingpage extends javax.swing.JFrame {
     }// </editor-fold>
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+        actionPerformed(evt);
 //        this.dispose();
 //        NewJFrame pi = new NewJFrame();
 //        pi.setVisible(true);
@@ -224,5 +225,29 @@ public class Checkingpage extends javax.swing.JFrame {
                 new Checkingpage().setVisible(true);
             }
         });
+    }
+
+    @Override
+    public void pressConfirm(ActionEvent event) {
+        //nothing
+    }
+
+    @Override
+    public void pressCancel(ActionEvent event) {
+        //nothing
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent evt) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            SwingUtilities.invokeLater(() -> {
+                ExcelViewer excelViewer = new ExcelViewer();
+                excelViewer.setVisible(true);
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

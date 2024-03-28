@@ -407,6 +407,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                 }
             }
         }).start();
+        new DemoServer();
     }
 
     @Override
