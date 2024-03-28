@@ -11,7 +11,9 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater{
     private Computer comp;
     private int userType;
 
-    public ComputerPanel(Computer comp, int userType) {
+    private DeskPanel desk;
+    public ComputerPanel(DeskPanel desk, Computer comp, int userType) {
+        this.desk = desk;
         this.userType = userType;
         this.comp = comp;
         computerNumber = new JLabel("Seat - " + comp.getComp_id());
@@ -32,6 +34,10 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater{
         add(innerLabel);
     }
 
+    public Computer getComp() {
+        return this.comp;
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(computerButton)) {
@@ -44,13 +50,33 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater{
                     System.out.println(comp.getStatus());
                     JOptionPane.showMessageDialog(errorFrame, "This seat is not Reservable There's a person in that seat.");
                 }
-            } else {
-                CheckQueueMDI queueWindow = new CheckQueueMDI(comp);
-                queueWindow.setVisible(true);
+            }
+            else if (userType == 1) {
+                    if (comp.getIsReservable() == true) {
+                        JFrame errorFrame = new JFrame();
+                        System.out.println(comp.getStatus());
+                        JOptionPane.showMessageDialog(errorFrame, "There's no person in that seat.");
+                    } else if (comp.getStatus() == 1){
+                        CheckQueueMDI queueWindow = new CheckQueueMDI(comp);
+                        queueWindow.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "This seat is still checking...");
+                    }
+            } else if (userType == 2) {
+                if (comp.getIsReservable() == true) {
+                    DeleteSeatMDI deleteWindow = new DeleteSeatMDI(desk, comp);
+                    deleteWindow.setVisible(true);
+                } else if (comp.getStatus() == 1){
+                    CheckQueueMDI queueWindow = new CheckQueueMDI(comp);
+                    queueWindow.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "This seat is still checking...");
+                }
+            }
+
             }
 
         }
-    }
     @Override
     public void updateButtonIcon() {
         if (comp.getStatus() == 0) {

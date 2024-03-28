@@ -25,6 +25,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private int roleCheck;
     private JScrollPane scrollPanel;
     private ArrayList<Computer> comp_arr = new ArrayList<>();
+    private ArrayList<ComputerPanel> desk_arr = new ArrayList<>();
     private AddingButtonPanel addingButton;
     private static boolean isRunning = false;
     private JTable queueTable;
@@ -105,9 +106,10 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             while (resultSet.next()) {
                 int compID = resultSet.getInt("SeatID");
                 Computer computer = new Computer("", "", "", compID, 0);
-                ComputerPanel companel = new ComputerPanel(computer, userType());
+                ComputerPanel companel = new ComputerPanel(this, computer, userType());
                 companel.setOpaque(false);
                 this.deskPanel.add(companel);
+                this.desk_arr.add(companel);
 
                 comp_arr.add(computer); // Add the created desk button to the list
                 updateStatement.setInt(1, 1); // Set Availability to 1
@@ -158,6 +160,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     public ArrayList<Computer> getComp_arr() {
         return  this.comp_arr;
     }
+    public ArrayList<ComputerPanel> getDesk_arr() { return this.desk_arr; }
     public JPanel getDeskPanel() {
         return this.deskPanel;
     }
@@ -173,10 +176,6 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     @Override
     public void actionPerformed(ActionEvent e) {
 
-    }
-
-    public void setIsRunning(boolean run) {
-        this.isRunning = run;
     }
 
     @Override
@@ -202,12 +201,12 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                 checkerList.add(seatID);
             }
             if (checkerList.isEmpty()) {
-                for (Computer computer : comp_arr) {
+                for (Computer computer : comp_arr) { //กรณีที่ไม่มีคิวค้าง
                     computer.setName("");
                     computer.setStd_id("");
                     computer.setLab_name("");
                     computer.setStatus(0);
-                    ComputerPanel companel = new ComputerPanel(computer, userType());
+                    ComputerPanel companel = new ComputerPanel(this, computer, userType());
                     companel.updateButtonIcon();
                     companel.setOpaque(false);
                     this.deskPanel.add(companel);
@@ -216,20 +215,20 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                 for (Computer computer : comp_arr) {
                     if (computer.getStatus() != 0) {
                         boolean found = false;
-                        for (Integer compId : checkerList) {
+                        for (Integer compId : checkerList) { // เจอปุ๊ป break
                             if (compId == computer.getComp_id()) {
                                 found = true;
                                 break;
                             }
                         }
-                        if (!found) {
+                        if (!found) { // ไม่เจอ ให้ gen โต๊ะใหม่
                             computer.setName("");
                             computer.setStd_id("");
                             computer.setLab_name("");
                             computer.setStatus(0);
                         }
                     }
-                    ComputerPanel companel = new ComputerPanel(computer, userType());
+                    ComputerPanel companel = new ComputerPanel(this, computer, userType());
                     companel.updateButtonIcon();
                     companel.setOpaque(false);
                     this.deskPanel.add(companel);
@@ -261,7 +260,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                         computer.setLab_name(lab_name);
                         computer.setStatus(status);
                     }
-                    ComputerPanel companel = new ComputerPanel(computer, userType());
+                    ComputerPanel companel = new ComputerPanel(this, computer, userType());
                     companel.updateButtonIcon();
                     companel.setOpaque(false);
                     this.deskPanel.add(companel);
