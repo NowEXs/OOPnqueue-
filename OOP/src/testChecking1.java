@@ -30,7 +30,6 @@ public class testChecking1 extends JFrame {
                 writer.println(1); // Send message to server
                 String response = read.readLine();
                 if (response != null && response.equals("0")) {
-                    testChecking1.this.dispose();
                     SwingUtilities.invokeLater(() -> {
                         ExcelViewer excelViewer = new ExcelViewer();
                         excelViewer.setVisible(true);

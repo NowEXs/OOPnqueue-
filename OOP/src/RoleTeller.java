@@ -1,15 +1,19 @@
 
 public class RoleTeller<role> {
+    private role rl;
     private String name;
-    private role objRole;
 
-    public RoleTeller(role obj, String name){
-        this.objRole = obj;
+    public RoleTeller(role role, String name) {
+        this.setRl(role);
         this.setName(name);
     }
 
-    public role getObj(){
-        return this.objRole;
+    public void setRl(role rl){
+        this.rl = rl;
+    }
+
+    public RoleTeller<role> getRl(){
+        return (RoleTeller<role>) this.rl;
     }
 
     public void setName(String name) {
@@ -25,6 +29,6 @@ public class RoleTeller<role> {
         RoleTeller<TA> ta = new RoleTeller<>(new TA(), "TA");
         RoleTeller<Professor> pro = new RoleTeller<>(new Professor(), "Professor");
         System.out.println(std.getName());System.out.println(ta.getName());System.out.println(pro.getName());
-        System.out.println(std.getObj().getRole());
     }
+
 }

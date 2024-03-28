@@ -60,7 +60,6 @@ public class ExcelViewer extends JFrame {
         buttonPanel.add(saveButton);
         buttonPanel.add(chooseSheetButton);
         getContentPane().add(buttonPanel, BorderLayout.NORTH);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set Excel-like styling for the table
         table.setGridColor(Color.gray); // Set grid color
@@ -136,17 +135,10 @@ public class ExcelViewer extends JFrame {
     }
 
     public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            SwingUtilities.invokeLater(() -> {
-                ExcelViewer excelViewer = new ExcelViewer();
-                excelViewer.setVisible(true);
-            });
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
+        SwingUtilities.invokeLater(() -> {
+            ExcelViewer excelViewer = new ExcelViewer();
+            excelViewer.setVisible(true);
+        });
     }
 
     // Custom cell renderer to mimic Excel's styling
@@ -156,7 +148,6 @@ public class ExcelViewer extends JFrame {
             super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
             // Set font color
-
             setForeground(Color.black);
 
             // Set background color
