@@ -1,10 +1,38 @@
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+
 public class AddDelLab extends javax.swing.JFrame {
 
     /**
      * Creates new form Password
      */
+
+    private javax.swing.JButton ConfirmButton;
+    private javax.swing.JButton DeleteButton;
+    private javax.swing.JTextField Lab_tf;
+    private javax.swing.JLabel txt_Lab;
+
     public AddDelLab() {
         initComponents();
+
+        try {
+            // Load and register the font
+            Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(appleFont);
+
+
+            // Set the font for components
+            setCustomFont(appleFont);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setCustomFont(Font font){
+        txt_Lab.setFont(font.deriveFont(Font.PLAIN, 16));
+        Lab_tf.setFont(font.deriveFont(Font.PLAIN, 16));
     }
 
     /**
@@ -24,6 +52,8 @@ public class AddDelLab extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(275, 150));
         setResizable(false);
+        setBackground(new java.awt.Color(84, 59, 45));
+        setTitle("N-Queue");
 
         txt_Lab.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
         txt_Lab.setText("Lab");
@@ -64,7 +94,7 @@ public class AddDelLab extends javax.swing.JFrame {
                                 .addComponent(txt_Lab)
                                 .addGap(15, 15, 15)
                                 .addComponent(Lab_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45))
+                                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
                 layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -122,9 +152,5 @@ public class AddDelLab extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JButton ConfirmButton;
-    private javax.swing.JButton DeleteButton;
-    private javax.swing.JTextField Lab_tf;
-    private javax.swing.JLabel txt_Lab;
-    // End of variables declaration
+
 }
