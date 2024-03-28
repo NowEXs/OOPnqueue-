@@ -87,7 +87,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         feedback_txtarea = new javax.swing.JTextArea();
         bg = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 102));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -404,6 +404,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                 Feedback.this.startServer();
             }
         });
+        this.dispose();
     }
     public void startServer() {
         new Thread(new Runnable() {

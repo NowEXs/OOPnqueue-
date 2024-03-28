@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.*;
 /**
  *
  * @author nk
@@ -219,6 +222,17 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
 
     @Override
     public void pressConfirm(ActionEvent event) {
+        try(Socket socket = new Socket("localhost",1111);){
+            System.out.println("Pending...");
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println(0);
+        }catch (ConnectException e){
+            System.out.println("Not Have Server...");
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         dispose();
         Checkingpage checkingWindow = new Checkingpage(comp);
         checkingWindow.setVisible(true);
@@ -241,5 +255,9 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    public static void main(String[] args) {
+        new CheckQueueMDI(new Computer()).setVisible(true);
     }
 }

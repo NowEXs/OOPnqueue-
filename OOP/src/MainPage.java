@@ -153,6 +153,7 @@ public class MainPage extends javax.swing.JFrame {
                 new MainPage().setVisible(true);
             }
         });
+        new CenterServer().serverStart(parent);
     }
     public static void countdown() {
         JOptionPane loading = new JOptionPane("Loading data, please wait...", JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
@@ -188,7 +189,7 @@ public class MainPage extends javax.swing.JFrame {
     private javax.swing.JPanel deadline;
     private DeskPanel wood_panel;
     private WaitingPanel waitingPanel;
-
+    private static javax.swing.JFrame parent;
     private User user;
     // End of variables declaration
 }

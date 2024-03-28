@@ -6,6 +6,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -150,7 +152,10 @@ public class Checkingpage extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 2, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(124, 76, 37));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("17:00:30");
+        timeUpdate();
+
+        javax.swing.Timer timer = new javax.swing.Timer(1000, e -> timeUpdate());
+        timer.start();
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 140, 30));
 
         Computer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -177,9 +182,17 @@ public class Checkingpage extends javax.swing.JFrame {
 
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-//        this.dispose();
-//        NewJFrame pi = new NewJFrame();
-//        pi.setVisible(true);
+       this.dispose();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            SwingUtilities.invokeLater(() -> {
+                ExcelViewer excelViewer = new ExcelViewer();
+                excelViewer.setVisible(true);
+            });
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
     private void confirmButtonMouseEntered(java.awt.event.MouseEvent evt) {
@@ -192,5 +205,12 @@ public class Checkingpage extends javax.swing.JFrame {
         //        Change pic to smaller button
         confirmButton.setIcon(new ImageIcon("OOP/src/Image/Button/FillScoreButtonSmall.png"));
     }
-
+    public void timeUpdate(){
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+        String now  = df.format(new Date());
+        jLabel4.setText(now);
+    }
+    public static void main(String[] args) {
+        new Checkingpage(new Computer()).setVisible(true);
+    }
 }

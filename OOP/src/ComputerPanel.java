@@ -2,9 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 //for making computer loop
-public class ComputerPanel extends JPanel implements ActionListener, Updater{
+public class ComputerPanel extends JPanel implements ActionListener, Updater, MouseListener {
     private JPanel innerLabel;
     private JButton computerButton;
     private JLabel computerNumber;
@@ -29,6 +31,7 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater{
         computerButton.setContentAreaFilled(false);
         computerButton.setBorderPainted(false);
 
+        computerButton.addMouseListener(this);
         computerButton.addActionListener(this);
         add(computerButton, BorderLayout.NORTH);
         add(innerLabel);
@@ -95,6 +98,31 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater{
 
     @Override
     public void dataFetcher() {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        computerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
 
     }
 }

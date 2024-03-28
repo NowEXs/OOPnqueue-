@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.net.*;
 import java.sql.SQLException;
 import java.io.*;
 
@@ -172,7 +173,6 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
             @Override
             public void actionPerformed(ActionEvent e) {
                 pressConfirm(e);
-
             }
         });
 
@@ -304,6 +304,7 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
         }
         JOptionPane.showMessageDialog(this, "Reservation completed", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
+        new netForReserv();
     }
 
     @Override
