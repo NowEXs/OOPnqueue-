@@ -56,6 +56,7 @@ public class ClientTeacher implements ActionListener {
     }
 
     public void startServer() {
+        this.HistoryInput();
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true), "UTF-8")))) {
             soc = new ServerSocket(1112);
             while (true) {
@@ -70,6 +71,7 @@ public class ClientTeacher implements ActionListener {
                 t2.setText(txt);
                 output.println("Complete!!");
                 sev.close();
+                this.HistoryInput();
             }
         } catch (IOException e) {
             e.printStackTrace();
