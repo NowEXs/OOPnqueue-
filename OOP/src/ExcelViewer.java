@@ -9,12 +9,17 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.ConnectException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
-public class ExcelViewer extends JFrame {
+public class ExcelViewer extends JFrame implements WindowListener {
     private JTable table;
     private DefaultTableModel model;
     private File selectedFile;
@@ -139,6 +144,46 @@ public class ExcelViewer extends JFrame {
             ExcelViewer excelViewer = new ExcelViewer();
             excelViewer.setVisible(true);
         });
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        try (Socket socket = new Socket("localhost",11111)){
+//            Prin
+        }catch (ConnectException ex){
+            System.out.println("Not have Server...");
+        } catch (UnknownHostException ex) {
+            throw new RuntimeException(ex);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {}
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+
     }
 
     // Custom cell renderer to mimic Excel's styling
