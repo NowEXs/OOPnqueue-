@@ -191,12 +191,12 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick {
         pack();
     }
     private void bt_confirmActionPerformed(java.awt.event.ActionEvent evt) {
+        this.pressConfirm(evt);
         dispose();
 //        next page >> Checkingpage
     }
 
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {
-        this.pressConfirm(evt);
         int userChoice = JOptionPane.showConfirmDialog(null, "You can't skip queues. If you press OK you will delete this queue. Are you sure you want to do it?", "Warning", JOptionPane.OK_CANCEL_OPTION);
         switch(userChoice) {
             case JOptionPane.OK_OPTION:
