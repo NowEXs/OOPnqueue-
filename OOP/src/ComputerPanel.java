@@ -57,21 +57,17 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater {
                     JFrame errorFrame = new JFrame();
                     System.out.println(comp.getStatus());
                     JOptionPane.showMessageDialog(errorFrame, "There's no person in that seat.");
-                } else if (comp.getStatus() == 1) {
-                    CheckQueueMDI queueWindow = new CheckQueueMDI(comp);
-                    queueWindow.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(null, "This seat is still checking...");
+                    CheckQueueMDI queueWindow = new CheckQueueMDI(this ,comp);
+                    queueWindow.setVisible(true);
                 }
             } else if (userType == 2) {
                 if (comp.getIsReservable() == true) {
                     DeleteSeatMDI deleteWindow = new DeleteSeatMDI(desk, comp);
                     deleteWindow.setVisible(true);
-                } else if (comp.getStatus() == 1) {
-                    CheckQueueMDI queueWindow = new CheckQueueMDI(comp);
-                    queueWindow.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(null, "This seat is still checking...");
+                    CheckQueueMDI queueWindow = new CheckQueueMDI(this, comp);
+                    queueWindow.setVisible(true);
                 }
             }
 
@@ -86,7 +82,7 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater {
         } else if (comp.getStatus() == 1) {
             computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/wait.png")));
         } else if (comp.getStatus() == 2) {
-            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/checking.png")));
+            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/check.png")));
         }
     }
 

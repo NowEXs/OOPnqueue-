@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 /**
  *
  * @author nk
@@ -23,10 +27,12 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
     private javax.swing.JLabel seat;
     private javax.swing.JLabel std_id;
     private Computer comp;
+    private ComputerPanel companel;
     /**
      * Creates new form Reservation
      */
-    public CheckQueueMDI(Computer comp) {
+    public CheckQueueMDI(ComputerPanel companel, Computer comp) {
+        this.companel = companel;
         this.comp = comp;
         initComponents();
         setCustomFont();
@@ -219,9 +225,27 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
 
     @Override
     public void pressConfirm(ActionEvent event) {
-        dispose();
-        Checkingpage checkingWindow = new Checkingpage(comp);
-        checkingWindow.setVisible(true);
+        if (this.comp.getStatus() == 1) {
+            String checkingSql = "UPDATE Reservation SET Status = 2 WHERE SM_SeatID = ?";
+            int deskNumber = this.comp.getComp_id();
+            try (PreparedStatement checkingstatement = DbCon.prepareStatement(checkingSql)) {
+                System.out.println("Checking this queue");
+                checkingstatement.setInt(1, deskNumber);
+                checkingstatement.executeUpdate();
+                this.companel.updateButtonIcon();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            dispose();
+            Checkingpage checkingWindow = new Checkingpage(comp);
+            checkingWindow.setVisible(true);
+        } else {
+            JFrame errorFrame = new JFrame();
+            JOptionPane.showMessageDialog(errorFrame, "There's other TA currently checking this queue.");
+        }
+
     }
 
     @Override
@@ -229,6 +253,21 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
         int userChoice = JOptionPane.showConfirmDialog(null, "You can't skip queues. If you press OK you will delete this queue. Are you sure you want to do it?", "Warning", JOptionPane.OK_CANCEL_OPTION);
         switch(userChoice) {
             case JOptionPane.OK_OPTION:
+                String updateSql = "DELETE FROM Reservation WHERE SM_SeatID = ?";
+                try (PreparedStatement updatestatement = DbCon.prepareStatement(updateSql)) {
+                    int deskNumber = comp.getComp_id();
+                    updatestatement.setInt(1, deskNumber);
+                    updatestatement.executeUpdate();
+                    this.comp.setName("");
+                    this.comp.setLab_name("");
+                    this.comp.setStd_id("");
+                    this.comp.setStatus(0);
+                    this.companel.updateButtonIcon();
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
                 System.out.println("User deleted queue");
                 dispose();
                 JOptionPane.showMessageDialog(null, "Queue deleted");
