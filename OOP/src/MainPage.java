@@ -21,6 +21,7 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
+        callCnterServ();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             String resetSeat = "UPDATE SeatManager SET Availability = NULL"; // รี sql
             String resetQueue = "DELETE FROM Reservation";
@@ -117,6 +118,7 @@ public class MainPage extends javax.swing.JFrame {
         );
         getContentPane().add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
         setLocationRelativeTo(null);
+
         pack();
     }// </editor-fold>
 
@@ -153,7 +155,6 @@ public class MainPage extends javax.swing.JFrame {
                 new MainPage().setVisible(true);
             }
         });
-        new CenterServer().serverStart(parent);
     }
     public static void countdown() {
         JOptionPane loading = new JOptionPane("Loading data, please wait...", JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
@@ -165,6 +166,12 @@ public class MainPage extends javax.swing.JFrame {
                 SwingUtilities.invokeLater(() -> {
                     dialog.dispose();
                     JOptionPane.showMessageDialog(null, "Loading finished!", "Countdown", JOptionPane.INFORMATION_MESSAGE);
+                    SwingUtilities.invokeLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            MainPage.callCnterServ();
+                        }
+                    });
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -183,6 +190,9 @@ public class MainPage extends javax.swing.JFrame {
         dialog.setVisible(true);
     }
 
+    public static void callCnterServ(){
+        new CenterServer().serverStart(parent);
+    }
 
     // Variables declaration - do not modify
     private javax.swing.JPanel cont;

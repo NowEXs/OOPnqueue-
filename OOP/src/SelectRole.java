@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 public class SelectRole extends javax.swing.JFrame {
@@ -179,5 +180,7 @@ public class SelectRole extends javax.swing.JFrame {
     private javax.swing.JLabel txt_nq;
     private javax.swing.JLabel txt_select;
     private javax.swing.JLabel txt_welcome;
+
+    private static javax.swing.JFrame parent;
     // End of variables declaration
 }
