@@ -532,6 +532,12 @@ public class MainPage extends javax.swing.JFrame {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    new MainPage().setVisible(true);
+                    java.awt.EventQueue.invokeLater(new Runnable() {
+                        public void run() {
+                            new MainPage().serverStart();
+                        }
+                    });
                     break;
                 }
             }
@@ -547,11 +553,7 @@ public class MainPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainPage().setVisible(true);
-            }
-        });
+
     }
 
     public void serverStart(){
@@ -565,6 +567,7 @@ public class MainPage extends javax.swing.JFrame {
                 if (in != null & com.equals("0")){
                     new YourQ( this,true).setVisible(true);
                 }
+                socket.close();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

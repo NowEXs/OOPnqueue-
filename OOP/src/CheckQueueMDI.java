@@ -1,11 +1,16 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.*;
+
 /**
  *
  * @author nk
  */
-public class CheckQueueMDI extends javax.swing.JFrame {
+public class CheckQueueMDI extends javax.swing.JFrame implements OnClick {
     private javax.swing.JLabel Cancel;
     private javax.swing.JLabel Confirm;
     private javax.swing.JLabel Name;
@@ -191,6 +196,7 @@ public class CheckQueueMDI extends javax.swing.JFrame {
     }
 
     private void bt_cancelActionPerformed(java.awt.event.ActionEvent evt) {
+        this.pressConfirm(evt);
         int userChoice = JOptionPane.showConfirmDialog(null, "You can't skip queues. If you press OK you will delete this queue. Are you sure you want to do it?", "Warning", JOptionPane.OK_CANCEL_OPTION);
         switch(userChoice) {
             case JOptionPane.OK_OPTION:
@@ -200,7 +206,6 @@ public class CheckQueueMDI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Queue deleted");
             case JOptionPane.CANCEL_OPTION:
                 System.out.println("User canceled queue deletion");
-
         }
     }
 
@@ -257,5 +262,30 @@ public class CheckQueueMDI extends javax.swing.JFrame {
                 new CheckQueueMDI().setVisible(true);
             }
         });
+    }
+
+    @Override
+    public void pressConfirm(ActionEvent event) {
+        try(Socket socket = new Socket("localhost",1111);){
+            System.out.println("Pending...");
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println(0);
+        }catch (ConnectException e){
+            System.out.println("Not Have Server...");
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void pressCancel(ActionEvent event) {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }
