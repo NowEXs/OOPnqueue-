@@ -12,6 +12,8 @@ public class AddDelLab extends javax.swing.JFrame {
     private javax.swing.JButton DeleteButton;
     private javax.swing.JTextField Lab_tf;
     private javax.swing.JLabel txt_Lab;
+    private javax.swing.JPanel Color_BG;
+    private javax.swing.JPanel detail;
 
     public AddDelLab() {
         initComponents();
@@ -48,17 +50,21 @@ public class AddDelLab extends javax.swing.JFrame {
         Lab_tf = new javax.swing.JTextField();
         ConfirmButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
+        Color_BG = new javax.swing.JPanel();
+        detail = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(275, 150));
         setResizable(false);
         setBackground(new java.awt.Color(84, 59, 45));
-        setTitle("N-Queue");
+        setTitle("Add&Delete Lab");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_Lab.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        txt_Lab.setForeground(new java.awt.Color(255, 255, 255));
         txt_Lab.setText("Lab");
 
-        Lab_tf.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        Lab_tf.setBackground(new java.awt.Color(175, 130, 104));
+        Lab_tf.setForeground(new java.awt.Color(255, 255, 255));
         Lab_tf.setForeground(new java.awt.Color(204, 204, 204));
         Lab_tf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,46 +75,69 @@ public class AddDelLab extends javax.swing.JFrame {
         ConfirmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/button/confirmButtonSmallv2.png"))); // NOI18N
         ConfirmButton.setBorderPainted(false);
         ConfirmButton.setContentAreaFilled(false);
+        ConfirmButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         DeleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/button/deleteButtonSmallv2.png"))); // NOI18N
         DeleteButton.setBorderPainted(false);
         DeleteButton.setContentAreaFilled(false);
+        DeleteButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         DeleteButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DeleteButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(DeleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 59, 104, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(20, 20, 20)
-                                .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(20, 20, 20))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(txt_Lab)
-                                .addGap(15, 15, 15)
-                                .addComponent(Lab_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50))
+        detail.setOpaque(false);
+
+        javax.swing.GroupLayout detailLayout = new javax.swing.GroupLayout(detail);
+        detail.setLayout(detailLayout);
+        detailLayout.setHorizontalGroup(
+                detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(detailLayout.createSequentialGroup()
+                                .addGroup(detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(detailLayout.createSequentialGroup()
+                                                .addGap(30, 30, 30)
+                                                .addComponent(txt_Lab)
+                                                .addGap(15, 15, 15)
+                                                .addComponent(Lab_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(30, 30, 30))
+                                        .addGroup(detailLayout.createSequentialGroup()
+                                                .addGap(0, 0, 0)
+                                                .addComponent(ConfirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(10, 10, 10)
+                                                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap())
         );
-        layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        detailLayout.setVerticalGroup(
+                detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(detailLayout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addGroup(detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(txt_Lab)
                                         .addComponent(Lab_tf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(ConfirmButton)
-                                        .addComponent(DeleteButton))
-                                .addGap(20, 20, 20))
+                                .addGap(5, 5, 5)
+                                .addGroup(detailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ConfirmButton, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(DeleteButton, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
+
+        getContentPane().add(detail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 220, 80));
+
+        Color_BG.setBackground(new java.awt.Color(132, 99, 82));
+
+        javax.swing.GroupLayout Color_BGLayout = new javax.swing.GroupLayout(Color_BG);
+        Color_BG.setLayout(Color_BGLayout);
+        Color_BGLayout.setHorizontalGroup(
+                Color_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 280, Short.MAX_VALUE)
+        );
+        Color_BGLayout.setVerticalGroup(
+                Color_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 170, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(Color_BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 170));
 
         pack();
     }// </editor-fold>
