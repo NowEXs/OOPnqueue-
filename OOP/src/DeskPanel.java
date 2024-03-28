@@ -1,14 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
-import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +20,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private int roleCheck;
     private JScrollPane scrollPanel;
     private ArrayList<Computer> comp_arr = new ArrayList<>();
+    private ArrayList<ComputerPanel> desk_arr = new ArrayList<>();
     private ArrayList<Integer> check_desk_arr = new ArrayList<>();
     private AddingButtonPanel addingButton;
     private static boolean isRunning = false;
@@ -87,6 +83,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     }
 
     private void addInitialComputerPanels() {
+        this.deskPanel.removeAll();
         String addingSql = "SELECT SeatID FROM SeatManager WHERE Availability = 1"; // เพิ่มโต๊ะ
         try (Connection conn = DbCon.getConnection();
              PreparedStatement addingstatement = conn.prepareStatement(addingSql)) {
@@ -98,14 +95,17 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             while (resultSet.next()) {
                 int compID = resultSet.getInt("SeatID");
                 if (compIDnotIn(compID, check_desk_arr)) {
+                    System.out.println(compID);
                     Computer computer = new Computer("", "", "", compID, 0);
                     ComputerPanel companel = new ComputerPanel(this, computer, userType());
                     companel.setOpaque(false);
                     this.deskPanel.add(companel);
+                    desk_arr.add(companel);
                     comp_arr.add(computer);
                     check_desk_arr.add(compID);
                 }
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -147,6 +147,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         return this.comp_arr;
     }
     public ArrayList<Integer> getCheck_desk_arr() { return this.check_desk_arr; }
+    public ArrayList<ComputerPanel> getDeskArr() { return this.desk_arr; }
 
     public JPanel getDeskPanel() {
         return this.deskPanel;
@@ -160,13 +161,8 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private void queueButtonMouseExited(java.awt.event.MouseEvent evt) {
         queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonSmall.png"));
     }
-    private boolean compIDnotIn(int compID, List<Integer> idList) {
-        for (int id : idList) {
-            if (id == compID) {
-                return false;
-            }
-        }
-        return true;
+    private boolean compIDnotIn(int compID, List<Integer> check_desk_arr) {
+        return !check_desk_arr.contains(compID);
     }
 
     @Override

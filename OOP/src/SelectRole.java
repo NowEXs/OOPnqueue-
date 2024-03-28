@@ -38,7 +38,6 @@ public class SelectRole extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-        System.out.println(instanceCount.incrementAndGet());
         txt_select = new javax.swing.JLabel();
         txt_welcome = new javax.swing.JLabel();
         txt_nq = new javax.swing.JLabel();

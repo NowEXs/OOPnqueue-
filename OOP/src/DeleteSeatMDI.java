@@ -5,8 +5,6 @@
  */
 import javax.swing.*;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -51,23 +49,10 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         seatID.setBackground(new java.awt.Color(79, 47, 19));
         seatID.setFont(new java.awt.Font("Big Apple 3PM", 1, 12)); // NOI18N
         seatID.setForeground(new java.awt.Color(245, 243, 230));
-        seatID.setText("            " + comp.getComp_id() + "");
+        seatID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        seatID.setText(comp.getComp_id() + "");
         seatID.setEditable(false);
         seatID.setBorder(null);
-        seatID.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                enterSeatIdFocusGained(evt);
-            }
-
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                enterSeatIdFocusLost(evt);
-            }
-        });
-        seatID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterSeatIdActionPerformed(evt);
-            }
-        });
         getContentPane().add(seatID, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 167, 90, 15));
 
         delete_label.setFont(new java.awt.Font("Big Apple 3PM", 1, 24)); // NOI18N
@@ -80,13 +65,12 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         deleteButton.setBorder(null);
         deleteButton.setBorderPainted(false);
         deleteButton.setContentAreaFilled(false);
-        /*
-         * deleteButton.addActionListener(new java.awt.event.ActionListener() {
-         * public void actionPerformed(java.awt.event.ActionEvent evt) {
-         * deleteButtonActionPerformed(evt);
-         * }
-         * });
-         */
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+          public void actionPerformed(java.awt.event.ActionEvent evt) {
+              deleteButtonActionPerformed(evt);
+            }
+          });
+
         getContentPane().add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 205, 330, -1));
 
         bg.setBackground(new java.awt.Color(84, 59, 45));
@@ -115,37 +99,34 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         }
     }
 
-    /*
-     * private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {
-     *
-     * String delSql =
-     * "UPDATE SeatManager SET Availability = NULL WHERE SeatID = ?"; // ลบโต๊ะ
-     * try (Connection conn = DbCon.getConnection();
-     * PreparedStatement delStatement = conn.prepareStatement(delSql)) {
-     * int deskNumber = Integer.parseInt(seatID.getText());
-     * ArrayList<ComputerPanel> desk_list = desk.getDesk_arr();
-     * JPanel deskPanel = desk.getDeskPanel();
-     * for (ComputerPanel comp : desk_list) {
-     * int comp_id = comp.getComp().getComp_id();
-     * if (deskNumber.equals()) {
-     * deskPanel.remove(comp);
-     * desk_list.remove(comp);
-     * deskPanel.revalidate();
-     * deskPanel.repaint();
-     * System.out.println("delete Desk number : " + demo.deskGetter());
-     * demo.deskSetter("Desk number : " + demo.deskGetter() + " has been deleted");
-     * delStatement.setInt(1, deskNumber);
-     * delStatement.executeUpdate();
-     * break;
-     * }
-     * }
-     * } catch (SQLException e) {
-     * throw new RuntimeException(e);
-     * } catch (IOException e) {
-     * throw new RuntimeException(e);
-     * }
-     * }
-     */
+
+    private void deleteButtonActionPerformed (java.awt.event.ActionEvent evt){
+        String delSql = "UPDATE SeatManager SET Availability = NULL WHERE SeatID = ?"; // ลบโต๊ะ
+        try (Connection conn = DbCon.getConnection();
+             PreparedStatement delStatement = conn.prepareStatement(delSql)) {
+            int deskNumber = Integer.parseInt(seatID.getText());
+            ArrayList<ComputerPanel> desk_list = desk.getDeskArr();
+            for (ComputerPanel comp : desk_list) {
+                int comp_id = comp.getComp().getComp_id();
+                if (deskNumber == comp_id) {
+                    this.desk.getDeskPanel().remove(comp);
+                    this.desk.getDeskArr().remove(comp);
+                    this.desk.getCheck_desk_arr().remove(Integer.valueOf(comp_id));
+                    System.out.println("delete Desk number : " + comp_id);
+                    delStatement.setInt(1, deskNumber);
+                    delStatement.executeUpdate();
+                    break;
+                }
+            }
+            this.desk.getDeskPanel().revalidate();
+            this.desk.getDeskPanel().repaint();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     // Variables declaration - do not modify
     private javax.swing.JLabel bg;

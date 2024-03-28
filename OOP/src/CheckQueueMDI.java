@@ -253,11 +253,15 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
         int userChoice = JOptionPane.showConfirmDialog(null, "You can't skip queues. If you press OK you will delete this queue. Are you sure you want to do it?", "Warning", JOptionPane.OK_CANCEL_OPTION);
         switch(userChoice) {
             case JOptionPane.OK_OPTION:
-                String updateSql = "DELETE FROM Reservation WHERE SM_SeatID = ?";
-                try (PreparedStatement updatestatement = DbCon.prepareStatement(updateSql)) {
+                String update_qSql = "DELETE FROM Reservation WHERE SM_SeatID = ?";
+                String update_rSql = "UPDATE SeatManager SET Reservable = 1 WHERE SeatID = ?";
+                try (PreparedStatement update_qstatement = DbCon.prepareStatement(update_qSql);
+                     PreparedStatement update_rstatement = DbCon.prepareStatement(update_rSql)) {
                     int deskNumber = comp.getComp_id();
-                    updatestatement.setInt(1, deskNumber);
-                    updatestatement.executeUpdate();
+                    update_qstatement.setInt(1, deskNumber);
+                    update_rstatement.setInt(1, deskNumber);
+                    update_qstatement.executeUpdate();
+                    update_rstatement.executeUpdate();
                     this.comp.setName("");
                     this.comp.setLab_name("");
                     this.comp.setStd_id("");
