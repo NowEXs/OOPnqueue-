@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -7,38 +8,63 @@ import java.net.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class ClientTeacher implements ActionListener {
+public class ClientTeacher {
     private ServerSocket soc;
     private BufferedReader in;
     private JFrame frame;
-    private JPanel p1;
-    private JButton b1;
-    private JTextField t2;
+    private JPanel p1,p2;
+    private JLabel bg;
     private JTextArea ta;
+
 
     public ClientTeacher() {
         frame = new JFrame("TeacherApp");
-        ta = new JTextArea(50, 50);
+        ta = new JTextArea(22, 30);
+        try {
+            File fontStyle_minecraft = new File("OOP/src/Font/minecraft_font.ttf");
+            Font font_feedback = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            ta.setFont(font_feedback);
+            ta.setForeground(new java.awt.Color(255, 244, 204));
+        } catch (FontFormatException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+        ta.setBackground(new java.awt.Color(102, 51, 0));
+        ta.setBorder(new LineBorder(new Color(102, 51, 0)));
         ta.setEditable(false);
-        p1 = new JPanel();
-        t2 = new JTextField(10);
-        t2.setEditable(false);
-        b1 = new JButton("View Comment History");
-        b1.addActionListener(this);
+        p1 = new JPanel(); p2 = new JPanel();
+        bg = new JLabel();
 
-        p1.add(t2);
-        p1.add(b1);
-        p1.setBackground(Color.black);
+        bg.setLayout(new BorderLayout());
+        p2.setOpaque(false);
 
-        frame.add(p1, BorderLayout.NORTH);
-        frame.add(new JScrollPane(ta)); // Use JScrollPane to enable scrolling
+        bg.add(p2);
+        bg.setBackground(new java.awt.Color(84, 59, 45));
+        bg.setForeground(new java.awt.Color(255, 244, 204));
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/FeedbackWood.png"))); // NOI18N
+
+        p2.add(new JScrollPane(ta));
+        p1.add(bg);
+        p1.setBackground(new java.awt.Color(84, 59, 45));
+
+        frame.add(p1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setBounds(500, 250, 400, 400);
+        frame.pack();
         frame.setVisible(true);
     }
 
     public static void main(String[] args) {
-        new ClientTeacher().startServer();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            new ClientTeacher().startServer();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void HistoryInput() {
@@ -68,20 +94,12 @@ public class ClientTeacher implements ActionListener {
                 pw.println(txt);
                 pw.flush();
                 PrintWriter output = new PrintWriter(sev.getOutputStream(), true);
-                t2.setText(txt);
                 output.println("Complete!!");
                 sev.close();
                 this.HistoryInput();
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == b1) {
-            HistoryInput();
         }
     }
 }
