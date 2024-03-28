@@ -1,6 +1,8 @@
 
 import java.awt.*;
 import java.io.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class SelectRole extends javax.swing.JFrame {
 
     /**
@@ -36,7 +38,7 @@ public class SelectRole extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
     private void initComponents() {
-
+        System.out.println(instanceCount.incrementAndGet());
         txt_select = new javax.swing.JLabel();
         txt_welcome = new javax.swing.JLabel();
         txt_nq = new javax.swing.JLabel();
@@ -177,6 +179,8 @@ public class SelectRole extends javax.swing.JFrame {
     private javax.swing.JButton STDButton;
     private javax.swing.JButton TAButton;
     private javax.swing.JPanel bg;
+    private static AtomicInteger instanceCount = new AtomicInteger(0);
+
     private javax.swing.JLabel image;
     private javax.swing.JLabel txt_nq;
     private javax.swing.JLabel txt_select;
