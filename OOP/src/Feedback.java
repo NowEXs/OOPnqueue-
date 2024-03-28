@@ -27,6 +27,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
      */
     public Feedback() {
         initComponents();
+        centerFrame();
         feedback_txtarea.setFocusable(true);
         try{
             File fontStyle_apple = new File("OOP/src/Font/Big Apple 3PM.ttf");
@@ -52,6 +53,16 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         }catch(Exception e){
             e.printStackTrace();
         }
+    }
+    private void centerFrame() {
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int screenWidth = screenSize.width;
+        int screenHeight = screenSize.height;
+        int frameWidth = this.getSize().width;
+        int frameHeight = this.getSize().height;
+        int x = (screenWidth - frameWidth) / 2;
+        int y = (screenHeight - frameHeight) / 2;
+        this.setLocation(x, y);
     }
 
     @SuppressWarnings("unchecked")
