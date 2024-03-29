@@ -4,10 +4,7 @@ import java.io.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SelectRole extends javax.swing.JFrame {
-
-    /**
-     * Creates new form GUI
-     */
+    
     public SelectRole() {
         initComponents();
         try {

@@ -84,7 +84,7 @@ public class ClientTeacher {
     public void startServer() {
         this.HistoryInput();
         try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true), "UTF-8")))) {
-            soc = new ServerSocket(445);
+            soc = new ServerSocket(112);
             while (true) {
                 System.out.println("Waiting for input...");
                 Socket sev = soc.accept();
