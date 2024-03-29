@@ -19,13 +19,40 @@ public class CenterServer {
                         System.out.println("Command Received!!");
                         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
                         String com = in.readLine();
-                        if (in != null & com.equals("0") & user instanceof Student){
-                            new YourQ(parent ,true).setVisible(true);
+                        if (in != null & com.equals("0")){
+                            if (user instanceof Student){
+                                new YourQ(parent ,true).setVisible(true);
+                            }
+                            else if (user instanceof TA){
+                                new Thread(() -> {
+                                    try {
+                                        Thread.sleep(5*60*1000);
+                                        SwingUtilities.invokeLater(() -> {
+                                            JOptionPane.showMessageDialog(null,"You are checking too long!!!","Why You checking too long",JOptionPane.WARNING_MESSAGE);
+                                        });
+                                    } catch (InterruptedException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }).start();
+                            }
+
                         }
-                        else if (in != null & com.equals("1") & user instanceof Student){
-                            Feedback fb = new Feedback();
-                            fb.startServer();
-                            fb.setVisible(true);
+                        else if (in != null & com.equals("1")){
+                            if (user instanceof Student){
+                                Feedback fb = new Feedback();
+                                fb.startServer();
+                                fb.setVisible(true);
+                            }
+                            else if (user instanceof TA){
+                                long startTime = System.currentTimeMillis();
+                                long elapsedTime = (System.currentTimeMillis() - startTime) / 1000 / 60;
+                                if (elapsedTime  < 5){
+                                    JOptionPane.showMessageDialog(null,"You are Good Teacher Assistant","Good Job!",JOptionPane.INFORMATION_MESSAGE);
+                                }
+                                else if (elapsedTime > 5){
+                                    JOptionPane.showMessageDialog(null, "It's ok We hope you better next time", "Feedback Reminder", JOptionPane.INFORMATION_MESSAGE);
+                                }
+                            }
                         }
                         else if (in != null & com.equals("2") & user instanceof Student){
                             new Waiting(parent, true).setVisible(true);
