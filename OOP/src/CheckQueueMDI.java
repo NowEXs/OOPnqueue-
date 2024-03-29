@@ -1,8 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
+import java.net.*;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -225,6 +225,18 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
 
     @Override
     public void pressConfirm(ActionEvent event) {
+        try(Socket socket = new Socket("localhost",1111);){
+            System.out.println("Pending...");
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println(0);
+            System.out.println("Send Complete!");
+        }catch (ConnectException e){
+            System.out.println("Not Have Server...");
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         if (this.comp.getStatus() == 1) {
             String checkingSql = "UPDATE Reservation SET Status = 2 WHERE SM_SeatID = ?";
             int deskNumber = this.comp.getComp_id();
@@ -284,5 +296,9 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    public static void main(String[] args) {
+        new CheckQueueMDI(null,new Computer()).setVisible(true);
     }
 }

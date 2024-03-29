@@ -21,7 +21,6 @@ public class MainPage extends javax.swing.JFrame {
      */
     public MainPage() {
         initComponents();
-        callCnterServ();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             String resetSeat = "UPDATE SeatManager SET Availability = NULL"; // รี sql
             String resetQueue = "DELETE FROM Reservation";
@@ -42,6 +41,7 @@ public class MainPage extends javax.swing.JFrame {
                 throw new RuntimeException(e);
             }
         }));
+        callCnterServ();
     }
     public MainPage(User user) {
          this.user = user;
@@ -135,7 +135,7 @@ public class MainPage extends javax.swing.JFrame {
             }
         });
     }
-    public static void countdown() {
+    public void countdown() {
         JOptionPane loading = new JOptionPane("Loading data, please wait...", JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION, null, null, null);
         JDialog dialog = loading.createDialog("Countdown");
         dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -148,7 +148,7 @@ public class MainPage extends javax.swing.JFrame {
                     SwingUtilities.invokeLater(new Runnable() {
                         @Override
                         public void run() {
-                            MainPage.callCnterServ();
+                            MainPage.this.callCnterServ();
                         }
                     });
                 });
@@ -169,8 +169,8 @@ public class MainPage extends javax.swing.JFrame {
         dialog.setVisible(true);
     }
 
-    public static void callCnterServ(){
-        new CenterServer().serverStart(parent,user);
+    public void callCnterServ(){
+        new CenterServer().serverStart( this,user);
     }
 
     // Variables declaration - do not modify

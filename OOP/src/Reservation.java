@@ -276,9 +276,9 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
 
     @Override
     public void pressConfirm(ActionEvent event) {
+        new netForReserv();
         String insertSql = "INSERT INTO Reservation (SM_SeatID, StudentID, StudentName, Lab_name, Status) VALUES (?, ?, ?, ?, ?)";
         String reserveSql = "UPDATE SeatManager SET Reservable = 0 WHERE SeatID = ?";
-
         String st_idcheck = jTextField_id.getText();
         int st_id;
         try {
@@ -314,7 +314,6 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
         }
         JOptionPane.showMessageDialog(this, "Reservation completed", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
-        new netForReserv();
     }
 
     @Override

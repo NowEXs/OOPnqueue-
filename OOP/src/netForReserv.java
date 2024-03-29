@@ -8,8 +8,10 @@ public class netForReserv {
     public netForReserv(){
         try (
                 Socket socket = new Socket("localhost", 1111)){
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            out.println(2);
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                System.out.println("Pending...");
+                out.println(2);
+                System.out.println("Send Complete!!");
         }catch (
                 ConnectException e){
             System.out.println("Not have server...");

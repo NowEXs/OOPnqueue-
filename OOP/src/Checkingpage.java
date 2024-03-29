@@ -235,6 +235,7 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
             throw new RuntimeException(e);
         }
         System.out.println("go to Excel panel");
+        new ExcelViewer().setVisible(true);
         dispose();
     }
 
@@ -246,5 +247,9 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    }
+
+    public static void main(String[] args) {
+        new Checkingpage(null,new Computer()).setVisible(true);
     }
 }
