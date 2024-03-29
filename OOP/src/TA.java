@@ -8,8 +8,8 @@ public class TA extends User implements Checkable{
     }
 
     @Override
-    public void Checkable() {
-
+    public boolean Checkable() {
+        return true;
     }
 
     public String getPassword() {

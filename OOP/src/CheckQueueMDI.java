@@ -239,7 +239,7 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
                 throw new RuntimeException(e);
             }
             dispose();
-            Checkingpage checkingWindow = new Checkingpage(comp);
+            Checkingpage checkingWindow = new Checkingpage(companel, comp);
             checkingWindow.setVisible(true);
         } else {
             JFrame errorFrame = new JFrame();
