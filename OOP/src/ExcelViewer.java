@@ -23,7 +23,7 @@ public class ExcelViewer extends JFrame implements WindowListener {
 
     public ExcelViewer() {
         setTitle("Excel Viewer and Editor");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(800, 600);
         selectedFile = new File("C:\\Users\\prato\\Documents\\GitHub\\OOPnqueue-\\OOP\\src\\assets\\Book1.xlsx");
 
@@ -64,7 +64,6 @@ public class ExcelViewer extends JFrame implements WindowListener {
         buttonPanel.add(saveButton);
         buttonPanel.add(chooseSheetButton);
         getContentPane().add(buttonPanel, BorderLayout.NORTH);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Set Excel-like styling for the table
         table.setGridColor(Color.gray); // Set grid color

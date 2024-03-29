@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class CenterServer {
 
-    public void serverStart(JFrame parent){
+    public void serverStart(JFrame parent, User user){
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -19,15 +19,15 @@ public class CenterServer {
                         System.out.println("Command Received!!");
                         BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream(), "UTF-8"));
                         String com = in.readLine();
-                        if (in != null & com.equals("0")){
+                        if (in != null & com.equals("0") & user instanceof Student){
                             new YourQ(parent ,true).setVisible(true);
                         }
-                        else if (in != null & com.equals("1")){
+                        else if (in != null & com.equals("1") & user instanceof Student){
                             Feedback fb = new Feedback();
                             fb.startServer();
                             fb.setVisible(true);
                         }
-                        else if (in != null & com.equals("2")){
+                        else if (in != null & com.equals("2") & user instanceof Student){
                             new Waiting(parent, true).setVisible(true);
                         }
                         socket.close();
