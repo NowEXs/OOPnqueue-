@@ -258,15 +258,15 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
                 try (PreparedStatement update_qstatement = DbCon.prepareStatement(update_qSql);
                      PreparedStatement update_rstatement = DbCon.prepareStatement(update_rSql)) {
                     int deskNumber = comp.getComp_id();
-                    update_qstatement.setInt(1, deskNumber);
-                    update_rstatement.setInt(1, deskNumber);
-                    update_qstatement.executeUpdate();
-                    update_rstatement.executeUpdate();
                     this.comp.setName("");
                     this.comp.setLab_name("");
                     this.comp.setStd_id("");
                     this.comp.setStatus(0);
                     this.companel.updateButtonIcon();
+                    update_qstatement.setInt(1, deskNumber);
+                    update_rstatement.setInt(1, deskNumber);
+                    update_qstatement.executeUpdate();
+                    update_rstatement.executeUpdate();
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 } catch (IOException e) {
