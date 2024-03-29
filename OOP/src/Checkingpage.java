@@ -5,15 +5,22 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import static org.bouncycastle.oer.its.Duration.seconds;
 
 /**
  *
  * @author gypprt
  */
-public class Checkingpage extends javax.swing.JFrame {
+public class Checkingpage extends javax.swing.JFrame implements OnClick{
 
     /**
      * Creates new form Checkingpage
@@ -32,8 +39,13 @@ public class Checkingpage extends javax.swing.JFrame {
     private javax.swing.JLabel name_l;
     private javax.swing.JLabel std_l;
     private Computer comp;
+    private ComputerPanel companel;
+    private Timer timer;
+    private int seconds = 0;
+
     // End of variables declaration
-    public Checkingpage(Computer comp) {
+    public Checkingpage(ComputerPanel companel, Computer comp) {
+        this.companel = companel;
         this.comp = comp;
         initComponents();
 
@@ -49,6 +61,14 @@ public class Checkingpage extends javax.swing.JFrame {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        timer = new javax.swing.Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seconds++;
+                updateTime();
+            }
+        });
+        timer.start();
     }
     private void setCustomFont(Font font){
         lab_l.setFont(font.deriveFont(Font.PLAIN, 13));
@@ -99,7 +119,7 @@ public class Checkingpage extends javax.swing.JFrame {
         confirmButton.setContentAreaFilled(false);
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmButtonActionPerformed(evt);
+                pressConfirm(evt);
             }
         });
         confirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -152,10 +172,6 @@ public class Checkingpage extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 2, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(124, 76, 37));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        timeUpdate();
-
-        javax.swing.Timer timer = new javax.swing.Timer(1000, e -> timeUpdate());
-        timer.start();
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 140, 30));
 
         Computer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -179,22 +195,14 @@ public class Checkingpage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>
-
-    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-       this.dispose();
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            SwingUtilities.invokeLater(() -> {
-                ExcelViewer excelViewer = new ExcelViewer();
-                excelViewer.setVisible(true);
-            });
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    private void updateTime() {
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int secs = seconds % 60;
+        String timeString = String.format("%02d:%02d:%02d", hours, minutes, secs);
+        jLabel4.setText(timeString);
     }
+
     private void confirmButtonMouseEntered(java.awt.event.MouseEvent evt) {
         //        Change cursor to hand cursor and change pic to bigger button
         confirmButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -202,15 +210,41 @@ public class Checkingpage extends javax.swing.JFrame {
     }
 
     private void confirmButtonMouseExited(java.awt.event.MouseEvent evt) {
-        //        Change pic to smaller button
         confirmButton.setIcon(new ImageIcon("OOP/src/Image/Button/FillScoreButtonSmall.png"));
     }
-    public void timeUpdate(){
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        String now  = df.format(new Date());
-        jLabel4.setText(now);
+
+    @Override
+    public void pressConfirm(ActionEvent event) {
+        String update_qSql = "DELETE FROM Reservation WHERE SM_SeatID = ?";
+        String update_rSql = "UPDATE SeatManager SET Reservable = 1 WHERE SeatID = ?";
+        try (PreparedStatement update_qstatement = DbCon.prepareStatement(update_qSql);
+             PreparedStatement update_rstatement = DbCon.prepareStatement(update_rSql)) {
+            int deskNumber = comp.getComp_id();
+            this.comp.setName("");
+            this.comp.setLab_name("");
+            this.comp.setStd_id("");
+            this.comp.setStatus(0);
+            this.companel.updateButtonIcon();
+            update_qstatement.setInt(1, deskNumber);
+            update_rstatement.setInt(1, deskNumber);
+            update_qstatement.executeUpdate();
+            update_rstatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("go to Excel panel");
+        dispose();
     }
-    public static void main(String[] args) {
-        new Checkingpage(new Computer()).setVisible(true);
+
+    @Override
+    public void pressCancel(ActionEvent event) {
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
     }
 }

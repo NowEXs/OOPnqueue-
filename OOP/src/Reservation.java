@@ -7,11 +7,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.net.*;
 import java.sql.SQLException;
 import java.io.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -31,7 +33,20 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        fetchComboBox();
+        timer = new Timer(10000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String selectedItem = (String) jComboBox_lab.getSelectedItem();
+                fetchComboBox();
+                if (selectedItem != jComboBox_lab.getItemAt(0) && jComboBox_lab.getItemCount() > 0) {
+                    jComboBox_lab.setSelectedItem(selectedItem);
+                }
+            }
+        });
+        timer.start();
     }
+
     private void setCustomFont(Font font) {
         Reservation.setFont(font.deriveFont(Font.BOLD, 27));
         seat.setFont(font.deriveFont(Font.BOLD, 18));
@@ -136,8 +151,6 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
         });
         add(bt_confirm, new org.netbeans.lib.awtextra.AbsoluteConstraints(35, 390, -1, -1));
 
-
-
         bt_cancel.setIcon(new ImageIcon("OOP/src/Image/Button/cancelButtonSmall.png"));
         bt_cancel.setBorderPainted(false);
         bt_cancel.setContentAreaFilled(false);
@@ -151,6 +164,7 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
                 bt_cancelMouseExited(evt);
             }
         });
+
         add(bt_cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, -1, -1));
 
 
@@ -158,11 +172,6 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
         jComboBox_lab.setBackground(new java.awt.Color(76, 40, 20));
         jComboBox_lab.setEditable(false);
         jComboBox_lab.setForeground(new java.awt.Color(239, 210, 173));
-        jComboBox_lab.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "lab 1", "lab 2", "lab 3", "lab 4" }));
-        jComboBox_lab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-            }
-        });
         add(jComboBox_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 318, 70, 30));
 
 
@@ -244,8 +253,6 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
      */
 
 
-    // Variables declaration - do not modify
-
     private javax.swing.JLabel Name;
     private javax.swing.JLabel Reservation;
     private javax.swing.JLabel bg;
@@ -254,15 +261,18 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
     private javax.swing.JLabel img_checking;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField jTextField_id;
-    private javax.swing.JTextField jTextField_lab;
     private javax.swing.JTextField jTextField_name;
     private javax.swing.JLabel lab;
     private javax.swing.JLabel seat;
+    private Timer timer;
+
     private javax.swing.JComboBox jComboBox_lab;
     private javax.swing.JLabel std_id;
 
     private ComputerPanel companel;
+
     private Computer comp;
+    private String selectedItem;
 
     @Override
     public void pressConfirm(ActionEvent event) {
@@ -312,9 +322,32 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
         this.dispose();
     }
 
+    private void fetchComboBox() {
+        ArrayList<String> labNames = fetchLabNamesFromDB();
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>(labNames.toArray(new String[0]));
+        jComboBox_lab.setModel(model);
+        jComboBox_lab.repaint();
+    }
+    private ArrayList<String> fetchLabNamesFromDB() {
+        ArrayList<String> labNames = new ArrayList<>();
+        String selectSql = "SELECT LabNumber FROM LabManager";
+        try (Connection conn = DbCon.getConnection();
+             PreparedStatement selectstatement = conn.prepareStatement(selectSql);
+             ResultSet selectResultSet = selectstatement.executeQuery()) {
+            while (selectResultSet.next()) {
+                String labName = selectResultSet.getString("LabNumber");
+                labNames.add("Lab " + labName);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return labNames;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         //adasda
     }
-    // End of variables declaration
+
 }

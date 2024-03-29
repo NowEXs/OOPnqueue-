@@ -1,4 +1,4 @@
-public class Student extends User {
+public class Student extends User implements Checkable {
     private String lab_name, std_name, std_id;
 
     public Student() {
@@ -35,5 +35,10 @@ public class Student extends User {
     @Override
     public int getRole() {
         return 0;
+    }
+
+    @Override
+    public boolean Checkable() {
+        return false;
     }
 }

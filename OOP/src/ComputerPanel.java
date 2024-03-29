@@ -52,8 +52,7 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
                 } else {
                     JFrame errorFrame = new JFrame();
                     System.out.println(comp.getStatus());
-                    JOptionPane.showMessageDialog(errorFrame,
-                            "This seat is not Reservable There's a person in that seat.");
+                    JOptionPane.showMessageDialog(errorFrame, "This seat is not Reservable There's a person in that seat.");
                 }
             } else if (userType == 1) {
                 if (comp.getIsReservable() == true) {
