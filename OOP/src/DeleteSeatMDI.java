@@ -105,14 +105,13 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         try (Connection conn = DbCon.getConnection();
              PreparedStatement delStatement = conn.prepareStatement(delSql)) {
             int deskNumber = Integer.parseInt(seatID.getText());
-            ArrayList<ComputerPanel> desk_list = desk.getDeskArr();
-            for (ComputerPanel comp : desk_list) {
+            for (ComputerPanel comp : this.desk.getDeskArr()) {
                 int comp_id = comp.getComp().getComp_id();
                 if (deskNumber == comp_id) {
                     this.desk.getDeskPanel().remove(comp);
                     this.desk.getDeskArr().remove(comp);
+                    this.desk.getComp_arr().remove(comp.getComp());
                     this.desk.getCheck_desk_arr().remove(Integer.valueOf(comp_id));
-                    System.out.println("delete Desk number : " + comp_id);
                     delStatement.setInt(1, deskNumber);
                     delStatement.executeUpdate();
                     break;

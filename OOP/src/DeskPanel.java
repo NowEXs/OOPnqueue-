@@ -83,7 +83,8 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     }
 
     private void addInitialComputerPanels() {
-        this.deskPanel.removeAll();
+        deskPanel.removeAll();
+        check_desk_arr.clear();
         String addingSql = "SELECT SeatID FROM SeatManager WHERE Availability = 1"; // เพิ่มโต๊ะ
         try (Connection conn = DbCon.getConnection();
              PreparedStatement addingstatement = conn.prepareStatement(addingSql)) {
@@ -94,17 +95,18 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             }
             while (resultSet.next()) {
                 int compID = resultSet.getInt("SeatID");
+                check_desk_arr.add(compID);
                 if (compIDnotIn(compID, check_desk_arr)) {
-                    System.out.println(compID);
                     Computer computer = new Computer("", "", "", compID, 0);
                     ComputerPanel companel = new ComputerPanel(this, computer, userType());
                     companel.setOpaque(false);
                     this.deskPanel.add(companel);
                     desk_arr.add(companel);
                     comp_arr.add(computer);
-                    check_desk_arr.add(compID);
                 }
             }
+            deskPanel.revalidate();
+            deskPanel.repaint();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -177,12 +179,6 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
 
     @Override
     public void updateGUI() {
-        this.deskPanel.removeAll();
-        this.deskPanel.add(queueButton);
-        if (roleCheck == 2) {
-            addingButton = new AddingButtonPanel(this); /**/
-            this.deskPanel.add(addingButton);
-        }
         String fetchingSql = "SELECT * FROM Reservation";
         List<Integer> checkerList = new ArrayList<>();
         try (Connection conn = DbCon.getConnection();
@@ -192,42 +188,30 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                 int seatID = fetchResult.getInt("SM_SeatID");
                 checkerList.add(seatID);
             }
-            if (checkerList.isEmpty()) {
-                for (Computer computer : comp_arr) { // กรณีที่ไม่มีคิวค้าง
-                    computer.setName("");
-                    computer.setStd_id("");
-                    computer.setLab_name("");
-                    computer.setStatus(0);
-                    ComputerPanel companel = new ComputerPanel(this, computer, userType());
-                    companel.updateButtonIcon();
-                    companel.setOpaque(false);
-                    this.deskPanel.add(companel);
-                }
-            } else {
-                for (Computer computer : comp_arr) {
-                    if (computer.getStatus() != 0) {
-                        boolean found = false;
-                        for (Integer compId : checkerList) { // เจอปุ๊ป break
-                            if (compId == computer.getComp_id()) {
-                                found = true;
-                                break;
-                            }
-                        }
-                        if (!found) { // ไม่เจอ ให้ gen โต๊ะใหม่
+            System.out.println(checkerList.isEmpty());
+            if (!checkerList.isEmpty()) {
+                System.out.println("updateGUI Activated");
+                this.deskPanel.removeAll();
+                this.deskPanel.add(queueButton);
+                if (roleCheck == 2) {
+                    addingButton = new AddingButtonPanel(this); /**/
+                    this.deskPanel.add(addingButton);
+                    for (Computer computer : comp_arr) {
+                        if (!checkerList.contains(computer.getComp_id())) {
                             computer.setName("");
                             computer.setStd_id("");
                             computer.setLab_name("");
                             computer.setStatus(0);
                         }
+                        ComputerPanel companel = new ComputerPanel(this, computer, userType());
+                        companel.updateButtonIcon();
+                        companel.setOpaque(false);
+                        this.deskPanel.add(companel);
                     }
-                    ComputerPanel companel = new ComputerPanel(this, computer, userType());
-                    companel.updateButtonIcon();
-                    companel.setOpaque(false);
-                    this.deskPanel.add(companel);
+                    this.deskPanel.revalidate();
+                    this.deskPanel.repaint();
                 }
             }
-            revalidate();
-            repaint();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -259,6 +243,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                     this.deskPanel.add(companel);
                 }
             }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
@@ -278,6 +263,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             }
         });
         timer.start();
+
     }
 
     @Override
