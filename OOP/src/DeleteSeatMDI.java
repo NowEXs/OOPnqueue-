@@ -4,7 +4,9 @@
  * @author Newtellafolk
  */
 import javax.swing.*;
-import java.awt.Color;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -70,6 +72,32 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
               deleteButtonActionPerformed(evt);
             }
           });
+        deleteButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                deleteButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
         getContentPane().add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 205, 330, -1));
 

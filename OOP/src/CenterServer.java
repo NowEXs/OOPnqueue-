@@ -62,7 +62,7 @@ public class CenterServer {
                             socket.close();
                         }
                     } catch (BindException e){
-                        System.out.println("WTF!");
+                        System.out.println("ฺBind Exception!");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
