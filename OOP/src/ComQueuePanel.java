@@ -161,7 +161,7 @@ public class ComQueuePanel extends javax.swing.JPanel implements Updater{
         } else if (comp.getStatus() == 1){
             image_status.setIcon(new ImageIcon(getClass().getResource("/Image/wait.png")));
         } else if (comp.getStatus() == 2) {
-            image_status.setIcon(new ImageIcon(getClass().getResource("/Image/checking.png")));
+            image_status.setIcon(new ImageIcon(getClass().getResource("/Image/check.png")));
         }
     }
 

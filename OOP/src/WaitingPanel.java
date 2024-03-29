@@ -170,10 +170,18 @@ public class WaitingPanel extends JPanel implements Updater{
             int queueCounter = 0;
             while (selector.next()) {
                 int seatID = selector.getInt("SM_SeatID");
+                String name = selector.getString("StudentName");
+                String std_id = selector.getString("StudentID");
+                String lab_name = selector.getString("Lab_name");
+                int status = selector.getInt("Status");
                 JPanel compBox = (JPanel) SpaceComQueue1.getComponent(queueCounter);
                 ComQueuePanel comQueuePanel = (ComQueuePanel) compBox.getComponent(0);
                 for (Computer computer : comp_arr) {
                     if (computer.getComp_id() == seatID) {
+                        computer.setStd_id(std_id);
+                        computer.setStatus(status);
+                        computer.setLab_name(lab_name);
+                        computer.setName(name);
                         comQueuePanel.setComputer(computer);
                         comQueuePanel.updateGUI();
                         comQueuePanel.updateButtonIcon();

@@ -30,6 +30,7 @@ public class DeadlinePanel extends javax.swing.JPanel implements Updater{
         txt_lab = new javax.swing.JLabel();
         txt_people = new javax.swing.JLabel();
         bg_deadline = new javax.swing.JLabel();
+        editButton = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -39,6 +40,12 @@ public class DeadlinePanel extends javax.swing.JPanel implements Updater{
         txt_today.setText("Today's Deadline");
         txt_today.setToolTipText("");
         txt_today.setIconTextGap(5);
+        editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/button/editButton (1).png"))); // NOI18N
+        editButton.setBorder(null);
+        editButton.setBorderPainted(false);
+        editButton.setContentAreaFilled(false);
+        add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 22, 30, 15));
+
         add(txt_today, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 10, 120, 30));
 
         txt_lab.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
@@ -62,6 +69,7 @@ public class DeadlinePanel extends javax.swing.JPanel implements Updater{
     private javax.swing.JLabel txt_lab;
     private javax.swing.JLabel txt_people;
     private javax.swing.JLabel txt_today;
+    private javax.swing.JButton editButton;
 
 
     @Override

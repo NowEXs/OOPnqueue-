@@ -46,7 +46,7 @@ public class MainPage extends javax.swing.JFrame {
     public MainPage(User user) {
          this.user = user;
          initComponents();
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+        /*Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             String resetSeat = "UPDATE SeatManager SET Availability = NULL"; // รี sql
             String resetQueue = "DELETE FROM Reservation";
             String resetReserv = "UPDATE SeatManager SET Reservable = 1";
@@ -65,7 +65,7 @@ public class MainPage extends javax.swing.JFrame {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        }));
+        })); */
         countdown();
     }
 

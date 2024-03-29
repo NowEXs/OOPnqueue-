@@ -2,11 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 //for making computer loop
-public class ComputerPanel extends JPanel implements ActionListener, Updater, MouseListener {
+public class ComputerPanel extends JPanel implements ActionListener, Updater {
     private JPanel innerLabel;
     private JButton computerButton;
     private JLabel computerNumber;
@@ -14,6 +12,7 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
     private int userType;
 
     private DeskPanel desk;
+
     public ComputerPanel(DeskPanel desk, Computer comp, int userType) {
         this.desk = desk;
         this.userType = userType;
@@ -31,7 +30,6 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
         computerButton.setContentAreaFilled(false);
         computerButton.setBorderPainted(false);
 
-        computerButton.addMouseListener(this);
         computerButton.addActionListener(this);
         add(computerButton, BorderLayout.NORTH);
         add(innerLabel);
@@ -46,48 +44,45 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
         if (e.getSource().equals(computerButton)) {
             if (userType == 0) {
                 if (comp.getIsReservable() == true) {
-                    Reservation reservationWindow = new Reservation(this ,comp);
+                    Reservation reservationWindow = new Reservation(this, comp);
                     reservationWindow.setVisible(true);
                 } else {
                     JFrame errorFrame = new JFrame();
                     System.out.println(comp.getStatus());
-                    JOptionPane.showMessageDialog(errorFrame, "This seat is not Reservable There's a person in that seat.");
+                    JOptionPane.showMessageDialog(errorFrame,
+                            "This seat is not Reservable There's a person in that seat.");
                 }
-            }
-            else if (userType == 1) {
-                    if (comp.getIsReservable() == true) {
-                        JFrame errorFrame = new JFrame();
-                        System.out.println(comp.getStatus());
-                        JOptionPane.showMessageDialog(errorFrame, "There's no person in that seat.");
-                    } else if (comp.getStatus() == 1){
-                        CheckQueueMDI queueWindow = new CheckQueueMDI(comp);
-                        queueWindow.setVisible(true);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "This seat is still checking...");
-                    }
+            } else if (userType == 1) {
+                if (comp.getIsReservable() == true) {
+                    JFrame errorFrame = new JFrame();
+                    System.out.println(comp.getStatus());
+                    JOptionPane.showMessageDialog(errorFrame, "There's no person in that seat.");
+                } else {
+                    CheckQueueMDI queueWindow = new CheckQueueMDI(this ,comp);
+                    queueWindow.setVisible(true);
+                }
             } else if (userType == 2) {
                 if (comp.getIsReservable() == true) {
                     DeleteSeatMDI deleteWindow = new DeleteSeatMDI(desk, comp);
                     deleteWindow.setVisible(true);
-                } else if (comp.getStatus() == 1){
-                    CheckQueueMDI queueWindow = new CheckQueueMDI(comp);
-                    queueWindow.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(null, "This seat is still checking...");
+                    CheckQueueMDI queueWindow = new CheckQueueMDI(this, comp);
+                    queueWindow.setVisible(true);
                 }
             }
 
-            }
-
         }
+
+    }
+
     @Override
     public void updateButtonIcon() {
         if (comp.getStatus() == 0) {
             computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/empty.png")));
-        } else if (comp.getStatus() == 1){
+        } else if (comp.getStatus() == 1) {
             computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/wait.png")));
         } else if (comp.getStatus() == 2) {
-            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/checking.png")));
+            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/check.png")));
         }
     }
 
@@ -100,30 +95,4 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
     public void dataFetcher() {
 
     }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        computerButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
 }
-
