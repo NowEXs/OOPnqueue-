@@ -77,7 +77,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
          */
 
         add(deskPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 770, 550));
-        wood.setIcon(new ImageIcon(getClass().getResource("/Image/left.png")));
+        wood.setIcon(new ImageIcon("OOP/src/Image/Wood.png"));
         add(wood, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
     }
 
