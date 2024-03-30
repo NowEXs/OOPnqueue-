@@ -85,9 +85,10 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         deskPanel.removeAll();
         check_desk_arr.clear();
 
-        String addingSql = "SELECT s.SeatID, r.StudentName, r.StudentID, r.Lab_name, r.Status " + // s. ตัวย่อจาก FROM SeatManager s หลักการ คล้าย variable
-                "FROM SeatManager s LEFT JOIN Reservation r ON s.SeatID = r.SM_SeatID " + // LEFT JOIN เอาข้อมูลทั้งหมดที่ Availability = 1
-                "WHERE s.Availability = 1";
+        String addingSql = "SELECT s.SeatID, r.StudentName, r.StudentID, r.Lab_name, r.Status " +
+                "FROM SeatManager s LEFT JOIN Reservation r ON s.SeatID = r.SM_SeatID " +
+                "WHERE s.Availability = 1 " +
+                "ORDER BY s.SeatID ASC";
 
         try (Connection conn = DbCon.getConnection();
              PreparedStatement addingStatement = conn.prepareStatement(addingSql);

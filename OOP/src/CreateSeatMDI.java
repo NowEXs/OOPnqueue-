@@ -215,8 +215,8 @@ public class CreateSeatMDI extends javax.swing.JFrame implements OnClick{
                 addingStatement.setInt(1, selectedDesk);
                 ResultSet addingStmt = addingStatement.executeQuery();
                 boolean containsCompID = false;
-                for (Computer computer : this.deskPanel.getComp_arr()) {
-                    if (computer.getComp_id() == selectedDesk) {
+                for (Integer comp_id : this.deskPanel.getCheck_desk_arr()) {
+                    if (comp_id == selectedDesk) {
                         containsCompID = true;
                         break;
                     }
@@ -236,6 +236,7 @@ public class CreateSeatMDI extends javax.swing.JFrame implements OnClick{
                         updateStatement.setInt(1, 1);
                         updateStatement.setInt(2, compID);
                         updateStatement.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Added seat!");
                     } else {
                         JOptionPane.showMessageDialog(null, "This seat already added.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
