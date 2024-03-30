@@ -9,7 +9,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.sql.*;
-import java.util.ArrayList;
 
 public class DeleteSeatMDI extends javax.swing.JFrame {
 
@@ -63,15 +62,15 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         delete_label.setText("Delete Seat");
         getContentPane().add(delete_label, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 37, 330, 30));
 
-        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/deleteButtonSmall.png"))); // NOI18N
+        deleteButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/button/deleteButtonSmall.png"))); // NOI18N
         deleteButton.setBorder(null);
         deleteButton.setBorderPainted(false);
         deleteButton.setContentAreaFilled(false);
         deleteButton.addActionListener(new java.awt.event.ActionListener() {
-          public void actionPerformed(java.awt.event.ActionEvent evt) {
-              deleteButtonActionPerformed(evt);
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
             }
-          });
+        });
         deleteButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -89,13 +88,12 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
             }
 
             @Override
-            public void mouseEntered(MouseEvent e) {
-                deleteButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteMouseEntered(evt);
             }
-
             @Override
-            public void mouseExited(MouseEvent e) {
-
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteMouseExited(evt);
             }
         });
 
@@ -108,25 +106,15 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 335, -1));
 
         pack();
-    }// </editor-fold>
-
-    private void enterSeatIdActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    }
+    private void deleteMouseEntered(java.awt.event.MouseEvent evt) {
+        deleteButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        deleteButton.setIcon(new ImageIcon("OOP/src/Image/Button/deleteButtonSmall.png"));
     }
 
-    private void enterSeatIdFocusGained(java.awt.event.FocusEvent evt) {
-        if (seatID.getText().equals("Enter Seat ID")) {
-            seatID.setText("");
-        }
-        seatID.setForeground(Color.WHITE);
+    private void deleteMouseExited(java.awt.event.MouseEvent evt) {
+        deleteButton.setIcon(new ImageIcon("OOP/src/Image/Button/deleteButtonSmallv2.png"));
     }
-
-    private void enterSeatIdFocusLost(java.awt.event.FocusEvent evt) {
-        if (seatID.getText().equals("")) {
-            seatID.setText("Enter Seat ID");
-        }
-    }
-
 
     private void deleteButtonActionPerformed (java.awt.event.ActionEvent evt){
         String delSql = "UPDATE SeatManager SET Availability = NULL WHERE SeatID = ?"; // ลบโต๊ะ
@@ -142,6 +130,7 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
                     this.desk.getCheck_desk_arr().remove(Integer.valueOf(comp_id));
                     delStatement.setInt(1, deskNumber);
                     delStatement.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Deleted seat!");
                     break;
                 }
             }
