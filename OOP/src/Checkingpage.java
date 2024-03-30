@@ -6,13 +6,21 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static org.bouncycastle.oer.its.Duration.seconds;
 
 /**
  *
  * @author gypprt
  */
-public class Checkingpage extends javax.swing.JFrame implements OnClick {
+public class Checkingpage extends javax.swing.JFrame implements OnClick{
 
     /**
      * Creates new form Checkingpage
@@ -30,8 +38,15 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
     private javax.swing.JLabel lab_l;
     private javax.swing.JLabel name_l;
     private javax.swing.JLabel std_l;
+    private Computer comp;
+    private ComputerPanel companel;
+    private Timer timer;
+    private int seconds = 0;
+
     // End of variables declaration
-    public Checkingpage() {
+    public Checkingpage(ComputerPanel companel, Computer comp) {
+        this.companel = companel;
+        this.comp = comp;
         initComponents();
 
         try {
@@ -46,6 +61,14 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        timer = new javax.swing.Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seconds++;
+                updateTime();
+            }
+        });
+        timer.start();
     }
     private void setCustomFont(Font font){
         lab_l.setFont(font.deriveFont(Font.PLAIN, 13));
@@ -81,7 +104,6 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Checking");
         setAutoRequestFocus(false);
         setBounds(new java.awt.Rectangle(0, 25, 300, 500));
@@ -97,7 +119,7 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
         confirmButton.setContentAreaFilled(false);
         confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmButtonActionPerformed(evt);
+                pressConfirm(evt);
             }
         });
         confirmButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -113,7 +135,7 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
         lab_l.setFont(new java.awt.Font("Helvetica Neue", 0, 16)); // NOI18N
         lab_l.setForeground(new java.awt.Color(255, 255, 255));
         lab_l.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lab_l.setText("9");
+        lab_l.setText(comp.getLab_name());
         getContentPane().add(lab_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 50, 30));
 
         jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -123,7 +145,7 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
 
         std_l.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         std_l.setForeground(new java.awt.Color(255, 255, 255));
-        std_l.setText("std");
+        std_l.setText("  " + comp.getStd_id());
         getContentPane().add(std_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 90, 30));
 
         jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -133,7 +155,7 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
 
         name_l.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         name_l.setForeground(new java.awt.Color(255, 255, 255));
-        name_l.setText("name");
+        name_l.setText("  " + comp.getName());
         getContentPane().add(name_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 80, 30));
 
         jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
@@ -144,13 +166,12 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
         jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("25");
+        jLabel5.setText(""+comp.getComp_id());
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 130, 290, 40));
 
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 2, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(124, 76, 37));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("17:00:30");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 140, 30));
 
         Computer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -174,14 +195,14 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
 
         pack();
     }// </editor-fold>
-
-    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        actionPerformed(evt);
-//        this.dispose();
-//        NewJFrame pi = new NewJFrame();
-//        pi.setVisible(true);
-
+    private void updateTime() {
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int secs = seconds % 60;
+        String timeString = String.format("%02d:%02d:%02d", hours, minutes, secs);
+        jLabel4.setText(timeString);
     }
+
     private void confirmButtonMouseEntered(java.awt.event.MouseEvent evt) {
         //        Change cursor to hand cursor and change pic to bigger button
         confirmButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -189,65 +210,46 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick {
     }
 
     private void confirmButtonMouseExited(java.awt.event.MouseEvent evt) {
-        //        Change pic to smaller button
         confirmButton.setIcon(new ImageIcon("OOP/src/Image/Button/FillScoreButtonSmall.png"));
-    }
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Checkingpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Checkingpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Checkingpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Checkingpage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Checkingpage().setVisible(true);
-            }
-        });
     }
 
     @Override
     public void pressConfirm(ActionEvent event) {
-        //nothing
+        String update_qSql = "DELETE FROM Reservation WHERE SM_SeatID = ?";
+        String update_rSql = "UPDATE SeatManager SET Reservable = 1 WHERE SeatID = ?";
+        try (PreparedStatement update_qstatement = DbCon.prepareStatement(update_qSql);
+             PreparedStatement update_rstatement = DbCon.prepareStatement(update_rSql)) {
+            int deskNumber = comp.getComp_id();
+            this.comp.setName("");
+            this.comp.setLab_name("");
+            this.comp.setStd_id("");
+            this.comp.setStatus(0);
+            this.companel.updateButtonIcon();
+            update_qstatement.setInt(1, deskNumber);
+            update_rstatement.setInt(1, deskNumber);
+            update_qstatement.executeUpdate();
+            update_rstatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("go to Excel panel");
+        new ExcelViewer().setVisible(true);
+        dispose();
     }
 
     @Override
     public void pressCancel(ActionEvent event) {
-        //nothing
+
     }
 
     @Override
-    public void actionPerformed(ActionEvent evt) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-            SwingUtilities.invokeLater(() -> {
-                ExcelViewer excelViewer = new ExcelViewer();
-                excelViewer.setVisible(true);
-            });
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    public static void main(String[] args) {
+        new Checkingpage(null,new Computer()).setVisible(true);
     }
 }

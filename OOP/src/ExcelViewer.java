@@ -9,21 +9,23 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.*;
+import java.net.ConnectException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
-public class ExcelViewer extends JFrame {
+public class ExcelViewer extends JFrame implements WindowListener {
     private JTable table;
     private DefaultTableModel model;
     private File selectedFile;
 
     public ExcelViewer() {
         setTitle("Excel Viewer and Editor");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(800, 600);
-        selectedFile = new File("C:\\Users\\prato\\Documents\\GitHub\\OOPnqueue-\\OOP\\src\\assets\\Book1.xlsx");
+        selectedFile = new File("OOP/src/assets/Book1.xlsx");
 
         // Initialize the table before calling displayExcel
         table = new JTable();
@@ -56,11 +58,12 @@ public class ExcelViewer extends JFrame {
             }
         });
 
+        addWindowListener(this);
+
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(saveButton);
         buttonPanel.add(chooseSheetButton);
         getContentPane().add(buttonPanel, BorderLayout.NORTH);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         // Set Excel-like styling for the table
         table.setGridColor(Color.gray); // Set grid color
@@ -146,6 +149,47 @@ public class ExcelViewer extends JFrame {
         catch (Exception e) {
             e.printStackTrace();
         }
+
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+        try (Socket socket = new Socket("localhost",1111)){
+            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+            out.println(1);
+        }catch (ConnectException ex){
+            System.out.println("Not have Server...");
+        } catch (UnknownHostException ex) {
+            throw new RuntimeException(ex);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {}
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
 
     }
 

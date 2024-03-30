@@ -1,5 +1,5 @@
 public class Professor extends User implements Checkable {
-    private String pro_password;
+    private final String password = "1234";
     public void viewComment(){
 
     }
@@ -8,11 +8,16 @@ public class Professor extends User implements Checkable {
 //    } for run
     public Professor(){
 
+        this.setRole(2);
     }
 
     @Override
-    public void Checkable() {
+    public boolean Checkable() {
+        return true;
+    }
 
+    public String getPassword() {
+        return password;
     }
 
     @Override

@@ -1,5 +1,5 @@
 public class TA extends User implements Checkable{
-    private final String password = "oopAssistant";
+    private final String password = "1234";
 //    public boolean isCheckable(){
 //
 //    } for run
@@ -8,8 +8,8 @@ public class TA extends User implements Checkable{
     }
 
     @Override
-    public void Checkable() {
-
+    public boolean Checkable() {
+        return true;
     }
 
     public String getPassword() {

@@ -1,21 +1,26 @@
-public class Computer extends Student implements RoleChecker, Rerservable{
+public class Computer extends Student implements Rerservable{
     private Student std_data;
     private int comp_id, status;
     private boolean isReservable;
 
 
     public Computer() {
-        this(0, null);
+
     }
-    public Computer(int status,Student std_data) {
+    public Computer(String std_id, String std_name, String lab_name,int comp_id,int status) {
+        super(std_id, std_name, lab_name);
+        this.comp_id = comp_id;
         this.status = status;
-        this.std_data = std_data;
+        this.Availability();
     }
+
     @Override
-    public void userType(){
-    }
-    @Override
-    public void Availability(){
+    public void Availability() {
+        if (this.getStatus() == 0) {
+            this.setIsReservable(true);
+        } else {
+            this.setIsReservable(false);
+        }
     }
     public int getComp_id() {
         return comp_id;
@@ -25,20 +30,15 @@ public class Computer extends Student implements RoleChecker, Rerservable{
     }
     public void setStatus(int status) {
         this.status = status;
+        Availability();
     }
     public int getStatus() {
         return status;
     }
-    public boolean isReservable() {
+    public boolean getIsReservable() {
         return isReservable;
     }
-    public void isReservable(boolean isReservable) {
+    public void setIsReservable(boolean isReservable) {
         this.isReservable = isReservable;
-    }
-    public void setStd_data(Student std_data) {
-        this.std_data = std_data;
-    }
-    public Student getStd_data() {
-        return std_data;
     }
 }

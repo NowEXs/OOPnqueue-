@@ -1,3 +1,3 @@
 public interface Checkable {
-    public abstract void Checkable();
+    public abstract boolean Checkable();
 }
