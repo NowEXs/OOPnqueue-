@@ -2,7 +2,9 @@
  *
  * @author Newtellafolk
  */
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
 
 public class DeleteSeatMDI extends javax.swing.JFrame {
 
@@ -45,6 +47,7 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         enterSeatId.setForeground(new java.awt.Color(245, 243, 230));
         enterSeatId.setText("Enter Seat ID");
         enterSeatId.setBorder(null);
+        enterSeatId.setDisabledTextColor(new java.awt.Color(239, 210, 173));
         enterSeatId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 enterSeatIdFocusGained(evt);
@@ -75,6 +78,24 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
                 deleteButtonActionPerformed(evt);
             }
         });
+        deleteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                deleteButtonMouseEntered(evt);
+            }
+
+            private void deleteButtonMouseEntered(MouseEvent evt) {
+                deleteButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                deleteButton.setIcon(new ImageIcon("OOP/src/Image/button/deleteButtonBig.png"));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                deleteButtonMouseExited(evt);
+            }
+
+            private void deleteButtonMouseExited(MouseEvent evt) {
+                deleteButton.setIcon(new ImageIcon("OOP/src/Image/deleteButtonSmall.png"));
+            }
+        });
         getContentPane().add(deleteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 205, 330, -1));
 
         bg.setBackground(new java.awt.Color(84, 59, 45));
@@ -84,7 +105,7 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 335, -1));
 
         pack();
-    }// </editor-fold>                        
+    }// </editor-fold>
 
     private void enterSeatIdActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
