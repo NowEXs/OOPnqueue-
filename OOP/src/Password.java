@@ -24,6 +24,7 @@ public class Password extends javax.swing.JFrame implements RoleChecker{
         role = userType();
         initComponents();
         password_pwf.setFocusable(true);
+        setLocationRelativeTo(null);
 
         try{
             File fontStyle_apple = new File("OOP/src/Font/Big Apple 3PM.ttf");

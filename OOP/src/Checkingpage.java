@@ -111,6 +111,7 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
         setMinimumSize(new java.awt.Dimension(300, 500));
         setPreferredSize(new java.awt.Dimension(300, 500));
         setResizable(false);
+        setLocationRelativeTo(null);
         setSize(new java.awt.Dimension(300, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

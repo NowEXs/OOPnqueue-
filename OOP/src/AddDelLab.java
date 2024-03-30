@@ -24,6 +24,7 @@ public class AddDelLab extends javax.swing.JFrame implements OnClick{
 
     public AddDelLab() {
         initComponents();
+        setLocationRelativeTo(null);
 
         try {
             Font appleFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
