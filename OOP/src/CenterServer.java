@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.BindException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -41,9 +39,7 @@ public class CenterServer {
                             }
                             else if (in != null & com.equals("1")){
                                 if (user instanceof Student){
-                                    Feedback fb = new Feedback();
-                                    fb.startServer();
-                                    fb.setVisible(true);
+                                    new ObjectServ(user);
                                 }
                                 else if (user instanceof TA){
                                     long startTime = System.currentTimeMillis();
