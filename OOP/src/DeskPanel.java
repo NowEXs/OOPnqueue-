@@ -57,6 +57,12 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         queueButton.setIcon(new ImageIcon("OOP/src/Image/Queue.png"));
         queueButton.setBorderPainted(false);
         queueButton.setContentAreaFilled(false);
+        
+        queueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QueuePerformed(evt);
+            }
+        });
         deskPanel.setBorder(null);
         deskPanel.setLayout(new GridLayout(0, 7));
         deskPanel.setOpaque(false);
@@ -160,6 +166,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     public JPanel getDeskPanel() {
         return this.deskPanel;
     }
+
 
     private boolean compIDnotIn(int compID, List<Integer> check_desk_arr) {
         return !check_desk_arr.contains(compID);
