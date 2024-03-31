@@ -31,6 +31,7 @@ public class DeadlinePanel extends javax.swing.JPanel implements Updater, RoleCh
         editButton = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setOpaque(false);
 
         txt_today.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
         txt_today.setForeground(new java.awt.Color(87, 65, 43));

@@ -4,6 +4,7 @@
  */
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.IOException;
@@ -41,6 +42,7 @@ public class MainPage extends javax.swing.JFrame {
         cont = new javax.swing.JPanel();
         waitingPanel = new WaitingPanel(wood_panel);
         deadline = new DeadlinePanel(user);
+        bg = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("N-Queue");
@@ -49,8 +51,7 @@ public class MainPage extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         cont.setMinimumSize(new java.awt.Dimension(1200, 700));
-
-
+        cont.setOpaque(false);
 
         javax.swing.GroupLayout contLayout = new javax.swing.GroupLayout(cont);
         cont.setLayout(contLayout);
@@ -76,6 +77,21 @@ public class MainPage extends javax.swing.JFrame {
                                 .addContainerGap(100, Short.MAX_VALUE))
         );
         getContentPane().add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
+
+        bg.setBackground(new java.awt.Color(84, 59, 45));
+
+        javax.swing.GroupLayout BGLayout = new javax.swing.GroupLayout(bg);
+        bg.setLayout(BGLayout);
+        BGLayout.setHorizontalGroup(
+                BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 1195, Short.MAX_VALUE)
+        );
+        BGLayout.setVerticalGroup(
+                BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 700, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1195, 700));
         setLocationRelativeTo(null);
 
         pack();
@@ -160,5 +176,6 @@ public class MainPage extends javax.swing.JFrame {
     private WaitingPanel waitingPanel;
     private static javax.swing.JFrame parent;
     private static User user;
+    private javax.swing.JPanel bg;
     // End of variables declaration
 }

@@ -68,6 +68,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         deskPanel.setLayout(new GridLayout(0, 7));
         deskPanel.setOpaque(false);
         deskPanel.setBorder(null);
+        setOpaque(false);
 
         /*
          * scrollPanel = new JScrollPane(deskPanel);
