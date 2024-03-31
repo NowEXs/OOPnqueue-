@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
 public class AddingButtonPanel extends JPanel implements ActionListener, MouseListener {
     private JPanel innerLabel;
@@ -11,6 +12,20 @@ public class AddingButtonPanel extends JPanel implements ActionListener, MouseLi
     private JButton addingButton;
     private DeskPanel deskPanel;
 
+    private void setCustomFont() {
+        try {
+            // Load and register the font
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/minecraft_font.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+
+            // Set the font for components
+            buttonLabel.setFont(customFont.deriveFont(Font.PLAIN, 9));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public AddingButtonPanel(DeskPanel deskPanel) {
         this.deskPanel = deskPanel;
@@ -22,7 +37,7 @@ public class AddingButtonPanel extends JPanel implements ActionListener, MouseLi
         innerLabel.add(buttonLabel);
         innerLabel.setOpaque(false);
 
-        addingButton = new JButton(new ImageIcon(getClass().getResource("/Image/add.png")));
+        addingButton = new JButton(new ImageIcon("OOP/src/Image/add.png"));
         addingButton.setOpaque(false);
         addingButton.setContentAreaFilled(false);
         addingButton.setBorderPainted(false);
