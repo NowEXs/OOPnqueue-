@@ -133,7 +133,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                 String std_id = resultSet.getString("StudentID");
                 String lab_name = resultSet.getString("Lab_name");
                 int status = resultSet.getInt("Status");
-                Computer computer = new Computer(name, std_id, lab_name, compID, status);
+                Computer computer = new Computer(std_id, name, lab_name, compID, status);
                 comp_arr.add(computer);
 
                 ComputerPanel companel = new ComputerPanel(this, computer, userType());
