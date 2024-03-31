@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Updater {
+    private JPanel innerLabel;
+    private JLabel queue;
     private JPanel deskPanel;
     private JLabel wood;
     private JButton queueButton;
@@ -28,7 +31,20 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private JTable queueTable;
     private JTableHeader header;
     private DefaultTableModel model;
+    private void setCustomFont() {
+        try {
+            // Load and register the font
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/minecraft_font.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
 
+            // Set the font for components
+            queue.setFont(customFont.deriveFont(Font.PLAIN, 9));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public DeskPanel() {
         initComponents();
     }
@@ -57,7 +73,15 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         queueButton.setIcon(new ImageIcon("OOP/src/Image/Queue.png"));
         queueButton.setBorderPainted(false);
         queueButton.setContentAreaFilled(false);
-        
+
+        queue = new JLabel("Queue");
+        setLayout(new BorderLayout());
+
+        innerLabel = new JPanel();
+        innerLabel.add(queue);
+        innerLabel.setOpaque(false);
+        add(innerLabel);
+        setCustomFont();
         queueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QueuePerformed(evt);
