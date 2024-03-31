@@ -52,10 +52,10 @@ public class ClientTeacher {
         p1.setBackground(new java.awt.Color(84, 59, 45));
 
         frame.add(p1);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(1480,0);
         frame.pack();
         frame.setVisible(true);
+        frame.setResizable(false);
     }
 
     public static void main(String[] args) {
