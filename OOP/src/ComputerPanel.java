@@ -19,7 +19,7 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
     private void setCustomFont() {
         try {
             // Load and register the font
-            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/minecraft_font.ttf"));
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(customFont);
 
@@ -34,7 +34,6 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
         this.desk = desk;
         this.userType = userType;
         this.comp = comp;
-        computerNumber.setForeground(new java.awt.Color(234, 211, 177));
         computerNumber = new JLabel("Seat - " + comp.getComp_id());
         setLayout(new BorderLayout());
 
@@ -52,6 +51,7 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
         computerButton.addActionListener(this);
         add(computerButton, BorderLayout.NORTH);
         add(innerLabel);
+        setCustomFont();
     }
 
     public Computer getComp() {

@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SelectRole extends javax.swing.JFrame {
-    
     public SelectRole() {
         initComponents();
         try {
@@ -79,7 +78,6 @@ public class SelectRole extends javax.swing.JFrame {
             }
         });
         getContentPane().add(PFSButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 470, 170, -1));
-
         STDButton.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         STDButton.setText("Student");
         STDButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
