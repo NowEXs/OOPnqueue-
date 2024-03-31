@@ -176,6 +176,7 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
 
         bg.setBackground(new java.awt.Color(84, 59, 45));
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
+        bg.setOpaque(true);
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         bt_confirm.addActionListener(new ActionListener() {

@@ -41,6 +41,7 @@ public class DeadlinePanel extends javax.swing.JPanel implements Updater, RoleCh
         editButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/button/editButton (1).png"))); // NOI18N
         editButton.setBorder(null);
         editButton.setBorderPainted(false);
+        editButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         editButton.setContentAreaFilled(false);
         if (userType() == 2) {
             add(editButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 22, 30, 15));
