@@ -16,7 +16,7 @@ import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class ExcelViewer extends JFrame implements WindowListener {
+public class ExcelViewer extends JFrame {
     private JTable table;
     private DefaultTableModel model;
     private File selectedFile;
@@ -57,8 +57,6 @@ public class ExcelViewer extends JFrame implements WindowListener {
                 }
             }
         });
-
-        addWindowListener(this);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(saveButton);
@@ -149,47 +147,6 @@ public class ExcelViewer extends JFrame implements WindowListener {
         catch (Exception e) {
             e.printStackTrace();
         }
-
-    }
-
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowClosing(WindowEvent e) {
-        try (Socket socket = new Socket("localhost",1111)){
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            out.println(1);
-        }catch (ConnectException ex){
-            System.out.println("Not have Server...");
-        } catch (UnknownHostException ex) {
-            throw new RuntimeException(ex);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
-    }
-
-    @Override
-    public void windowClosed(WindowEvent e) {}
-
-    @Override
-    public void windowIconified(WindowEvent e) {
-    }
-
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowActivated(WindowEvent e) {
-
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
 
     }
 

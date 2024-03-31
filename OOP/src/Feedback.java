@@ -25,8 +25,8 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
     /**
      * Creates new form Feedback
      */
-    public Feedback() {
-        initComponents();
+    public Feedback(Computer comp, String time) {
+        initComponents(comp, time);
         centerFrame();
         feedback_txtarea.setFocusable(true);
         try{
@@ -49,7 +49,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
             feedback_txtarea.setFont(font_feedback);
             name.setFont(font_name_user);
             lab.setFont(font_lab_user);
-            time.setFont(font_time_user);
+            this.time.setFont(font_time_user);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -67,8 +67,8 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
-    private void initComponents() {
-
+    private void initComponents(Computer comp, String time) {
+        this.comp = comp;
         label_complete = new javax.swing.JLabel();
         image = new javax.swing.JLabel();
         name_p = new javax.swing.JPanel();
@@ -79,7 +79,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         lab = new javax.swing.JLabel();
         time_p = new javax.swing.JPanel();
         label_time = new javax.swing.JLabel();
-        time = new javax.swing.JLabel();
+        this.time = new javax.swing.JLabel();
         confirm_bt = new javax.swing.JButton();
         cancel_bt = new javax.swing.JButton();
         label_giveme = new javax.swing.JLabel();
@@ -109,7 +109,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
 
         name.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         name.setForeground(new java.awt.Color(80, 9, 9));
-        name.setText("");
+        name.setText(comp.getName());
 
         javax.swing.GroupLayout name_pLayout = new javax.swing.GroupLayout(name_p);
         name_p.setLayout(name_pLayout);
@@ -143,7 +143,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
 
         lab.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lab.setForeground(new java.awt.Color(80, 9, 9));
-
+        lab.setText(comp.getLab_name());
 
         javax.swing.GroupLayout lab_pLayout = new javax.swing.GroupLayout(lab_p);
         lab_p.setLayout(lab_pLayout);
@@ -175,12 +175,13 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         label_time.setForeground(new java.awt.Color(80, 9, 9));
         label_time.setText("Time :");
 
-        time.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        time.setForeground(new java.awt.Color(80, 9, 9));
-        timeUpdate();
-
-        javax.swing.Timer timer = new javax.swing.Timer(1000, e -> timeUpdate());
-        timer.start();
+        this.time.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        this.time.setForeground(new java.awt.Color(80, 9, 9));
+//        timeUpdate();
+//
+//        javax.swing.Timer timer = new javax.swing.Timer(1000, e -> timeUpdate());
+//        timer.start();
+        this.time.setText(time);
 
         javax.swing.GroupLayout time_pLayout = new javax.swing.GroupLayout(time_p);
         time_p.setLayout(time_pLayout);
@@ -190,7 +191,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                                 .addContainerGap()
                                 .addComponent(label_time)
                                 .addGap(18, 18, 18)
-                                .addComponent(time, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(this.time, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(18, Short.MAX_VALUE))
         );
         time_pLayout.setVerticalGroup(
@@ -199,7 +200,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                                 .addGap(1, 1, 1)
                                 .addComponent(label_time, javax.swing.GroupLayout.DEFAULT_SIZE, 18, Short.MAX_VALUE)
                                 .addGap(1, 1, 1))
-                        .addComponent(time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(this.time, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         getContentPane().add(time_p, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 170, 20));
@@ -279,11 +280,11 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         pack();
     }// </editor-fold>
 
-    public void timeUpdate(){
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        String now  = df.format(new Date());
-        time.setText(now);
-    }
+//    public void timeUpdate(){
+//        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
+//        String now  = df.format(new Date());
+//        time.setText(now);
+//    }
     private void feedback_txtareaFocusGained(java.awt.event.FocusEvent evt) {
         // TODO add your handling code here:
         if(feedback_txtarea.getText().equals("Add a comment")){
@@ -366,7 +367,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Feedback().setVisible(true);
+                new Feedback(new Computer(), "0:0:1").setVisible(true);
             }
         });
     }
@@ -392,6 +393,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
     private javax.swing.JPanel time_p;
     private String txt;
     private BufferedReader in;
+    private Computer comp;
 
     @Override
     public void pressConfirm(ActionEvent event) {

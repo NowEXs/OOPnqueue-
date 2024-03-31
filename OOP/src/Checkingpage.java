@@ -9,6 +9,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
+import java.net.ConnectException;
+import java.net.Socket;
+import java.net.UnknownHostException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -210,6 +215,27 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
 
     @Override
     public void pressConfirm(ActionEvent event) {
+        try (Socket socket = new Socket("localhost",1111)){
+            PrintWriter outS = new PrintWriter(socket.getOutputStream(), true);
+            outS.println(1);
+        }catch (ConnectException ex){
+            System.out.println("Not have Server...");
+        } catch (UnknownHostException ex) {
+            throw new RuntimeException(ex);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+        try (Socket soc = new Socket("localhost",2222);
+             ObjectOutputStream obout = new ObjectOutputStream(soc.getOutputStream())) {
+            PrintWriter outTime = new PrintWriter(soc.getOutputStream(), true);
+            outTime.println(time.getText());
+            obout.writeObject(this.comp);
+            obout.flush();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         String update_qSql = "DELETE FROM Reservation WHERE SM_SeatID = ?";
         String update_rSql = "UPDATE SeatManager SET Reservable = 1 WHERE SeatID = ?";
         try (PreparedStatement update_qstatement = DbCon.prepareStatement(update_qSql);
