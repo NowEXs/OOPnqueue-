@@ -11,10 +11,6 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import static org.bouncycastle.oer.its.Duration.seconds;
 
 /**
  *
@@ -28,13 +24,13 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
     // Variables declaration - do not modify
     private javax.swing.JLabel Computer;
     private javax.swing.JButton confirmButton;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lab;
+    private javax.swing.JLabel checking_l;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel time;
+    private javax.swing.JLabel desk_no;
+    private javax.swing.JLabel name;
+    private javax.swing.JLabel std_id;
     private javax.swing.JLabel lab_l;
     private javax.swing.JLabel name_l;
     private javax.swing.JLabel std_l;
@@ -72,14 +68,14 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
     }
     private void setCustomFont(Font font){
         lab_l.setFont(font.deriveFont(Font.PLAIN, 13));
-        jLabel10.setFont(font.deriveFont(Font.BOLD, 18));
+        lab.setFont(font.deriveFont(Font.BOLD, 18));
         std_l.setFont(font.deriveFont(Font.PLAIN, 13));
-        jLabel8.setFont(font.deriveFont(Font.BOLD, 18));
+        std_id.setFont(font.deriveFont(Font.BOLD, 18));
         name_l.setFont(font.deriveFont(Font.PLAIN, 13));
-        jLabel6.setFont(font.deriveFont(Font.BOLD, 18));
-        jLabel5.setFont(font.deriveFont(Font.BOLD, 18));
-        jLabel4.setFont(font.deriveFont(Font.PLAIN, 16));
-        jLabel2.setFont(font.deriveFont(Font.BOLD, 20));
+        name.setFont(font.deriveFont(Font.BOLD, 18));
+        desk_no.setFont(font.deriveFont(Font.BOLD, 18));
+        time.setFont(font.deriveFont(Font.PLAIN, 16));
+        checking_l.setFont(font.deriveFont(Font.BOLD, 20));
     }
 
     /**
@@ -93,15 +89,15 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
 
         confirmButton = new javax.swing.JButton();
         lab_l = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        lab = new javax.swing.JLabel();
         std_l = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        std_id = new javax.swing.JLabel();
         name_l = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        name = new javax.swing.JLabel();
+        desk_no = new javax.swing.JLabel();
+        time = new javax.swing.JLabel();
         Computer = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        checking_l = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setTitle("Checking");
@@ -139,53 +135,55 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
         lab_l.setText(comp.getLab_name());
         getContentPane().add(lab_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 350, 50, 30));
 
-        jLabel10.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(234, 211, 177));
-        jLabel10.setText("Lab");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 40, 30));
+        lab.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        lab.setForeground(new java.awt.Color(234, 211, 177));
+        lab.setText("Lab");
+        getContentPane().add(lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 40, 30));
 
         std_l.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         std_l.setForeground(new java.awt.Color(255, 255, 255));
+        std_l.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         std_l.setText("  " + comp.getStd_id());
-        getContentPane().add(std_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 90, 30));
+        getContentPane().add(std_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 90, 10));
 
-        jLabel8.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(234, 211, 177));
-        jLabel8.setText("STD_ID");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, 30));
+        std_id.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        std_id.setForeground(new java.awt.Color(234, 211, 177));
+        std_id.setText("STD_ID");
+        getContentPane().add(std_id, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, -1, 30));
 
         name_l.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
         name_l.setForeground(new java.awt.Color(255, 255, 255));
+        name_l.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         name_l.setText("  " + comp.getName());
-        getContentPane().add(name_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 80, 30));
+        getContentPane().add(name_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 80, -1));
 
-        jLabel6.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(234, 211, 177));
-        jLabel6.setText("Name");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, -1, -1));
+        name.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        name.setForeground(new java.awt.Color(234, 211, 177));
+        name.setText("Name");
+        getContentPane().add(name, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 253, -1, 30));
 
-        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText(""+comp.getComp_id());
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 130, 290, 40));
+        desk_no.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
+        desk_no.setForeground(new java.awt.Color(255, 255, 255));
+        desk_no.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        desk_no.setText(""+comp.getComp_id());
+        getContentPane().add(desk_no, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 130, 290, 40));
 
-        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 2, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(124, 76, 37));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 140, 30));
+        time.setFont(new java.awt.Font("Helvetica Neue", 2, 24)); // NOI18N
+        time.setForeground(new java.awt.Color(124, 76, 37));
+        time.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 140, 30));
 
         Computer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Computer.setIcon(new javax.swing.ImageIcon("OOP/src/Image/checking-2.png")); // NOI18N
         Computer.setMaximumSize(new java.awt.Dimension(130, 100));
         getContentPane().add(Computer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 300, 100));
 
-        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 2, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(71, 42, 24));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Checking");
-        jLabel2.setToolTipText("");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 300, 30));
+        checking_l.setFont(new java.awt.Font("Helvetica Neue", 2, 18)); // NOI18N
+        checking_l.setForeground(new java.awt.Color(71, 42, 24));
+        checking_l.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        checking_l.setText("Checking");
+        checking_l.setToolTipText("");
+        getContentPane().add(checking_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 300, 30));
 
         jLabel3.setBackground(new java.awt.Color(84, 59, 45));
         jLabel3.setIcon(new javax.swing.ImageIcon("OOP/src/Image/clockWood.png")); // NOI18N
@@ -201,7 +199,7 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
         int minutes = (seconds % 3600) / 60;
         int secs = seconds % 60;
         String timeString = String.format("%02d:%02d:%02d", hours, minutes, secs);
-        jLabel4.setText(timeString);
+        time.setText(timeString);
     }
 
     private void confirmButtonMouseEntered(java.awt.event.MouseEvent evt) {
