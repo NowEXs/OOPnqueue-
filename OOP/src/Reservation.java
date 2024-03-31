@@ -174,7 +174,7 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
         jComboBox_lab.setForeground(new java.awt.Color(239, 210, 173));
         add(jComboBox_lab, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 318, 70, 30));
 
-
+        bg.setBackground(new java.awt.Color(84, 59, 45));
         bg.setIcon(new javax.swing.ImageIcon("OOP/src/Image/reserve.png")); // NOI18N
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
