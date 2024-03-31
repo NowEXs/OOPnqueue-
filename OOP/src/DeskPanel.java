@@ -34,12 +34,10 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private DefaultTableModel model;
     private void setCustomFont() {
         try {
-            // Load and register the font
             Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/minecraft_font.ttf"));
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(customFont);
 
-            // Set the font for components
             queue.setFont(customFont.deriveFont(Font.PLAIN, 9));
 
         } catch (Exception e) {
@@ -61,7 +59,6 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         deskPanel = new JPanel();
         queueButton = new JButton();
         queueTable = new JTable();
-        header = new JTableHeader();
         header = queueTable.getTableHeader();
         header.setBackground(new java.awt.Color(201, 140, 83, 233));
         queueTable.setBackground(new java.awt.Color(234, 175, 121, 233));
@@ -75,16 +72,14 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         queueButton.setIcon(new ImageIcon("OOP/src/Image/Queue.png"));
         queueButton.setBorderPainted(false);
         queueButton.setContentAreaFilled(false);
-
         queue = new JLabel("Queue");
-        setLayout(new BorderLayout());
-
         innerLabel = new JPanel();
         innerLabel.add(queue);
         innerLabel.setOpaque(false);
         queue_panel.setLayout(new BorderLayout());
         queue_panel.add(queueButton);
         queue_panel.add(innerLabel,BorderLayout.SOUTH);
+        queue_panel.setPreferredSize(new Dimension(62, 85));
         setCustomFont();
         queueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +102,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         add(deskPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 770, 550));
         wood.setIcon(new ImageIcon("OOP/src/Image/Wood.png"));
         add(wood, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
     }
 
     private void addComputerPanels() { //OPTIMIZED
