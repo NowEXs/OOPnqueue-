@@ -34,8 +34,6 @@ public class Password extends javax.swing.JFrame implements RoleChecker{
             e.printStackTrace();
 
         }
-
-
     }
 
     /**
@@ -66,7 +64,6 @@ public class Password extends javax.swing.JFrame implements RoleChecker{
         password_pwf.setBackground(new java.awt.Color(235, 235, 235));
         password_pwf.setForeground(new java.awt.Color(153, 153, 153));
         password_pwf.setText("Input Password");
-        password_pwf.setToolTipText("");
         password_pwf.setPreferredSize(new Dimension(20,30));
         password_pwf.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {

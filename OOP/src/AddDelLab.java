@@ -19,7 +19,6 @@ public class AddDelLab extends javax.swing.JFrame implements OnClick{
     private javax.swing.JButton DeleteButton;
     private javax.swing.JTextField Lab_tf;
     private javax.swing.JLabel txt_Lab;
-    private javax.swing.JPanel Color_BG;
     private javax.swing.JPanel detail;
 
     public AddDelLab() {
@@ -49,7 +48,6 @@ public class AddDelLab extends javax.swing.JFrame implements OnClick{
         Lab_tf = new javax.swing.JTextField();
         ConfirmButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
-        Color_BG = new javax.swing.JPanel();
         detail = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(275, 150));
@@ -120,21 +118,6 @@ public class AddDelLab extends javax.swing.JFrame implements OnClick{
         );
 
         getContentPane().add(detail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 220, 80));
-
-        Color_BG.setBackground(new java.awt.Color(132, 99, 82));
-
-        javax.swing.GroupLayout Color_BGLayout = new javax.swing.GroupLayout(Color_BG);
-        Color_BG.setLayout(Color_BGLayout);
-        Color_BGLayout.setHorizontalGroup(
-                Color_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 280, Short.MAX_VALUE)
-        );
-        Color_BGLayout.setVerticalGroup(
-                Color_BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 170, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(Color_BG, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 280, 170));
         setLocationRelativeTo(null);
         pack();
     }// </editor-fold>
