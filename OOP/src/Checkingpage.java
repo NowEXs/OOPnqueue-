@@ -75,7 +75,7 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
         name.setFont(font.deriveFont(Font.BOLD, 18));
         desk_no.setFont(font.deriveFont(Font.BOLD, 18));
         time.setFont(font.deriveFont(Font.PLAIN, 16));
-        checking_l.setFont(font.deriveFont(Font.BOLD, 20));
+        checking_l.setFont(font.deriveFont(Font.BOLD, 24));
     }
 
     /**
@@ -176,10 +176,9 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
         getContentPane().add(Computer, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 300, 100));
 
         checking_l.setFont(new java.awt.Font("Helvetica Neue", 2, 18)); // NOI18N
-        checking_l.setForeground(new java.awt.Color(71, 42, 24));
+        checking_l.setForeground(new java.awt.Color(255, 244, 204));
         checking_l.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         checking_l.setText("Checking");
-        checking_l.setToolTipText("");
         getContentPane().add(checking_l, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 300, 30));
 
         jLabel3.setBackground(new java.awt.Color(84, 59, 45));

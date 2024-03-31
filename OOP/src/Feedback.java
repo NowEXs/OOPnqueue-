@@ -109,7 +109,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
 
         name.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         name.setForeground(new java.awt.Color(80, 9, 9));
-        name.setText("Thananupat Rodpan");
+        name.setText("");
 
         javax.swing.GroupLayout name_pLayout = new javax.swing.GroupLayout(name_p);
         name_p.setLayout(name_pLayout);
@@ -143,7 +143,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
 
         lab.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         lab.setForeground(new java.awt.Color(80, 9, 9));
-        lab.setText("  9");
+
 
         javax.swing.GroupLayout lab_pLayout = new javax.swing.GroupLayout(lab_p);
         lab_p.setLayout(lab_pLayout);
@@ -244,7 +244,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                 cancel_btActionPerformed(evt);
             }
         });
-        getContentPane().add(cancel_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, -1, -1));
+        getContentPane().add(cancel_bt, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 320, -1, -1));
 
         label_giveme.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         label_giveme.setForeground(new java.awt.Color(255, 244, 204));
@@ -256,7 +256,6 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         feedback_txtarea.setForeground(new java.awt.Color(255, 244, 204));
         feedback_txtarea.setRows(5);
         feedback_txtarea.setText("Add a comment");
-        feedback_txtarea.setToolTipText("Add a comment");
         feedback_txtarea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         feedback_txtarea.setName(""); // NOI18N
         feedback_txtarea.addFocusListener(new java.awt.event.FocusAdapter() {

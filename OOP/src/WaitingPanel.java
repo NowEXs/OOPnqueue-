@@ -63,7 +63,6 @@ public class WaitingPanel extends JPanel implements Updater{
         st_p.setOpaque(false);
 
         st_check.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/stcheck.png"))); // NOI18N
-        st_check.setToolTipText("");
 
         st_wait.setIcon(new javax.swing.ImageIcon(getClass().getResource("Image/stwait.png"))); // NOI18N
 

@@ -54,23 +54,9 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         queueTable.setModel(model);
         wood = new JLabel();
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonSmall.png"));
+        queueButton.setIcon(new ImageIcon("OOP/src/Image/Queue.png"));
         queueButton.setBorderPainted(false);
         queueButton.setContentAreaFilled(false);
-        queueButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                queueButtonMouseEntered(evt);
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                queueButtonMouseExited(evt);
-            }
-        });
-        queueButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QueuePerformed(evt);
-            }
-        });
         deskPanel.setBorder(null);
         deskPanel.setLayout(new GridLayout(0, 7));
         deskPanel.setOpaque(false);
@@ -175,14 +161,6 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         return this.deskPanel;
     }
 
-    private void queueButtonMouseEntered(java.awt.event.MouseEvent evt) {
-        queueButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonBig.png"));
-    }
-
-    private void queueButtonMouseExited(java.awt.event.MouseEvent evt) {
-        queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonSmall.png"));
-    }
     private boolean compIDnotIn(int compID, List<Integer> check_desk_arr) {
         return !check_desk_arr.contains(compID);
     }

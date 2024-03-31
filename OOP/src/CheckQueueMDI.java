@@ -172,7 +172,6 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
         jLabel_name.setForeground(new java.awt.Color(239, 210, 173));
         jLabel_name.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_name.setText(comp.getName());
-        jLabel_name.setToolTipText("");
         getContentPane().add(jLabel_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, 140, -1));
 
         jLabel_id.setForeground(new java.awt.Color(239, 210, 173));
