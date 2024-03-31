@@ -1,7 +1,13 @@
+import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
-public class EditDeadline extends javax.swing.JFrame {
+public class EditDeadline extends javax.swing.JFrame implements OnClick{
 
 
     public EditDeadline() {
@@ -30,7 +36,6 @@ public class EditDeadline extends javax.swing.JFrame {
         lab_txt = new javax.swing.JLabel();
         CancelButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Edit Lab Deadline");
         setBackground(new java.awt.Color(93, 66, 66));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -45,12 +50,12 @@ public class EditDeadline extends javax.swing.JFrame {
         ConfirmButton.setBorderPainted(false);
         ConfirmButton.setContentAreaFilled(false);
         ConfirmButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        lab_tf.addActionListener(new java.awt.event.ActionListener() {
+        ConfirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lab_tfActionPerformed(evt);
+                pressConfirm(evt);
             }
         });
+
 
         lab_txt.setText("Add the Lab number");
 
@@ -58,6 +63,11 @@ public class EditDeadline extends javax.swing.JFrame {
         CancelButton.setBorderPainted(false);
         CancelButton.setContentAreaFilled(false);
         CancelButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        CancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pressCancel(evt);
+            }
+        });
 
         javax.swing.GroupLayout detailLayout = new javax.swing.GroupLayout(detail);
         detail.setLayout(detailLayout);
@@ -139,5 +149,51 @@ public class EditDeadline extends javax.swing.JFrame {
     private javax.swing.JPanel detail;
     private javax.swing.JTextField lab_tf;
     private javax.swing.JLabel lab_txt;
+
+    @Override
+    public void pressConfirm(ActionEvent event) {
+        int checker = -1;
+        if (this.lab_tf.getText() == "") {
+            return;
+        }
+        try {
+            checker = Integer.parseInt(this.lab_tf.getText());
+            if (checker <= 0) {
+                JOptionPane.showMessageDialog(null, "Invalid input! Please enter a positive integer.");
+                return;
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Invalid input! Please enter an integer.");
+            return;
+        }
+        String updateSql = "UPDATE LabManager SET isTodayDeadline = 1 WHERE LabNumber = ?";
+        String resetSql = "UPDATE LabManager SET isTodayDeadline = NULL";
+        try (Connection conn = DbCon.getConnection();
+             PreparedStatement updateStatement = conn.prepareStatement(updateSql);
+             PreparedStatement resetStatement = conn.prepareStatement(resetSql)) {
+            resetStatement.executeUpdate();
+            updateStatement.setInt(1, checker);
+            int rowsAffected = updateStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Edited successfully!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error! this lab was not added into the program!");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void pressCancel(ActionEvent event) {
+        this.dispose();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
     // End of variables declaration
 }
