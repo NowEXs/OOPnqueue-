@@ -5,6 +5,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Updater {
+    private JPanel queue_panel;
+    private JLabel queue;
     private JPanel deskPanel;
     private JLabel wood;
     private JButton queueButton;
@@ -28,7 +31,18 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private JTable queueTable;
     private JTableHeader header;
     private DefaultTableModel model;
+    private void setCustomFont() {
+        try {
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/minecraft_font.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
 
+            queue.setFont(customFont.deriveFont(Font.PLAIN, 9));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public DeskPanel() {
         initComponents();
     }
@@ -44,7 +58,6 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         deskPanel = new JPanel();
         queueButton = new JButton();
         queueTable = new JTable();
-        header = new JTableHeader();
         header = queueTable.getTableHeader();
         header.setBackground(new java.awt.Color(201, 140, 83, 233));
         queueTable.setBackground(new java.awt.Color(234, 175, 121, 233));
@@ -54,18 +67,17 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         queueTable.setModel(model);
         wood = new JLabel();
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonSmall.png"));
+        queue_panel = new JPanel();
+        queueButton.setIcon(new ImageIcon("OOP/src/Image/Queue.png"));
         queueButton.setBorderPainted(false);
         queueButton.setContentAreaFilled(false);
-        queueButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                queueButtonMouseEntered(evt);
-            }
-
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                queueButtonMouseExited(evt);
-            }
-        });
+        queue = new JLabel("Queue");
+        queue_panel.setPreferredSize(new Dimension(62, 85));
+        queue_panel.setLayout(new BorderLayout());
+        queue_panel.add(queueButton,BorderLayout.NORTH);
+        queue_panel.add(queue);
+        queue_panel.setOpaque(false);
+        setCustomFont();
         queueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 QueuePerformed(evt);
@@ -87,6 +99,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         add(deskPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 770, 550));
         wood.setIcon(new ImageIcon("OOP/src/Image/Wood.png"));
         add(wood, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
     }
 
     private void addComputerPanels() { //OPTIMIZED
@@ -102,7 +115,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
              PreparedStatement addingStatement = conn.prepareStatement(addingSql);
              ResultSet resultSet = addingStatement.executeQuery()) {
 
-            this.deskPanel.add(queueButton);
+            this.deskPanel.add(queue_panel);
             if (roleCheck == 2) {
                 addingButton = new AddingButtonPanel(this);
                 this.deskPanel.add(addingButton);
@@ -175,14 +188,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         return this.deskPanel;
     }
 
-    private void queueButtonMouseEntered(java.awt.event.MouseEvent evt) {
-        queueButton.setCursor(new Cursor(Cursor.HAND_CURSOR));
-        queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonBig.png"));
-    }
 
-    private void queueButtonMouseExited(java.awt.event.MouseEvent evt) {
-        queueButton.setIcon(new ImageIcon("OOP/src/Image/Button/queueButtonSmall.png"));
-    }
     private boolean compIDnotIn(int compID, List<Integer> check_desk_arr) {
         return !check_desk_arr.contains(compID);
     }
@@ -206,7 +212,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             if (!checkerList.isEmpty()) {
                 System.out.println("updateGUI Activated");
                 this.deskPanel.removeAll();
-                this.deskPanel.add(queueButton);
+                this.deskPanel.add(queue_panel);
                 if (roleCheck == 2) {
                     addingButton = new AddingButtonPanel(this); /**/
                     this.deskPanel.add(addingButton);
