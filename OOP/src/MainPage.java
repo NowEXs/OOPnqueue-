@@ -168,6 +168,7 @@ public class MainPage extends javax.swing.JFrame {
 
     public void callCnterServ(){
         new CenterServer().serverStart( this,user);
+        new ObjectServ(user);
     }
 
     // Variables declaration - do not modify

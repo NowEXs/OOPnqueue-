@@ -218,23 +218,25 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
         try (Socket socket = new Socket("localhost",1111)){
             PrintWriter outS = new PrintWriter(socket.getOutputStream(), true);
             outS.println(1);
+            try (Socket soc = new Socket("localhost",2222);
+                 ObjectOutputStream obout = new ObjectOutputStream(soc.getOutputStream())) {
+                PrintWriter outTime = new PrintWriter(soc.getOutputStream(), true);
+                outTime.println(time.getText());
+                obout.writeObject(this.comp);
+                obout.flush();
+            } catch (ConnectException e){
+                System.out.println("Not have server...");
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }catch (ConnectException ex){
             System.out.println("Not have Server...");
         } catch (UnknownHostException ex) {
             throw new RuntimeException(ex);
         } catch (IOException ex) {
             throw new RuntimeException(ex);
-        }
-        try (Socket soc = new Socket("localhost",2222);
-             ObjectOutputStream obout = new ObjectOutputStream(soc.getOutputStream())) {
-            PrintWriter outTime = new PrintWriter(soc.getOutputStream(), true);
-            outTime.println(time.getText());
-            obout.writeObject(this.comp);
-            obout.flush();
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
         String update_qSql = "DELETE FROM Reservation WHERE SM_SeatID = ?";
         String update_rSql = "UPDATE SeatManager SET Reservable = 1 WHERE SeatID = ?";

@@ -39,7 +39,7 @@ public class CenterServer {
                             }
                             else if (in != null & com.equals("1")){
                                 if (user instanceof Student){
-                                    new ObjectServ(user);
+
                                 }
                                 else if (user instanceof TA){
                                     long startTime = System.currentTimeMillis();
