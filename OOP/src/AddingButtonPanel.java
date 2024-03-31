@@ -46,6 +46,7 @@ public class AddingButtonPanel extends JPanel implements ActionListener, MouseLi
         addingButton.addActionListener(this);
         add(addingButton, BorderLayout.NORTH);
         add(innerLabel);
+        setCustomFont();
     }
 
     @Override
