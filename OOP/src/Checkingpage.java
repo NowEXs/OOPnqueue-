@@ -102,13 +102,10 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
 
         setTitle("Checking");
         setAutoRequestFocus(false);
-        setBounds(new java.awt.Rectangle(0, 25, 300, 500));
-        setMaximumSize(new java.awt.Dimension(300, 500));
-        setMinimumSize(new java.awt.Dimension(300, 500));
-        setPreferredSize(new java.awt.Dimension(300, 500));
+        setBounds(new java.awt.Rectangle(0, 0, 313, 520));
+        setPreferredSize(new java.awt.Dimension(313, 520));
         setResizable(false);
         setLocationRelativeTo(null);
-        setSize(new java.awt.Dimension(300, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         confirmButton.setIcon(new javax.swing.ImageIcon("OOP/src/Image/FillScore.png")); // NOI18N
