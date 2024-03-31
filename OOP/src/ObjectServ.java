@@ -7,23 +7,63 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class ObjectServ {
+    private String name,lab,time;
     public ObjectServ(User user){
         if (user instanceof Student){
             new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try(ServerSocket serv = new ServerSocket(2222)){
-                        Socket soc = serv.accept();
-                        ObjectInputStream obin = new ObjectInputStream(soc.getInputStream());
-                        BufferedReader read = new BufferedReader(new InputStreamReader(soc.getInputStream(), "UTF-8"));
-                        String time = read.readLine();
-                        Computer comp = (Computer) obin.readObject();
-                        Feedback fb = new Feedback(comp, time);
-                        fb.startServer();
-                        fb.setVisible(true);
+                        while(true){
+                            Socket soc = serv.accept();
+                            BufferedReader read = new BufferedReader(new InputStreamReader(soc.getInputStream(), "UTF-8"));
+                            time = read.readLine();
+                            ObjectServ.this.serverLab(user);
+                            ObjectServ.this.serverName(user);
+                            Feedback fb = new Feedback(time, name, lab);
+                            fb.startServer();
+                            fb.setVisible(true);
+                            soc.close();
+                        }
                     } catch (IOException e) {
                         throw new RuntimeException(e);
-                    } catch (ClassNotFoundException e) {
+                    }
+                }
+            }).start();
+        }
+    }
+    public void serverLab(User user){
+        if (user instanceof Student){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try(ServerSocket serv = new ServerSocket(3333)){
+                        while(true){
+                            Socket soc = serv.accept();
+                            BufferedReader read = new BufferedReader(new InputStreamReader(soc.getInputStream(), "UTF-8"));
+                            lab = read.readLine();
+                            soc.close();
+                        }
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }).start();
+        }
+    }
+    public void serverName(User user){
+        if (user instanceof Student){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try(ServerSocket serv = new ServerSocket(4444)){
+                        while(true){
+                            Socket soc = serv.accept();
+                            BufferedReader read = new BufferedReader(new InputStreamReader(soc.getInputStream(), "UTF-8"));
+                            name = read.readLine();
+                            soc.close();
+                        }
+                    } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
                 }

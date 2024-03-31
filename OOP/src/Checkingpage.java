@@ -218,12 +218,29 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
         try (Socket socket = new Socket("localhost",1111)){
             PrintWriter outS = new PrintWriter(socket.getOutputStream(), true);
             outS.println(1);
-            try (Socket soc = new Socket("localhost",2222);
-                 ObjectOutputStream obout = new ObjectOutputStream(soc.getOutputStream())) {
+            try (Socket soc = new Socket("localhost",3333)) {
+                PrintWriter outLab = new PrintWriter(soc.getOutputStream(), true);
+                outLab.println(lab_l.getText());
+            } catch (ConnectException e){
+                System.out.println("Not have server...");
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try (Socket soc = new Socket("localhost",4444)) {
+                PrintWriter outName = new PrintWriter(soc.getOutputStream(), true);
+                outName.println(name_l.getText());
+            } catch (ConnectException e){
+                System.out.println("Not have server...");
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try (Socket soc = new Socket("localhost",2222)) {
                 PrintWriter outTime = new PrintWriter(soc.getOutputStream(), true);
                 outTime.println(time.getText());
-                obout.writeObject(this.comp);
-                obout.flush();
             } catch (ConnectException e){
                 System.out.println("Not have server...");
             } catch (UnknownHostException e) {
