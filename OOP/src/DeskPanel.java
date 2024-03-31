@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Updater {
+    private JPanel queue_panel;
     private JPanel innerLabel;
     private JLabel queue;
     private JPanel deskPanel;
@@ -70,6 +71,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         queueTable.setModel(model);
         wood = new JLabel();
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        queue_panel = new JPanel();
         queueButton.setIcon(new ImageIcon("OOP/src/Image/Queue.png"));
         queueButton.setBorderPainted(false);
         queueButton.setContentAreaFilled(false);
@@ -80,7 +82,9 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         innerLabel = new JPanel();
         innerLabel.add(queue);
         innerLabel.setOpaque(false);
-        add(innerLabel);
+        queue_panel.setLayout(new BorderLayout());
+        queue_panel.add(queueButton);
+        queue_panel.add(innerLabel,BorderLayout.SOUTH);
         setCustomFont();
         queueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +122,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
              PreparedStatement addingStatement = conn.prepareStatement(addingSql);
              ResultSet resultSet = addingStatement.executeQuery()) {
 
-            this.deskPanel.add(queueButton);
+            this.deskPanel.add(queue_panel);
             if (roleCheck == 2) {
                 addingButton = new AddingButtonPanel(this);
                 this.deskPanel.add(addingButton);
@@ -215,7 +219,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             if (!checkerList.isEmpty()) {
                 System.out.println("updateGUI Activated");
                 this.deskPanel.removeAll();
-                this.deskPanel.add(queueButton);
+                this.deskPanel.add(queue_panel);
                 if (roleCheck == 2) {
                     addingButton = new AddingButtonPanel(this); /**/
                     this.deskPanel.add(addingButton);
