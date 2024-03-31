@@ -10,7 +10,7 @@ import java.net.Socket;
 public class CenterServer {
 
     public void serverStart(JFrame parent, User user){
-        if (user instanceof Student | user instanceof TA | user == null){
+        if (user instanceof Student | user instanceof TA){
             new Thread(new Runnable() {
                 @Override
                 public void run() {

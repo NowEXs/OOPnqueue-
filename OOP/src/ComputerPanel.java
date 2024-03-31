@@ -80,11 +80,11 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
     @Override
     public void updateButtonIcon() {
         if (comp.getStatus() == 0) {
-            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/empty.png")));
+            computerButton.setIcon(new ImageIcon(getClass().getResource("Image/empty.png")));
         } else if (comp.getStatus() == 1) {
-            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/wait.png")));
+            computerButton.setIcon(new ImageIcon("OOP/src/Image/wait.png"));
         } else if (comp.getStatus() == 2) {
-            computerButton.setIcon(new ImageIcon(getClass().getResource("/Image/check.png")));
+            computerButton.setIcon(new ImageIcon(getClass().getResource("Image/check.png")));
         }
     }
 
