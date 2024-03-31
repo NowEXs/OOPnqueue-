@@ -47,11 +47,11 @@ public class MainPage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("N-Queue");
         setResizable(false);
-        setMinimumSize(new java.awt.Dimension(1200, 700));
-        setSize(new java.awt.Dimension(1200, 700));
+        setMinimumSize(new java.awt.Dimension(1200, 660));
+        setSize(new java.awt.Dimension(1200, 660));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        cont.setMinimumSize(new java.awt.Dimension(1200, 700));
+        cont.setMinimumSize(new java.awt.Dimension(1200, 660));
         cont.setOpaque(false);
 
         javax.swing.GroupLayout contLayout = new javax.swing.GroupLayout(cont);
@@ -85,14 +85,14 @@ public class MainPage extends javax.swing.JFrame {
         bg.setLayout(BGLayout);
         BGLayout.setHorizontalGroup(
                 BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 1195, Short.MAX_VALUE)
+                        .addGap(0, 1190, Short.MAX_VALUE)
         );
         BGLayout.setVerticalGroup(
                 BGLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGap(0, 700, Short.MAX_VALUE)
+                        .addGap(0, 660, Short.MAX_VALUE)
         );
 
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1195, 700));
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1190, 660));
         setLocationRelativeTo(null);
 
         pack();
