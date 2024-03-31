@@ -1,4 +1,6 @@
-public class Computer extends Student implements Rerservable{
+import java.io.Serializable;
+
+public class Computer extends Student implements Rerservable, Serializable {
     private Student std_data;
     private int comp_id, status;
     private boolean isReservable;
