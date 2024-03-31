@@ -150,6 +150,9 @@ public class DeadlinePanel extends javax.swing.JPanel implements Updater, RoleCh
             } else if (choice == JOptionPane.NO_OPTION) {
                 deadlineLab = JOptionPane.showInputDialog(null, "Add The Lab Number");
                 int checker = -1;
+                if (deadlineLab == null) {
+                    return;
+                }
                 try {
                     checker = Integer.parseInt(deadlineLab);
                     if (checker <= 0) {
