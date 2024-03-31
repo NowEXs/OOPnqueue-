@@ -16,7 +16,6 @@ import java.util.List;
 
 public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Updater {
     private JPanel queue_panel;
-    private JPanel innerLabel;
     private JLabel queue;
     private JPanel deskPanel;
     private JLabel wood;
@@ -73,13 +72,11 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         queueButton.setBorderPainted(false);
         queueButton.setContentAreaFilled(false);
         queue = new JLabel("Queue");
-        innerLabel = new JPanel();
-        innerLabel.add(queue);
-        innerLabel.setOpaque(false);
-        queue_panel.setLayout(new BorderLayout());
-        queue_panel.add(queueButton);
-        queue_panel.add(innerLabel,BorderLayout.SOUTH);
         queue_panel.setPreferredSize(new Dimension(62, 85));
+        queue_panel.setLayout(new BorderLayout());
+        queue_panel.add(queueButton,BorderLayout.NORTH);
+        queue_panel.add(queue);
+        queue_panel.setOpaque(false);
         setCustomFont();
         queueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
