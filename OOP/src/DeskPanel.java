@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -25,6 +26,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private AddingButtonPanel addingButton;
     private static boolean isRunning = false;
     private JTable queueTable;
+    private JTableHeader header;
     private DefaultTableModel model;
 
     public DeskPanel() {
@@ -42,6 +44,11 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         deskPanel = new JPanel();
         queueButton = new JButton();
         queueTable = new JTable();
+        header = new JTableHeader();
+        header = queueTable.getTableHeader();
+        header.setBackground(new java.awt.Color(201, 140, 83, 233));
+        queueTable.setBackground(new java.awt.Color(234, 175, 121, 233));
+        queueTable.setSelectionBackground(new java.awt.Color(234, 175, 121, 184));
         String[] columnNames = { "QueueNumber", "Seat_ID", "Student_ID", "Student_Name", "Lab_name" };
         model = new DefaultTableModel(columnNames, 0);
         queueTable.setModel(model);
