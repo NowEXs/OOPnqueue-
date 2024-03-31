@@ -10,6 +10,8 @@ public class ObjectServ {
     private String name,lab,time;
     public ObjectServ(User user){
         if (user instanceof Student){
+            this.serverLab(user);
+            this.serverName(user);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -18,8 +20,6 @@ public class ObjectServ {
                             Socket soc = serv.accept();
                             BufferedReader read = new BufferedReader(new InputStreamReader(soc.getInputStream(), "UTF-8"));
                             time = read.readLine();
-                            ObjectServ.this.serverLab(user);
-                            ObjectServ.this.serverName(user);
                             Feedback fb = new Feedback(time, name, lab);
                             fb.startServer();
                             fb.setVisible(true);
