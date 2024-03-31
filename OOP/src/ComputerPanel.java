@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 
 //for making computer loop
 public class ComputerPanel extends JPanel implements ActionListener, Updater, MouseListener {
@@ -15,10 +16,25 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
 
     private DeskPanel desk;
 
+    private void setCustomFont() {
+        try {
+            // Load and register the font
+            Font customFont = Font.createFont(Font.TRUETYPE_FONT, new File("OOP/src/Font/Big Apple 3PM.ttf"));
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(customFont);
+
+            // Set the font for components
+            computerNumber.setFont(customFont.deriveFont(Font.PLAIN, 9));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public ComputerPanel(DeskPanel desk, Computer comp, int userType) {
         this.desk = desk;
         this.userType = userType;
         this.comp = comp;
+        computerNumber.setForeground(new java.awt.Color(234, 211, 177));
         computerNumber = new JLabel("Seat - " + comp.getComp_id());
         setLayout(new BorderLayout());
 
@@ -80,11 +96,11 @@ public class ComputerPanel extends JPanel implements ActionListener, Updater, Mo
     @Override
     public void updateButtonIcon() {
         if (comp.getStatus() == 0) {
-            computerButton.setIcon(new ImageIcon(getClass().getResource("Image/empty.png")));
+            computerButton.setIcon(new ImageIcon(("OOP/src/Image/empty.png")));
         } else if (comp.getStatus() == 1) {
             computerButton.setIcon(new ImageIcon("OOP/src/Image/wait.png"));
         } else if (comp.getStatus() == 2) {
-            computerButton.setIcon(new ImageIcon(getClass().getResource("Image/check.png")));
+            computerButton.setIcon(new ImageIcon(("OOP/src/Image/check.png")));
         }
     }
 
