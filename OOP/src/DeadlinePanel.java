@@ -148,39 +148,8 @@ public class DeadlinePanel extends javax.swing.JPanel implements Updater, RoleCh
                 AddDelLab adddelWindow = new AddDelLab();
                 adddelWindow.setVisible(true);
             } else if (choice == JOptionPane.NO_OPTION) {
-                deadlineLab = JOptionPane.showInputDialog(null, "Add The Lab Number");
-                int checker = -1;
-                if (deadlineLab == null) {
-                    return;
-                }
-                try {
-                    checker = Integer.parseInt(deadlineLab);
-                    if (checker <= 0) {
-                        JOptionPane.showMessageDialog(null, "Invalid input! Please enter a positive integer.");
-                        return;
-                    }
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Invalid input! Please enter an integer.");
-                    return;
-                }
-                String updateSql = "UPDATE LabManager SET isTodayDeadline = 1 WHERE LabNumber = ?";
-                String resetSql = "UPDATE LabManager SET isTodayDeadline = NULL";
-                try (Connection conn = DbCon.getConnection();
-                     PreparedStatement updateStatement = conn.prepareStatement(updateSql);
-                     PreparedStatement resetStatement = conn.prepareStatement(resetSql)) {
-                    resetStatement.executeUpdate();
-                    updateStatement.setInt(1, checker);
-                    int rowsAffected = updateStatement.executeUpdate();
-                    if (rowsAffected > 0) {
-                        JOptionPane.showMessageDialog(null, "Edited successfully!");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error! this lab was not added into the program!");
-                    }
-                } catch (SQLException ev) {
-                    ev.printStackTrace();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                EditDeadline editWindow = new EditDeadline();
+                editWindow.setVisible(true);
             }
         }
     }
