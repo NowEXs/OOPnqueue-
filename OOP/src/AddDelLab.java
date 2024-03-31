@@ -56,12 +56,8 @@ public class AddDelLab extends javax.swing.JFrame implements OnClick{
         setTitle("Add&Delete Lab");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txt_Lab.setForeground(new java.awt.Color(255, 255, 255));
         txt_Lab.setText("Lab");
 
-        Lab_tf.setBackground(new java.awt.Color(175, 130, 104));
-        Lab_tf.setForeground(new java.awt.Color(255, 255, 255));
-        Lab_tf.setForeground(new java.awt.Color(204, 204, 204));
         ConfirmButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/button/confirmButtonSmallv2.png"))); // NOI18N
         ConfirmButton.setBorderPainted(false);
         ConfirmButton.setContentAreaFilled(false);
