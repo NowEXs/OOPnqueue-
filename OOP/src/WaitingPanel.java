@@ -24,8 +24,8 @@ public class WaitingPanel extends JPanel implements Updater{
     /**
      * Creates new form WaitingPanel
      */
-    public WaitingPanel(DeskPanel alldesk) {
-        this.alldesk = alldesk;
+    public WaitingPanel(RoleChecker alldesk) {
+        this.alldesk = (DeskPanel) alldesk;
         initComponents();
         addInitialComqueue();
         dataFetcher();

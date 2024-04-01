@@ -38,7 +38,7 @@ public class MainPage extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     private void initComponents() {
         wood_panel = new DeskPanel(user);
-        wood_panel.setBorder(null);
+//        (DeskPanel)wood_panel.setBorder(null);
         cont = new javax.swing.JPanel();
         waitingPanel = new WaitingPanel(wood_panel);
         deadline = new DeadlinePanel(user);
@@ -59,7 +59,7 @@ public class MainPage extends javax.swing.JFrame {
         contLayout.setHorizontalGroup(
                 contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(contLayout.createSequentialGroup()
-                                .addComponent(wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent((DeskPanel)wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(15, 15, 15)
                                 .addGroup(contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -74,7 +74,7 @@ public class MainPage extends javax.swing.JFrame {
                                                 .addComponent(deadline, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(0, 0, 0)
                                                 .addComponent(waitingPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent((DeskPanel)wood_panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(100, Short.MAX_VALUE))
         );
         getContentPane().add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, 600));
@@ -174,7 +174,7 @@ public class MainPage extends javax.swing.JFrame {
     // Variables declaration - do not modify
     private javax.swing.JPanel cont;
     private javax.swing.JPanel deadline;
-    private DeskPanel wood_panel;
+    private RoleChecker wood_panel;
     private WaitingPanel waitingPanel;
     private static javax.swing.JFrame parent;
     private static User user;
