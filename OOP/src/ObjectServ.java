@@ -10,6 +10,7 @@ public class ObjectServ {
     private String name,lab,time;
     public ObjectServ(User user){
         if (user instanceof Student){
+            System.out.println("Hi we run!");
             try (ServerSocket serverSocket = new ServerSocket(5555)) {
                 while(true){
                     Socket soc = serverSocket.accept();
