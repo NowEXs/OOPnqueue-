@@ -18,7 +18,7 @@ public class ClientTeacher {
 
 
     public ClientTeacher() {
-        frame = new JFrame("TeacherApp");
+        frame = new JFrame("Comment Viewer");
         ta = new JTextArea(22, 30);
         try {
             File fontStyle_minecraft = new File("OOP/src/Font/minecraft_font.ttf");
@@ -30,7 +30,6 @@ public class ClientTeacher {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
 
 
         ta.setBackground(new java.awt.Color(102, 51, 0));
@@ -56,12 +55,14 @@ public class ClientTeacher {
         frame.setLocation(1480,0);
         frame.pack();
         frame.setVisible(true);
+        JOptionPane.showMessageDialog(this.frame,"If you close Comment Viewer everything will close","",JOptionPane.WARNING_MESSAGE);
     }
 
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             new ClientTeacher().startServer();
+            new DemoServer().writeServer();
         }
         catch (Exception e){
             e.printStackTrace();
@@ -94,8 +95,7 @@ public class ClientTeacher {
                 String txt = in.readLine();
                 pw.println(txt);
                 pw.flush();
-                PrintWriter output = new PrintWriter(sev.getOutputStream(), true);
-                output.println("Complete!!");
+                System.out.println("Complete!!");
                 sev.close();
                 this.HistoryInput();
             }
