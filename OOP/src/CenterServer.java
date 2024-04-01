@@ -8,7 +8,7 @@ import java.net.Socket;
 public class CenterServer {
 
     public void serverStart(JFrame parent, User user){
-        if (user instanceof Student | user instanceof TA){
+        if (user != null){
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -38,10 +38,7 @@ public class CenterServer {
 
                             }
                             else if (in != null & com.equals("1")){
-                                if (user instanceof Student){
-
-                                }
-                                else if (user instanceof TA){
+                                if (user instanceof TA){
                                     long startTime = System.currentTimeMillis();
                                     long elapsedTime = (System.currentTimeMillis() - startTime) / 1000 / 60;
                                     if (elapsedTime  < 5){
