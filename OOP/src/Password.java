@@ -159,7 +159,12 @@ public class Password extends javax.swing.JFrame implements RoleChecker{
                 this.dispose();
                 MainPage mainpage = new MainPage(new Professor());
                 mainpage.setVisible(true);
-                new ClientTeacher();
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        new ClientTeacher().startServer();
+                    }
+                });
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid password", "Error", JOptionPane.ERROR_MESSAGE);
             }

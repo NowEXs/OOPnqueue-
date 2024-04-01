@@ -407,10 +407,38 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         this.dispose();
     }
     public void startServer() {
+        try (Socket soc = new Socket("localhost",999);
+        PrintWriter pw = new PrintWriter(soc.getOutputStream(),true)){
+            pw.println(1);
+            pw.flush();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try (Socket clientSocket = new Socket("localhost", 608)) {
+                    System.out.println("Client Start...");
+                    PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
+                    System.out.println("Sending Message...");
+                    output.println(txt);
+                    output.flush();
+                    System.out.println("Complete!");
+                } catch (ConnectException e) {
+                    System.out.println("Not Have Server!!");
+                } catch (EOFException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (Socket clientSocket = new Socket("localhost", 604)) {
                     System.out.println("Client Start...");
                     PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
                     System.out.println("Sending Message...");

@@ -10,26 +10,37 @@ public class ObjectServ {
     private String name,lab,time;
     public ObjectServ(User user){
         if (user instanceof Student){
-            this.serverLab(user);
-            this.serverName(user);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try(ServerSocket serv = new ServerSocket(2222)){
-                        while(true){
-                            Socket soc = serv.accept();
-                            BufferedReader read = new BufferedReader(new InputStreamReader(soc.getInputStream(), "UTF-8"));
-                            time = read.readLine();
-                            Feedback fb = new Feedback(time, name, lab);
-                            fb.startServer();
-                            fb.setVisible(true);
-                            soc.close();
-                        }
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
+            try (ServerSocket serverSocket = new ServerSocket(5555)) {
+                while(true){
+                    Socket soc = serverSocket.accept();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(soc.getInputStream(),"UTF-8"));
+                    String sta = br.readLine();
+                    if (sta != null & sta.equals("1")){
+                        this.serverLab(user);
+                        this.serverName(user);
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try(ServerSocket serv = new ServerSocket(2222)){
+                                    while(true){
+                                        Socket soc = serv.accept();
+                                        BufferedReader read = new BufferedReader(new InputStreamReader(soc.getInputStream(), "UTF-8"));
+                                        time = read.readLine();
+                                        Feedback fb = new Feedback(time, name, lab);
+                                        fb.startServer();
+                                        fb.setVisible(true);
+                                        soc.close();
+                                    }
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        }).start();
                     }
                 }
-            }).start();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     public void serverLab(User user){

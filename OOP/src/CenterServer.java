@@ -39,7 +39,11 @@ public class CenterServer {
                             }
                             else if (in != null & com.equals("1")){
                                 if (user instanceof Student){
-
+                                    try (Socket soc = new Socket("localhsot",5555);
+                                    PrintWriter pw = new PrintWriter(soc.getOutputStream(),true)){
+                                        pw.println(1);
+                                        pw.flush();
+                                    }
                                 }
                                 else if (user instanceof TA){
                                     long startTime = System.currentTimeMillis();

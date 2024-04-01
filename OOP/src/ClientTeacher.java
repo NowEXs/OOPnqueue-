@@ -84,23 +84,61 @@ public class ClientTeacher {
 
     public void startServer() {
         this.HistoryInput();
-        try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true), "UTF-8")))) {
-            soc = new ServerSocket(608);
-            while (true) {
-                System.out.println("Waiting for input...");
-                Socket sev = soc.accept();
-                System.out.println("Input Received!");
-                in = new BufferedReader(new InputStreamReader(sev.getInputStream(), "UTF-8"));
-                String txt = in.readLine();
-                pw.println(txt);
-                pw.flush();
-                PrintWriter output = new PrintWriter(sev.getOutputStream(), true);
-                output.println("Complete!!");
-                sev.close();
-                this.HistoryInput();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try (ServerSocket serv = new ServerSocket(999)) {
+                    while(true){
+                        Socket sev = serv.accept();
+                        BufferedReader inv = new BufferedReader(new InputStreamReader(sev.getInputStream(),"UTF-8"));
+                        String status = inv.readLine();
+                        if (status != null & status.equals("1")){
+                            try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true), "UTF-8")))) {
+                                soc = new ServerSocket(608);
+                                while (true) {
+                                    System.out.println("Waiting for input...");
+                                    Socket sevs = soc.accept();
+                                    System.out.println("Input Received!");
+                                    in = new BufferedReader(new InputStreamReader(sevs.getInputStream(), "UTF-8"));
+                                    String txt = in.readLine();
+                                    pw.println(txt);
+                                    pw.flush();
+                                    PrintWriter output = new PrintWriter(sevs.getOutputStream(), true);
+                                    output.println("Complete!!");
+                                    sev.close();
+                                    ClientTeacher.this.HistoryInput();
+                                }
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                        else {
+                            try (PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(new FileOutputStream("Comment.txt", true), "UTF-8")))) {
+                                ServerSocket sock = new ServerSocket(604);
+                                while (true) {
+                                    System.out.println("Waiting for input...");
+                                    Socket sevr = sock.accept();
+                                    System.out.println("Input Received!");
+                                    in = new BufferedReader(new InputStreamReader(sevr.getInputStream(), "UTF-8"));
+                                    String txt = in.readLine();
+                                    pw.println(txt);
+                                    pw.flush();
+                                    PrintWriter output = new PrintWriter(sevr.getOutputStream(), true);
+                                    output.println("Complete!!");
+                                    sev.close();
+                                    ClientTeacher.this.HistoryInput();
+                                }
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        }).start();
     }
 }
