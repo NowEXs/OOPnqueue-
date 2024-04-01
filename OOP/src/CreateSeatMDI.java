@@ -207,50 +207,62 @@ public class CreateSeatMDI extends javax.swing.JFrame implements OnClick{
     public void pressConfirm(ActionEvent event) {
         String addingSql = "SELECT SeatID FROM SeatManager WHERE SeatID = ?";
         String updateSql = "UPDATE SeatManager SET Availability = ? WHERE SeatID = ?";
-        try (Connection conn = DbCon.getConnection();
-             PreparedStatement updateStatement = conn.prepareStatement(updateSql);
-             PreparedStatement addingStatement = conn.prepareStatement(addingSql)) {
-            try {
-                int selectedDesk = Integer.parseInt(seatId.getText());
-                addingStatement.setInt(1, selectedDesk);
-                ResultSet addingStmt = addingStatement.executeQuery();
-                boolean containsCompID = false;
-                for (Integer comp_id : this.deskPanel.getCheck_desk_arr()) {
-                    if (comp_id == selectedDesk) {
-                        containsCompID = true;
-                        break;
+        Connection conn = null;
+        try {
+            conn = DbCon.getConnection();
+            try (PreparedStatement updateStatement = conn.prepareStatement(updateSql);
+                 PreparedStatement addingStatement = conn.prepareStatement(addingSql)) {
+                try {
+                    int selectedDesk = Integer.parseInt(seatId.getText());
+                    addingStatement.setInt(1, selectedDesk);
+                    ResultSet addingStmt = addingStatement.executeQuery();
+                    boolean containsCompID = false;
+                    for (Integer comp_id : this.deskPanel.getCheck_desk_arr()) {
+                        if (comp_id == selectedDesk) {
+                            containsCompID = true;
+                            break;
+                        }
                     }
-                }
-                if (addingStmt.next()) {
-                    int compID = addingStmt.getInt("SeatID");
-                    Computer computer = new Computer("", "", "", compID, 0);
-                    if (containsCompID == false) {
-                        this.deskPanel.getComp_arr().add(computer);
-                        ComputerPanel compee = new ComputerPanel(deskPanel, computer, deskPanel.userType());
-                        compee.setOpaque(false);
-                        System.out.println("alo");
-                        this.deskPanel.getDeskPanel().add(compee);
-                        this.deskPanel.getCheck_desk_arr().add(compID);
-                        this.deskPanel.getDeskPanel().revalidate();
-                        this.deskPanel.getDeskPanel().repaint();
-                        updateStatement.setInt(1, 1);
-                        updateStatement.setInt(2, compID);
-                        updateStatement.executeUpdate();
-                        JOptionPane.showMessageDialog(null, "Added seat!");
+                    if (addingStmt.next()) {
+                        int compID = addingStmt.getInt("SeatID");
+                        Computer computer = new Computer("", "", "", compID, 0);
+                        if (!containsCompID) {
+                            this.deskPanel.getComp_arr().add(computer);
+                            ComputerPanel compee = new ComputerPanel(deskPanel, computer, deskPanel.userType());
+                            compee.setOpaque(false);
+                            System.out.println("alo");
+                            this.deskPanel.getDeskPanel().add(compee);
+                            this.deskPanel.getCheck_desk_arr().add(compID);
+                            this.deskPanel.getDeskPanel().revalidate();
+                            this.deskPanel.getDeskPanel().repaint();
+                            updateStatement.setInt(1, 1);
+                            updateStatement.setInt(2, compID);
+                            updateStatement.executeUpdate();
+                            JOptionPane.showMessageDialog(null, "Added seat!");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "This seat is already added.", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "This seat already added.", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "This room has only 60 seats.", "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "This room has only 60 seats.", "Error", JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, "Please enter a valid seat ID.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(null, "Please enter a valid seat ID.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
+
     }
 
 

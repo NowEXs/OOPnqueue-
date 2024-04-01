@@ -114,9 +114,11 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
                 "WHERE s.Availability = 1 " +
                 "ORDER BY s.SeatID ASC";
 
-        try (Connection conn = DbCon.getConnection();
-             PreparedStatement addingStatement = conn.prepareStatement(addingSql);
-             ResultSet resultSet = addingStatement.executeQuery()) {
+        Connection conn = null;
+
+        try { conn = DbCon.getConnection();
+            PreparedStatement addingStatement = conn.prepareStatement(addingSql);
+            ResultSet resultSet = addingStatement.executeQuery();
 
             this.deskPanel.add(queue_panel);
             if (roleCheck == 2) {
@@ -147,6 +149,14 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -191,21 +201,33 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
 
     private void updateQueueTable() {
         String queueSql = "SELECT * FROM Reservation";
-        try (PreparedStatement addingstatement = DbCon.prepareStatement(queueSql)) {
-            ResultSet resultSet = addingstatement.executeQuery();
-            model.setRowCount(0);
-            while (resultSet.next()) {
-                int queueNumber = resultSet.getInt("QueueNumber");
-                int seatID = resultSet.getInt("SM_SeatID");
-                String studentID = resultSet.getString("StudentID");
-                String studentName = resultSet.getString("StudentName");
-                String labName = resultSet.getString("Lab_name");
-                model.addRow(new Object[] { queueNumber, seatID, studentID, studentName, labName });
+        Connection conn = null;
+        try {
+            conn = DbCon.getConnection();
+            try (PreparedStatement addingstatement = conn.prepareStatement(queueSql)) {
+                ResultSet resultSet = addingstatement.executeQuery();
+                model.setRowCount(0);
+                while (resultSet.next()) {
+                    int queueNumber = resultSet.getInt("QueueNumber");
+                    int seatID = resultSet.getInt("SM_SeatID");
+                    String studentID = resultSet.getString("StudentID");
+                    String studentName = resultSet.getString("StudentName");
+                    String labName = resultSet.getString("Lab_name");
+                    model.addRow(new Object[] { queueNumber, seatID, studentID, studentName, labName });
+                }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 
@@ -234,45 +256,53 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     public void updateGUI() {
         String fetchingSql = "SELECT * FROM Reservation";
         List<Integer> checkerList = new ArrayList<>();
-        try (Connection conn = DbCon.getConnection();
-             PreparedStatement fetchingStatement = conn.prepareStatement(fetchingSql);
-             ResultSet fetchResult = fetchingStatement.executeQuery()) {
-            while (fetchResult.next()) {
-                int seatID = fetchResult.getInt("SM_SeatID");
-                checkerList.add(seatID);
-            }
-            if (!checkerList.isEmpty()) {
-                System.out.println("updateGUI Activated");
-                this.deskPanel.removeAll();
-                this.deskPanel.add(queue_panel);
-                if (roleCheck == 2) {
-                    addingButton = new AddingButtonPanel(this); /**/
-                    this.deskPanel.add(addingButton);
+        Connection conn = null;
+        try {
+            conn = DbCon.getConnection();
+            try (PreparedStatement fetchingStatement = conn.prepareStatement(fetchingSql);
+                 ResultSet fetchResult = fetchingStatement.executeQuery()) {
+                while (fetchResult.next()) {
+                    int seatID = fetchResult.getInt("SM_SeatID");
+                    checkerList.add(seatID);
                 }
-                for (Computer computer : comp_arr) {
-                    if (!checkerList.contains(computer.getComp_id())) {
-                        computer.setName("");
-                        computer.setStd_id("");
-                        computer.setLab_name("");
-                        computer.setStatus(0);
+                if (!checkerList.isEmpty()) {
+                    System.out.println("updateGUI Activated");
+                    this.deskPanel.removeAll();
+                    this.deskPanel.add(queue_panel);
+                    if (roleCheck == 2) {
+                        addingButton = new AddingButtonPanel(this); /**/
+                        this.deskPanel.add(addingButton);
                     }
-                    ComputerPanel companel = new ComputerPanel(this, computer, userType());
-                    companel.updateButtonIcon();
-                    companel.setOpaque(false);
-                    this.deskPanel.add(companel);
+                    for (Computer computer : comp_arr) {
+                        if (!checkerList.contains(computer.getComp_id())) {
+                            computer.setName("");
+                            computer.setStd_id("");
+                            computer.setLab_name("");
+                            computer.setStatus(0);
+                        }
+                        ComputerPanel companel = new ComputerPanel(this, computer, userType());
+                        companel.updateButtonIcon();
+                        companel.setOpaque(false);
+                        this.deskPanel.add(companel);
+                    }
+                    this.deskPanel.revalidate();
+                    this.deskPanel.repaint();
                 }
-                this.deskPanel.revalidate();
-                this.deskPanel.repaint();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
-
     }
-
-
 
     @Override
     public void dataFetcher() {

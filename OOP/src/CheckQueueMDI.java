@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.*;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -239,15 +240,27 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
         if (this.comp.getStatus() == 1) {
             String checkingSql = "UPDATE Reservation SET Status = 2 WHERE SM_SeatID = ?";
             int deskNumber = this.comp.getComp_id();
-            try (PreparedStatement checkingstatement = DbCon.prepareStatement(checkingSql)) {
-                System.out.println("Checking this queue");
-                checkingstatement.setInt(1, deskNumber);
-                checkingstatement.executeUpdate();
-                this.companel.updateButtonIcon();
+            Connection conn = null;
+            try {
+                conn = DbCon.getConnection();
+                try (PreparedStatement checkingstatement = conn.prepareStatement(checkingSql)) {
+                    System.out.println("Checking this queue");
+                    checkingstatement.setInt(1, deskNumber);
+                    checkingstatement.executeUpdate();
+                    this.companel.updateButtonIcon();
+                }
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            } finally {
+                if (conn != null) {
+                    try {
+                        conn.close();
+                    } catch (SQLException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
             dispose();
             Checkingpage checkingWindow = new Checkingpage(companel, comp);
@@ -266,22 +279,34 @@ public class CheckQueueMDI extends javax.swing.JFrame implements OnClick{
             case JOptionPane.OK_OPTION:
                 String update_qSql = "DELETE FROM Reservation WHERE SM_SeatID = ?";
                 String update_rSql = "UPDATE SeatManager SET Reservable = 1 WHERE SeatID = ?";
-                try (PreparedStatement update_qstatement = DbCon.prepareStatement(update_qSql);
-                     PreparedStatement update_rstatement = DbCon.prepareStatement(update_rSql)) {
-                    int deskNumber = comp.getComp_id();
-                    this.comp.setName("");
-                    this.comp.setLab_name("");
-                    this.comp.setStd_id("");
-                    this.comp.setStatus(0);
-                    this.companel.updateButtonIcon();
-                    update_qstatement.setInt(1, deskNumber);
-                    update_rstatement.setInt(1, deskNumber);
-                    update_qstatement.executeUpdate();
-                    update_rstatement.executeUpdate();
+                Connection conn = null;
+                try {
+                    conn = DbCon.getConnection();
+                    try (PreparedStatement update_qstatement = conn.prepareStatement(update_qSql);
+                         PreparedStatement update_rstatement = conn.prepareStatement(update_rSql)) {
+                        int deskNumber = comp.getComp_id();
+                        this.comp.setName("");
+                        this.comp.setLab_name("");
+                        this.comp.setStd_id("");
+                        this.comp.setStatus(0);
+                        this.companel.updateButtonIcon();
+                        update_qstatement.setInt(1, deskNumber);
+                        update_rstatement.setInt(1, deskNumber);
+                        update_qstatement.executeUpdate();
+                        update_rstatement.executeUpdate();
+                    }
                 } catch (SQLException e) {
                     throw new RuntimeException(e);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
+                } finally {
+                    if (conn != null) {
+                        try {
+                            conn.close();
+                        } catch (SQLException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
                 System.out.println("User deleted queue");
                 dispose();

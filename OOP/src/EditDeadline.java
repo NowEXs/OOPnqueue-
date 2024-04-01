@@ -168,21 +168,32 @@ public class EditDeadline extends javax.swing.JFrame implements OnClick{
         }
         String updateSql = "UPDATE LabManager SET isTodayDeadline = 1 WHERE LabNumber = ?";
         String resetSql = "UPDATE LabManager SET isTodayDeadline = NULL";
-        try (Connection conn = DbCon.getConnection();
-             PreparedStatement updateStatement = conn.prepareStatement(updateSql);
-             PreparedStatement resetStatement = conn.prepareStatement(resetSql)) {
-            resetStatement.executeUpdate();
-            updateStatement.setInt(1, checker);
-            int rowsAffected = updateStatement.executeUpdate();
-            if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Edited successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Error! this lab was not added into the program!");
+        Connection conn = null;
+        try {
+            conn = DbCon.getConnection();
+            try (PreparedStatement updateStatement = conn.prepareStatement(updateSql);
+                 PreparedStatement resetStatement = conn.prepareStatement(resetSql)) {
+                resetStatement.executeUpdate();
+                updateStatement.setInt(1, checker);
+                int rowsAffected = updateStatement.executeUpdate();
+                if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(null, "Edited successfully!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error! This lab was not added into the program!");
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 

@@ -331,17 +331,28 @@ public class Reservation extends javax.swing.JFrame implements OnClick{
     private ArrayList<String> fetchLabNamesFromDB() {
         ArrayList<String> labNames = new ArrayList<>();
         String selectSql = "SELECT LabNumber FROM LabManager";
-        try (Connection conn = DbCon.getConnection();
-             PreparedStatement selectstatement = conn.prepareStatement(selectSql);
-             ResultSet selectResultSet = selectstatement.executeQuery()) {
-            while (selectResultSet.next()) {
-                String labName = selectResultSet.getString("LabNumber");
-                labNames.add("Lab " + labName);
+        Connection conn = null;
+        try {
+            conn = DbCon.getConnection();
+            try (PreparedStatement selectstatement = conn.prepareStatement(selectSql);
+                 ResultSet selectResultSet = selectstatement.executeQuery()) {
+                while (selectResultSet.next()) {
+                    String labName = selectResultSet.getString("LabNumber");
+                    labNames.add("Lab " + labName);
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
         return labNames;
     }

@@ -118,20 +118,23 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
 
     private void deleteButtonActionPerformed (java.awt.event.ActionEvent evt){
         String delSql = "UPDATE SeatManager SET Availability = NULL WHERE SeatID = ?"; // ลบโต๊ะ
-        try (Connection conn = DbCon.getConnection();
-             PreparedStatement delStatement = conn.prepareStatement(delSql)) {
-            int deskNumber = Integer.parseInt(seatID.getText());
-            for (ComputerPanel comp : this.desk.getDeskArr()) {
-                int comp_id = comp.getComp().getComp_id();
-                if (deskNumber == comp_id) {
-                    this.desk.getDeskPanel().remove(comp);
-                    this.desk.getDeskArr().remove(comp);
-                    this.desk.getComp_arr().remove(comp.getComp());
-                    this.desk.getCheck_desk_arr().remove(Integer.valueOf(comp_id));
-                    delStatement.setInt(1, deskNumber);
-                    delStatement.executeUpdate();
-                    JOptionPane.showMessageDialog(null, "Deleted seat!");
-                    break;
+        Connection conn = null;
+        try {
+            conn = DbCon.getConnection();
+            try (PreparedStatement delStatement = conn.prepareStatement(delSql)) {
+                int deskNumber = Integer.parseInt(seatID.getText()); // Assuming seatID is a JTextField
+                for (ComputerPanel comp : this.desk.getDeskArr()) {
+                    int comp_id = comp.getComp().getComp_id();
+                    if (deskNumber == comp_id) {
+                        this.desk.getDeskPanel().remove(comp);
+                        this.desk.getDeskArr().remove(comp);
+                        this.desk.getComp_arr().remove(comp.getComp());
+                        this.desk.getCheck_desk_arr().remove(Integer.valueOf(comp_id));
+                        delStatement.setInt(1, deskNumber);
+                        delStatement.executeUpdate();
+                        JOptionPane.showMessageDialog(null, "Deleted seat!");
+                        break;
+                    }
                 }
             }
             this.desk.getDeskPanel().revalidate();
@@ -140,6 +143,14 @@ public class DeleteSeatMDI extends javax.swing.JFrame {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
 

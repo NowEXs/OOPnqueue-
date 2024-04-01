@@ -3,10 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class AddDelLab extends javax.swing.JFrame implements OnClick{
@@ -157,9 +154,9 @@ public class AddDelLab extends javax.swing.JFrame implements OnClick{
             int rowsAffected = addingstatement.executeUpdate();
             if (rowsAffected > 0) {
                 JOptionPane.showMessageDialog(null, "Lab added! :D");
-            } else {
-                JOptionPane.showMessageDialog(null, "This Lab was added into the program!");
             }
+        } catch (SQLIntegrityConstraintViolationException ex) {
+            JOptionPane.showMessageDialog(null, "This Lab was already added into the program!", null, JOptionPane.WARNING_MESSAGE);
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -73,38 +73,58 @@ public class DeadlinePanel extends javax.swing.JPanel implements Updater, RoleCh
 
     private void fetchingDeadline() {
         String fetchSql = "SELECT LabNumber FROM LabManager WHERE isTodayDeadline = 1";
-        try (Connection conn = DbCon.getConnection();
-             PreparedStatement fetchStatement = conn.prepareStatement(fetchSql)) {
-            ResultSet resultSet = fetchStatement.executeQuery();
-            if (resultSet.next()) {
-                deadlineLab = String.valueOf(resultSet.getInt("LabNumber"));
-                txt_lab.setText("Lab: " + deadlineLab);
-            } else {
-                txt_lab.setText("Lab: -");
+        Connection conn = null;
+        try {
+            conn = DbCon.getConnection();
+            try (PreparedStatement fetchStatement = conn.prepareStatement(fetchSql)) {
+                ResultSet resultSet = fetchStatement.executeQuery();
+                if (resultSet.next()) {
+                    deadlineLab = String.valueOf(resultSet.getInt("LabNumber"));
+                    txt_lab.setText("Lab: " + deadlineLab);
+                } else {
+                    txt_lab.setText("Lab: -");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
     @Override
     public void updateGUI() {
         String countSql = "SELECT COUNT(*) AS row_count FROM Reservation";
-        try (Connection conn = DbCon.getConnection();
-             PreparedStatement countStatement = conn.prepareStatement(countSql);
-             ResultSet countResult = countStatement.executeQuery()) {
-            countResult.next();
-            int rowCount = countResult.getInt("row_count");
-            txt_people.setText(rowCount + " people");
-
+        Connection conn = null;
+        try {
+            conn = DbCon.getConnection();
+            try (PreparedStatement countStatement = conn.prepareStatement(countSql);
+                 ResultSet countResult = countStatement.executeQuery()) {
+                countResult.next();
+                int rowCount = countResult.getInt("row_count");
+                txt_people.setText(rowCount + " people");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } finally {
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
         }
     }
-
 
     @Override
     public void dataFetcher() {
