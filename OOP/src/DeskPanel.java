@@ -28,7 +28,6 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
     private ArrayList<ComputerPanel> desk_arr = new ArrayList<>();
     private ArrayList<Integer> check_desk_arr = new ArrayList<>();
     private AddingButtonPanel addingButton;
-    private static boolean isRunning = false;
     private JTable queueTable;
     private JTableHeader header;
     private DefaultTableModel model;
@@ -59,10 +58,8 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         deskPanel = new JPanel();
         queueButton = new JButton();
         queueTable = new JTable();
-        header = queueTable.getTableHeader();
-        header.setBackground(new java.awt.Color(201, 140, 83, 233));
-        queueTable.setBackground(new java.awt.Color(234, 175, 121, 233));
-        queueTable.setSelectionBackground(new java.awt.Color(234, 175, 121, 184));
+       // queueTable.setBackground(new java.awt.Color(234, 175, 121, 233));
+       // queueTable.setSelectionBackground(new java.awt.Color(234, 175, 121, 184));
         String[] columnNames = { "QueueNumber", "Seat_ID", "Student_ID", "Student_Name", "Lab_name" };
         model = new DefaultTableModel(columnNames, 0);
         queueTable.setModel(model);
@@ -160,6 +157,34 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
         Container contentPane = queueFrame.getContentPane();
         contentPane.setLayout(new BorderLayout());
         contentPane.add(queuescrollPane, BorderLayout.CENTER);
+        if (this.userType() == 2) {
+            JButton queueResetButton = new JButton("Reset Queues");
+                queueResetButton.addActionListener(new java.awt.event.ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        int userChoice = JOptionPane.showConfirmDialog(null, "This will delete all queues, Are you sure?", "Warning", JOptionPane.OK_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+                        switch (userChoice) {
+                            case JOptionPane.OK_OPTION:
+                                String resetSql = "DELETE FROM Reservation";
+                                String resetAutoIncrementSql = "ALTER TABLE Reservation AUTO_INCREMENT = 1";
+                                try (PreparedStatement reset_statement = DbCon.prepareStatement(resetSql);
+                                    PreparedStatement reset_autostatement = DbCon.prepareStatement(resetAutoIncrementSql)) {
+                                    reset_statement.executeUpdate();
+                                    reset_autostatement.executeUpdate();
+                                    JOptionPane.showMessageDialog(null, "Queue deleted");
+                                } catch (SQLException ex) {
+                                    ex.printStackTrace();
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                            case JOptionPane.CANCEL_OPTION:
+                                System.out.println("Canceled");
+                                return;
+                        }
+                    }
+                });
+            queueFrame.add(queueResetButton, BorderLayout.SOUTH);
+        }
         queueFrame.pack();
         queueFrame.setVisible(true);
     }
@@ -183,6 +208,7 @@ public class DeskPanel extends JPanel implements RoleChecker, ActionListener, Up
             throw new RuntimeException(e);
         }
     }
+
 
     public ArrayList<Computer> getComp_arr() {
         return this.comp_arr;
