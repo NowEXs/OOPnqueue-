@@ -400,7 +400,11 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
             @Override
             public void run() {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd HH:mm:ss");
-                Feedback.this.txt = "From "+Feedback.this.name.getText()+": "+dtf.format(LocalDateTime.now()) + ": " + feedback_txtarea.getText();
+                String feedback = feedback_txtarea.getText();
+                if (feedback == null) {
+                    feedback = "";
+                }
+                Feedback.this.txt = "From "+Feedback.this.name.getText()+": "+dtf.format(LocalDateTime.now()) + ": " + feedback;
                 Feedback.this.startServer();
             }
         });
