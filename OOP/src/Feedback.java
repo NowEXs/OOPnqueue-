@@ -13,8 +13,8 @@ import java.net.*;
 import java.io.*;
 import java.util.Date;
 /*
-* Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
-        */
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 
 /**
  *
@@ -279,7 +279,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         pack();
     }// </editor-fold>
 
-//    public void timeUpdate(){
+    //    public void timeUpdate(){
 //        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
 //        String now  = df.format(new Date());
 //        time.setText(now);
@@ -407,25 +407,15 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
         this.dispose();
     }
     public void startServer() {
-        try (Socket soc = new Socket("localhost",999);
-        PrintWriter pw = new PrintWriter(soc.getOutputStream(),true)){
-            pw.println(1);
-            pw.flush();
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try (Socket clientSocket = new Socket("localhost", 608)) {
                     System.out.println("Client Start...");
                     PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
-                    System.out.println("Sending Message...");
                     output.println(txt);
-                    output.flush();
-                    System.out.println("Complete!");
+                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    System.out.println(in.readLine());
                 } catch (ConnectException e) {
                     System.out.println("Not Have Server!!");
                 } catch (EOFException e) {
@@ -435,26 +425,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                 }
             }
         }).start();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try (Socket clientSocket = new Socket("localhost", 604)) {
-                    System.out.println("Client Start...");
-                    PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
-                    System.out.println("Sending Message...");
-                    output.println(txt);
-                    output.flush();
-                    System.out.println("Complete!");
-                } catch (ConnectException e) {
-                    System.out.println("Not Have Server!!");
-                } catch (EOFException e) {
-                    e.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-        new DemoServer().server();
+        new DemoServer();
     }
 
     @Override

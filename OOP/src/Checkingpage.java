@@ -218,45 +218,36 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
         try (Socket socket = new Socket("localhost",1111)){
             PrintWriter outS = new PrintWriter(socket.getOutputStream(), true);
             outS.println(1);
-            System.out.println("Can Send");
-            SwingUtilities.invokeLater(new Runnable() {
-                @Override
-                public void run() {
-                    try (Socket soc = new Socket("localhost",3333)) {
-                        PrintWriter outLab = new PrintWriter(soc.getOutputStream(), true);
-                        outLab.println(lab_l.getText());
-                        System.out.println("Can Send");
-                    } catch (ConnectException e){
-                        System.out.println("Not have server...");
-                    } catch (UnknownHostException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    try (Socket soc = new Socket("localhost",4444)) {
-                        PrintWriter outName = new PrintWriter(soc.getOutputStream(), true);
-                        outName.println(name_l.getText());
-                        System.out.println("Can Send");
-                    } catch (ConnectException e){
-                        System.out.println("Not have server...");
-                    } catch (UnknownHostException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                    try (Socket soc = new Socket("localhost",2222)) {
-                        PrintWriter outTime = new PrintWriter(soc.getOutputStream(), true);
-                        outTime.println(time.getText());
-                        System.out.println("Can Send");
-                    } catch (ConnectException e){
-                        System.out.println("Not have server...");
-                    } catch (UnknownHostException e) {
-                        throw new RuntimeException(e);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-            });
+            try (Socket soc = new Socket("localhost",3333)) {
+                PrintWriter outLab = new PrintWriter(soc.getOutputStream(), true);
+                outLab.println(lab_l.getText());
+            } catch (ConnectException e){
+                System.out.println("Not have server...");
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try (Socket soc = new Socket("localhost",4444)) {
+                PrintWriter outName = new PrintWriter(soc.getOutputStream(), true);
+                outName.println(name_l.getText());
+            } catch (ConnectException e){
+                System.out.println("Not have server...");
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            try (Socket soc = new Socket("localhost",2222)) {
+                PrintWriter outTime = new PrintWriter(soc.getOutputStream(), true);
+                outTime.println(time.getText());
+            } catch (ConnectException e){
+                System.out.println("Not have server...");
+            } catch (UnknownHostException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }catch (ConnectException ex){
             System.out.println("Not have Server...");
         } catch (UnknownHostException ex) {
@@ -299,6 +290,7 @@ public class Checkingpage extends javax.swing.JFrame implements OnClick{
     }
 
     public static void main(String[] args) {
-        new Checkingpage(null,new Computer()).setVisible(true);
+        new Checkingpage(null,new Computer("66070285","now","lab1",1,0)).setVisible(true);
+        new CenterServer().serverStart(null,new Student("66070285","now","lab1"));
     }
 }
