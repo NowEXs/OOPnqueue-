@@ -413,9 +413,10 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                 try (Socket clientSocket = new Socket("localhost", 608)) {
                     System.out.println("Client Start...");
                     PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
+                    System.out.println("Sending Message...");
                     output.println(txt);
-                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                    System.out.println(in.readLine());
+                    output.flush();
+                    System.out.println("Complete!");
                 } catch (ConnectException e) {
                     System.out.println("Not Have Server!!");
                 } catch (EOFException e) {
@@ -425,7 +426,7 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                 }
             }
         }).start();
-        new DemoServer();
+        new DemoServer().server();
     }
 
     @Override
