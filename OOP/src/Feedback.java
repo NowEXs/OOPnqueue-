@@ -401,10 +401,10 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
             public void run() {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yy/MM/dd HH:mm:ss");
                 String feedback = feedback_txtarea.getText();
-                if (feedback == null) {
-                    feedback = "";
+                if (feedback.isEmpty()) { // Check if the text is empty
+                    feedback = ""; // Set it to an empty string if it's empty
                 }
-                Feedback.this.txt = "From "+Feedback.this.name.getText()+": "+dtf.format(LocalDateTime.now()) + ": " + feedback;
+                Feedback.this.txt = "From " + Feedback.this.name.getText() + ": " + dtf.format(LocalDateTime.now()) + ": " + feedback;
                 Feedback.this.startServer();
             }
         });
@@ -417,7 +417,9 @@ public class Feedback extends javax.swing.JFrame implements OnClick{
                 try (Socket clientSocket = new Socket("localhost", 608)) {
                     System.out.println("Client Start...");
                     PrintWriter output = new PrintWriter(clientSocket.getOutputStream(), true);
-                    output.println(txt);
+                    if (Feedback.this.txt != null){
+                        output.println(txt);
+                    }
                     in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                     System.out.println(in.readLine());
                 } catch (ConnectException e) {

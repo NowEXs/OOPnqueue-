@@ -1,8 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.*;
 import java.time.LocalDateTime;
@@ -12,31 +10,27 @@ public class ClientTeacher {
     private ServerSocket soc;
     private BufferedReader in;
     private JFrame frame;
-    private JPanel p1,p2;
+    private JPanel p1, p2;
     private JLabel bg;
     private JTextArea ta;
-
 
     public ClientTeacher() {
         frame = new JFrame("TeacherApp");
         ta = new JTextArea(22, 30);
         try {
             File fontStyle_minecraft = new File("OOP/src/Font/minecraft_font.ttf");
-            Font font_feedback = Font.createFont(Font.TRUETYPE_FONT,fontStyle_minecraft).deriveFont(12f);
+            Font font_feedback = Font.createFont(Font.TRUETYPE_FONT, fontStyle_minecraft).deriveFont(12f);
             ta.setFont(font_feedback);
             ta.setForeground(new java.awt.Color(255, 244, 204));
-        } catch (FontFormatException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (FontFormatException | IOException e) {
             throw new RuntimeException(e);
         }
-
-
 
         ta.setBackground(new java.awt.Color(102, 51, 0));
         ta.setBorder(new LineBorder(new Color(102, 51, 0)));
         ta.setEditable(false);
-        p1 = new JPanel(); p2 = new JPanel();
+        p1 = new JPanel();
+        p2 = new JPanel();
         bg = new JLabel();
 
         bg.setLayout(new BorderLayout());
@@ -53,7 +47,7 @@ public class ClientTeacher {
 
         frame.add(p1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setLocation(1480,0);
+        frame.setLocation(1480, 0);
         frame.pack();
         frame.setVisible(true);
     }
@@ -62,14 +56,18 @@ public class ClientTeacher {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             new ClientTeacher().startServer();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public void HistoryInput() {
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("Comment.txt"), "UTF-8"))) {
+        File file = new File("Comment.txt");
+        if (!file.exists()) {
+            System.err.println("File 'Comment.txt' does not exist.");
+            return;
+        }
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"))) {
             StringBuilder historyText = new StringBuilder();
             String line;
 

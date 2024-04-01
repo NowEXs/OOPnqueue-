@@ -21,7 +21,6 @@ public class ObjectServ {
                             BufferedReader read = new BufferedReader(new InputStreamReader(soc.getInputStream(), "UTF-8"));
                             time = read.readLine();
                             Feedback fb = new Feedback(time, name, lab);
-                            fb.startServer();
                             fb.setVisible(true);
                             soc.close();
                         }
