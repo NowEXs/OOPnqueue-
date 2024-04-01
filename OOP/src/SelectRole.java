@@ -127,7 +127,7 @@ public class SelectRole extends javax.swing.JFrame {
 
     private void TAButtonActionPerformed(java.awt.event.ActionEvent evt) {
         this.dispose();
-        Password pass_gui = new Password(new TA());
+        Password pass_gui = new Password(new TA("1234"));
         pass_gui.setVisible(true);
     }
 
