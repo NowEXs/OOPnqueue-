@@ -1,5 +1,5 @@
 public class Professor extends User implements Checkable {
-    private final String password = "1234";
+    private static final String password = "1234";
 //    public boolean isCheckable(){
 //
 //    } for run

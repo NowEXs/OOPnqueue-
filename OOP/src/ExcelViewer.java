@@ -9,12 +9,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.*;
-import java.net.ConnectException;
-import java.net.Socket;
-import java.net.UnknownHostException;
 
 public class ExcelViewer extends JFrame {
     private JTable table;
@@ -70,8 +65,8 @@ public class ExcelViewer extends JFrame {
     }
 
     private void displayExcel(File file, int sheetIndex) {
-        try (FileInputStream inputStream = new FileInputStream(file);
-             Workbook workbook = new XSSFWorkbook(inputStream)) {
+        try (FileInputStream inS = new FileInputStream(file);
+             Workbook workbook = new XSSFWorkbook(inS)) {
 
             Sheet sheet = workbook.getSheetAt(sheetIndex);
             DataFormatter dataFormatter = new DataFormatter();
